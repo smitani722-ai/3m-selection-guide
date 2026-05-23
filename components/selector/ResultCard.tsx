@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import {
   CheckCircle2, ChevronRight, Copy, Check, MessageSquare,
   Lightbulb, Package, Star, Award, ArrowRight,
+  FileText, Globe, Download,
 } from "lucide-react";
 
 interface ResultCardProps {
@@ -143,6 +144,9 @@ export function ResultCard({ result }: ResultCardProps) {
               ))}
             </div>
           )}
+
+          {/* ドキュメントリンク */}
+          <ProductLinks product={primary} />
         </div>
       </div>
 
@@ -323,6 +327,68 @@ export function ResultCard({ result }: ResultCardProps) {
             <ClosingLine key={i} line={line} index={i} />
           ))}
         </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── ドキュメントリンク ──────────────────────────────────────
+// 将来的にproducts.jsonへURLを追記するだけで自動表示される構造
+function ProductLinks({ product }: { product: import("@/lib/selectionEngine").Product }) {
+  const hasAny = product.dataSheetUrl || product.productPageUrl || product.catalogUrl;
+  if (!hasAny) return null;
+
+  return (
+    <div className="pt-3 mt-1 border-t border-gray-100">
+      <div className="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-2">製品ドキュメント</div>
+      <div className="flex flex-wrap gap-2">
+        {product.dataSheetUrl && (
+          <>
+            {/* データシートを見る */}
+            <a
+              href={product.dataSheetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-700 transition-all hover:bg-red-100 hover:border-red-300 active:scale-95"
+            >
+              <FileText size={12} />
+              データシートを見る
+            </a>
+            {/* PDFダウンロード */}
+            <a
+              href={product.dataSheetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              download
+              className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-all hover:bg-gray-100 hover:border-gray-300 active:scale-95"
+            >
+              <Download size={12} />
+              PDFダウンロード
+            </a>
+          </>
+        )}
+        {product.productPageUrl && (
+          <a
+            href={product.productPageUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-all hover:bg-gray-100 hover:border-gray-300 active:scale-95"
+          >
+            <Globe size={12} />
+            3M製品ページ
+          </a>
+        )}
+        {product.catalogUrl && (
+          <a
+            href={product.catalogUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-all hover:bg-gray-100 hover:border-gray-300 active:scale-95"
+          >
+            <FileText size={12} />
+            カタログ
+          </a>
+        )}
       </div>
     </div>
   );

@@ -20,6 +20,10 @@ export interface Product {
   workTime?: string;
   cureTime?: string;
   colors?: string[];
+  // ドキュメントリンク（将来的にJSONで追加可能）
+  productPageUrl?: string | null;
+  dataSheetUrl?: string | null;
+  catalogUrl?: string | null;
 }
 
 export interface SelectionCriteria {

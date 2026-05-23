@@ -16,7 +16,10 @@
       "price": "standard",
       "permanence": "再剥離可",
       "notes": "PPには93015LEの方が有利。高温用途は467MP推奨。",
-      "competitors": ["日東CSR-8630", "積水#5000N"]
+      "competitors": ["日東CSR-8630", "積水#5000N"],
+      "dataSheetUrl": null,
+      "productPageUrl": null,
+      "catalogUrl": null
     },
     {
       "id": "93015LE",
@@ -34,7 +37,10 @@
       "price": "standard",
       "permanence": "恒久固定",
       "notes": "被着体の表面処理なしでPP・PE・LSE材に接着可能。",
-      "competitors": ["日東No.5000NS"]
+      "competitors": ["日東No.5000NS"],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366126O/3M-High-Strength-Double-Coated-Tape-93015LE.pdf",
+      "productPageUrl": "https://www.3m.com/3M/en_US/p/d/b40070397/",
+      "catalogUrl": null
     },
     {
       "id": "9472LE",
@@ -88,7 +94,10 @@
       "price": "standard",
       "permanence": "恒久固定",
       "notes": "ライナーレスのため作業性良好。F9460PC・F9469PCは難接着材対応版。",
-      "competitors": ["日東No.5303", "積水#5680"]
+      "competitors": ["日東No.5303", "積水#5680"],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366204O/3m-adhesive-transfer-tape-467mp.pdf",
+      "productPageUrl": null,
+      "catalogUrl": null
     },
     {
       "id": "468MP",
@@ -160,7 +169,10 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "260°Cまでの超高温用途。FPC（フレキシブルプリント基板）への実績多数。",
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/2365982O/3m-ultra-high-temperature-double-coated-tape-9077.pdf",
+      "productPageUrl": "https://www.3m.com/3M/en_US/p/d/v000127963/",
+      "catalogUrl": null
     },
     {
       "id": "1110",
@@ -340,7 +352,10 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "VHBは剥がすと破壊が起こる場合がある。再剥離不可。",
-      "competitors": ["日東ハイパーセル", "積水ハイパーフォーム"]
+      "competitors": ["日東ハイパーセル", "積水ハイパーフォーム"],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366469O/3m-vhb-tape-specialty-tape-4950.pdf",
+      "productPageUrl": "https://www.3m.com/3M/en_US/p/d/b40065670/",
+      "catalogUrl": null
     },
     {
       "id": "GPH",
@@ -358,7 +373,10 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "VHBの中で最も高い耐熱性を持つシリーズ。エンジン周辺・工業炉への実績あり。",
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/1885915O/3m-vhb-gph-series-product-data-sheet-english.pdf",
+      "productPageUrl": null,
+      "catalogUrl": null
     },
     {
       "id": "LVO",
@@ -394,7 +412,10 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "粗面・粗い表面への固定に特化。建設・建材用途に実績。",
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366487O/3m-vhb-tape-5952.pdf",
+      "productPageUrl": null,
+      "catalogUrl": null
     },
     {
       "id": "5600",
@@ -430,7 +451,10 @@
       "price": "standard",
       "permanence": "恒久固定",
       "notes": "VHBの標準品。迷ったらまずY4825シリーズを検討する。",
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/1267925O/vhb-tape-specialty-tapes.pdf",
+      "productPageUrl": null,
+      "catalogUrl": null
     },
     {
       "id": "DP420NS",
@@ -449,7 +473,10 @@
       "workTime": "25分",
       "cureTime": "4時間（室温）",
       "notes": "混合後の可使時間は25分。低温環境では硬化時間が延びる。",
-      "competitors": ["コニシボンドE250", "ヘンケルロックタイト9483"]
+      "competitors": ["コニシボンドE250", "ヘンケルロックタイト9483"],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/2365922O/3m-scotch-weld-epoxy-adhesive-dp420ns-black.pdf",
+      "productPageUrl": null,
+      "catalogUrl": null
     },
     {
       "id": "DP460",
@@ -468,7 +495,10 @@
       "workTime": "90分",
       "cureTime": "12時間（室温）",
       "notes": "高温硬化でより強度が向上。DP420NSより長い可使時間。",
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/2365880O/3m-scotch-weld-epoxy-adhesive-dp460-off-white.pdf",
+      "productPageUrl": null,
+      "catalogUrl": null
     },
     {
       "id": "メタルグリップ",
@@ -487,7 +517,10 @@
       "workTime": "5分",
       "cureTime": "30分",
       "notes": "脱脂が不完全な金属面でも接着可能。工場・機械メンテ用途に有効。",
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/1231152O/metal-grip.pdf",
+      "productPageUrl": null,
+      "catalogUrl": null
     },
     {
       "id": "DP8010",
@@ -506,7 +539,10 @@
       "workTime": "5分",
       "cureTime": "24時間",
       "notes": "PP・LSE材への接着は通常接着剤では不可。DP8010が有効。",
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/2365938O/3m-scotch-weld-structural-plastic-adhesive-dp8010-blue.pdf",
+      "productPageUrl": "https://www.3m.com/3M/en_US/p/d/b40066429/",
+      "catalogUrl": null
     },
     {
       "id": "DP8910NS",
@@ -601,7 +637,10 @@
       "permanence": "着脱可能",
       "notes": "SJ3541（透明）・SJ3542（黒）・SJ3544（白）など色展開あり。押す・引くの動作で脱着。",
       "colors": ["黒", "透明", "白"],
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366445O/3M-Dual-Lock-Reclosable-Fastener-SJ3540.pdf",
+      "productPageUrl": null,
+      "catalogUrl": null
     },
     {
       "id": "SJ3550",
@@ -620,7 +659,10 @@
       "permanence": "再剥離",
       "notes": "SJ3540より接着力が低い。繰り返し着脱前提の用途に。",
       "colors": ["黒", "透明"],
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366370O/3M-Dual-Lock-Reclosable-Fastener-SJ3550.pdf",
+      "productPageUrl": null,
+      "catalogUrl": null
     },
     {
       "id": "SJ3526N",
