@@ -1,0 +1,65 @@
+import type { SelectionResult } from "./selectionEngine";
+
+export interface SalesTalk {
+  simple: string;
+  standard: string;
+  detailed: string;
+}
+
+export const CLOSING_LINES = [
+  "ではこの仕様で見積を進めましょうか？",
+  "まずサンプルでお試しになりますか？",
+  "テスト用の小ロットからご案内できます。いかがでしょうか？",
+] as const;
+
+export function generateSalesTalk(result: SelectionResult): SalesTalk {
+  const { primary, reasons, alternatives, category, matchScore } = result;
+
+  const altName = alternatives[0]?.name ?? "";
+  const altSub = alternatives[0]?.subcategory ?? "";
+
+  // ── シンプル版（1〜2行）──────────────────────────────────────
+  // 製品説明をベースに、主要理由1文を添える
+  const coreReason = reasons[0]
+    ? reasons[0].replace(/[。]$/, "") + "ため、今回の条件に最適です。"
+    : "選定条件との総合評価で最も推奨されます。";
+  const simple = `${primary.name}をお勧めします。${coreReason}`;
+
+  // ── 標準版（3〜4行）──────────────────────────────────────────
+  const standardParts: string[] = [
+    `今回の条件には ${primary.name}（${category}）が最適です。`,
+  ];
+  reasons.slice(0, 2).forEach((r) => standardParts.push(`・${r}`));
+  if (altName) {
+    standardParts.push(
+      `代替として ${altName}（${altSub}）もご提案できます。`
+    );
+  }
+  const standard = standardParts.join("\n");
+
+  // ── 詳しい版（しっかり説明）───────────────────────────────────
+  const reasonLines = reasons.map((r) => `  ・${r}`).join("\n");
+  const altSection =
+    alternatives.length > 0
+      ? "\n【代替候補】\n" +
+        alternatives
+          .map((a) => `  ・${a.name}（${a.subcategory}）\n    ${a.description}`)
+          .join("\n")
+      : "";
+  const noteSection = primary.notes
+    ? `\n【バリエーション・補足】\n  ${primary.notes}`
+    : "";
+  const detailed = [
+    `【推奨製品】3M ${primary.name}　${category}`,
+    `マッチ度：${matchScore}%`,
+    "",
+    "【選定理由】",
+    reasonLines,
+    noteSection,
+    altSection,
+  ]
+    .join("\n")
+    .trim();
+
+  return { simple, standard, detailed };
+}
