@@ -112,8 +112,14 @@ function calcScore(product: Product, criteria: SelectionCriteria): number {
   if (isHighTemp) {
     const tempMax = product.tempRange?.max ?? 0;
     if (tempMax >= 200) score += 25;
-    else if (tempMax >= 150) score += 12;
+    else if (tempMax >= 150) score += 15;   // was 12
     else if (tempMax < 100) score -= 25;
+
+    // 150〜200°C 高耐熱（超高温不要）ではY4825を優先
+    // 「高耐熱」は tempEnv="hot" または appCtx="高耐熱用途" から注入される
+    const isExactHighTemp =
+      criteria.features.includes("高耐熱") && !criteria.features.includes("超高耐熱");
+    if (isExactHighTemp && product.id === "Y4825") score += 20;
   }
 
   // Special environment matches
@@ -243,11 +249,11 @@ function calcApplicationBoost(product: Product, appCtx: string): number {
 
     case "高耐熱用途":
       // 粉体塗装乾燥工程・150〜200°C想定 → Y4825を最優先
-      if (product.id === "Y4825") boost += 55;       // 粉体塗装対応VHBを第一推奨
+      if (product.id === "Y4825") boost += 55;        // 粉体塗装対応VHBを第一推奨
       if (feats.includes("粉体塗装対応")) boost += 25;
       if (feats.includes("高温保持")) boost += 10;
-      // 200°C超の連続高温用途はGPHシリーズ
-      if (feats.includes("超高耐熱") && (product.tempRange?.max ?? 0) >= 200) boost += 30;
+      // GPH: 200°C超対応の代替候補として位置づけ
+      if (feats.includes("高耐熱") && (product.tempRange?.max ?? 0) >= 200) boost += 25;
       break;
 
     // ── 接着剤 ───────────────────────────────────────────────
@@ -343,7 +349,13 @@ function buildReasons(product: Product, criteria: SelectionCriteria): string[] {
   if (product.lse && isLSE) reasons.push("PP・PE等のLSE（低表面エネルギー）素材への接着に対応した専用品です");
   if (product.features.includes("シリコン接着")) reasons.push("シリコン素材専用の接着成分を使用しており、一般テープでは不可能なシリコン接着を実現します");
   if (product.features.includes("低VOC")) reasons.push("低VOC・低アウトガス仕様で、電子機器・光学部品・クリーンルーム用途に適合します");
-  if (product.features.includes("高耐熱")) reasons.push(`優れた高耐熱性（最大${product.tempRange?.max ?? ""}°C）により、高温環境での長期安定使用が可能です`);
+  if (product.features.includes("高耐熱")) {
+    if (product.id === "Y4825") {
+      reasons.push("粉体塗装乾燥工程（150〜200°C・短時間ばく露）での構造固定実績があり、建材・金属パネルの長期接合に高温保持力を発揮します");
+    } else {
+      reasons.push(`優れた高耐熱性（最大${product.tempRange?.max ?? ""}°C）により、高温環境での長期安定使用が可能です`);
+    }
+  }
   if (product.features.includes("超高耐熱")) reasons.push(`超高耐熱性（最大${product.tempRange?.max ?? ""}°C）で、FPC実装・高温プロセスにも対応します`);
   if (product.features.includes("油面対応")) reasons.push("油が付着した金属面でも強固に接着する特殊処方です");
   if (product.permanence === "再剥離" || product.features.includes("再剥離")) reasons.push("糊残りなく綺麗に再剥離できるため、貼り直しや仮固定に最適です");

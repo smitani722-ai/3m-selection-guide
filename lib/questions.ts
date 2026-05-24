@@ -76,7 +76,7 @@ export const tapeQuestions: Question[] = [
       { value: "outdoor", label: "屋外・耐候性が必要", description: "紫外線・雨・温度変化あり" },
       { value: "warm", label: "高温（60〜150°C）", description: "電気部品・自動車内装等" },
       { value: "hot", label: "高耐熱（150〜200°C）", description: "粉体塗装乾燥工程・150〜200°C高温プロセス" },
-      { value: "superhot", label: "超高温（200°C超）", description: "FPC・高温プロセス・工業炉等" },
+      { value: "superhot", label: "超高温（200°C超）", description: "FPC・電子部品工程・短時間高温プロセス" },
     ],
   },
   {
