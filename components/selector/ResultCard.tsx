@@ -304,7 +304,10 @@ export function ResultCard({ result }: ResultCardProps) {
               </tr>
               {primary.competitors.map((comp, i) => (
                 <tr key={i} className="border-b border-gray-100 last:border-0">
-                  <td className="py-2.5 px-5 text-gray-600">{comp}</td>
+                  <td className="py-2.5 px-5 text-gray-600">
+                    <span className="text-gray-500 text-xs mr-1">{comp.manufacturer}</span>
+                    <span className="font-medium">{comp.model}</span>
+                  </td>
                   <td className="py-2.5 px-3 text-xs text-gray-400">競合品</td>
                 </tr>
               ))}

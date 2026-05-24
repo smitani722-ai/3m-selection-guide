@@ -16,7 +16,7 @@ export interface Product {
   price: string;
   permanence?: string;
   notes: string;
-  competitors: string[];
+  competitors: Array<{ manufacturer: string; model: string }>;
   workTime?: string;
   cureTime?: string;
   colors?: string[];

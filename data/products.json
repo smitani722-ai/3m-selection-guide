@@ -10,14 +10,17 @@
       "applications": ["固定", "仮固定", "再剥離"],
       "substrates": ["SUS", "アルミ", "ガラス", "ABS", "PC", "木材", "紙"],
       "environment": ["屋内"],
-      "thickness": "0.08mm",
+      "thickness": "0.16mm",
       "tempRange": { "min": -40, "max": 80 },
       "lse": false,
       "price": "standard",
       "permanence": "再剥離可",
       "notes": "PPには93015LEの方が有利。高温用途は467MP推奨。",
-      "competitors": ["日東CSR-8630", "積水#5000N"],
-      "dataSheetUrl": null,
+      "competitors": [
+        { "manufacturer": "積水化学", "model": "CSR8630" },
+        { "manufacturer": "日東電工", "model": "#5000N" }
+      ],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/1231090O/9660.pdf",
       "productPageUrl": null,
       "catalogUrl": null
     },
@@ -37,7 +40,9 @@
       "price": "standard",
       "permanence": "恒久固定",
       "notes": "被着体の表面処理なしでPP・PE・LSE材に接着可能。",
-      "competitors": ["日東No.5000NS"],
+      "competitors": [
+        { "manufacturer": "日東電工", "model": "No.5000NS" }
+      ],
       "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366126O/3M-High-Strength-Double-Coated-Tape-93015LE.pdf",
       "productPageUrl": "https://www.3m.com/3M/en_US/p/d/b40070397/",
       "catalogUrl": null
@@ -94,7 +99,10 @@
       "price": "standard",
       "permanence": "恒久固定",
       "notes": "ライナーレスのため作業性良好。F9460PC・F9469PCは難接着材対応版。",
-      "competitors": ["日東No.5303", "積水#5680"],
+      "competitors": [
+        { "manufacturer": "日東電工", "model": "No.5303" },
+        { "manufacturer": "積水化学", "model": "#5680" }
+      ],
       "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366204O/3m-adhesive-transfer-tape-467mp.pdf",
       "productPageUrl": null,
       "catalogUrl": null
@@ -352,7 +360,10 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "VHBは剥がすと破壊が起こる場合がある。再剥離不可。",
-      "competitors": ["日東ハイパーセル", "積水ハイパーフォーム"],
+      "competitors": [
+        { "manufacturer": "日東電工", "model": "ハイパーセル" },
+        { "manufacturer": "積水化学", "model": "ハイパーフォーム" }
+      ],
       "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366469O/3m-vhb-tape-specialty-tape-4950.pdf",
       "productPageUrl": "https://www.3m.com/3M/en_US/p/d/b40065670/",
       "catalogUrl": null
@@ -473,7 +484,10 @@
       "workTime": "25分",
       "cureTime": "4時間（室温）",
       "notes": "混合後の可使時間は25分。低温環境では硬化時間が延びる。",
-      "competitors": ["コニシボンドE250", "ヘンケルロックタイト9483"],
+      "competitors": [
+        { "manufacturer": "コニシ", "model": "ボンドE250" },
+        { "manufacturer": "ヘンケル", "model": "ロックタイト9483" }
+      ],
       "dataSheetUrl": "https://multimedia.3m.com/mws/media/2365922O/3m-scotch-weld-epoxy-adhesive-dp420ns-black.pdf",
       "productPageUrl": null,
       "catalogUrl": null

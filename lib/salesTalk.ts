@@ -20,8 +20,15 @@ export function generateSalesTalk(result: SelectionResult): SalesTalk {
 
   // ── シンプル版（1〜2行）──────────────────────────────────────
   // 製品説明をベースに、主要理由1文を添える
+  // 理由文の末尾が丁寧語（〜です／〜ます）で終わる場合は「。今回の条件に最適です。」
+  // 名詞・形容詞句で終わる場合は「ため、今回の条件に最適です。」で自然に接続する
   const coreReason = reasons[0]
-    ? reasons[0].replace(/[。]$/, "") + "ため、今回の条件に最適です。"
+    ? (() => {
+        const r = reasons[0].replace(/[。]$/, "");
+        return r.endsWith("す")
+          ? r + "。今回の条件に最適です。"
+          : r + "ため、今回の条件に最適です。";
+      })()
     : "選定条件との総合評価で最も推奨されます。";
   const simple = `${primary.name}をお勧めします。${coreReason}`;
 
