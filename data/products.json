@@ -17,8 +17,8 @@
       "permanence": "再剥離可",
       "notes": "PPには93015LEの方が有利。高温用途は467MP推奨。",
       "competitors": [
-        { "manufacturer": "積水化学", "model": "CSR8630", "verified": true, "source": "イザワ社内資料（2024年修正）" },
-        { "manufacturer": "日東電工", "model": "#5000N", "verified": true, "source": "イザワ社内資料（2024年修正）" }
+        { "manufacturer": "積水化学", "model": "CSR8630", "verified": true, "discontinued": false, "source": "イザワ社内資料（2024年修正）" },
+        { "manufacturer": "日東電工", "model": "#5000N", "verified": true, "discontinued": false, "source": "イザワ社内資料（2024年修正）" }
       ],
       "dataSheetUrl": "https://multimedia.3m.com/mws/media/1231090O/9660.pdf",
       "productPageUrl": null,
@@ -41,7 +41,7 @@
       "permanence": "恒久固定",
       "notes": "被着体の表面処理なしでPP・PE・LSE材に接着可能。",
       "competitors": [
-        { "manufacturer": "日東電工", "model": "No.5000NS", "verified": true, "source": "イザワ社内資料" }
+        { "manufacturer": "日東電工", "model": "No.5000NS", "verified": true, "discontinued": false, "source": "イザワ社内資料" }
       ],
       "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366126O/3M-High-Strength-Double-Coated-Tape-93015LE.pdf",
       "productPageUrl": "https://www.3m.com/3M/en_US/p/d/b40070397/",
@@ -100,8 +100,8 @@
       "permanence": "恒久固定",
       "notes": "ライナーレスのため作業性良好。F9460PC・F9469PCは難接着材対応版。",
       "competitors": [
-        { "manufacturer": "日東電工", "model": "No.5303", "verified": false, "source": "要実在確認" },
-        { "manufacturer": "積水化学", "model": "#5680", "verified": false, "source": "要実在確認" }
+        { "manufacturer": "日東電工", "model": "No.5303", "verified": false, "discontinued": false, "source": "要実在確認" },
+        { "manufacturer": "積水化学", "model": "#5680", "verified": false, "discontinued": false, "source": "要実在確認" }
       ],
       "dataSheetUrl": "https://multimedia.3m.com/mws/media/2366204O/3m-adhesive-transfer-tape-467mp.pdf",
       "productPageUrl": null,
@@ -361,7 +361,7 @@
       "permanence": "恒久固定",
       "notes": "VHBは剥がすと破壊が起こる場合がある。再剥離不可。",
       "competitors": [
-        { "manufacturer": "日東電工", "model": "HYPERJOINT H7000シリーズ", "verified": true, "source": "tape-omakase-navi.com/hyperjoint 日東電工公式" }
+        { "manufacturer": "日東電工", "model": "HYPERJOINT H7000シリーズ", "verified": true, "discontinued": true, "source": "販売中止（イザワ確認）" }
       ],
       "dataSheetUrl": "https://multimedia.3m.com/mws/media/1231314O/3m-vhb-y-4950y-4930y-4920y-4945y-4922-data-sheet.pdf",
       "productPageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042112/",
@@ -484,8 +484,8 @@
       "cureTime": "4時間（室温）",
       "notes": "混合後の可使時間は25分。低温環境では硬化時間が延びる。",
       "competitors": [
-        { "manufacturer": "コニシ", "model": "ボンドE250", "verified": true, "source": "コニシ株式会社公式製品" },
-        { "manufacturer": "ヘンケル", "model": "ロックタイト9483", "verified": false, "source": "要実在確認" }
+        { "manufacturer": "コニシ", "model": "ボンドE250", "verified": true, "discontinued": false, "source": "コニシ株式会社公式製品" },
+        { "manufacturer": "ヘンケル", "model": "ロックタイト9483", "verified": false, "discontinued": false, "source": "要実在確認" }
       ],
       "dataSheetUrl": "https://multimedia.3m.com/mws/media/2365922O/3m-scotch-weld-epoxy-adhesive-dp420ns-black.pdf",
       "productPageUrl": null,

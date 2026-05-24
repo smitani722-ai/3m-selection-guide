@@ -10,8 +10,16 @@ import {
   FileText, Globe, Download,
 } from "lucide-react";
 
-// verified=true の競合品のみ表示する
-type VerifiedCompetitor = { manufacturer: string; model: string; verified: boolean; source: string };
+// verified=true かつ discontinued=false の競合品のみ表示する（現行・実在確認済み品のみ）
+type VerifiedCompetitor = {
+  manufacturer: string;
+  model: string;
+  verified: boolean;
+  discontinued: boolean;
+  source: string;
+};
+
+const isShowableCompetitor = (c: VerifiedCompetitor) => c.verified && !c.discontinued;
 
 interface ResultCardProps {
   result: SelectionResult;
@@ -287,8 +295,8 @@ export function ResultCard({ result }: ResultCardProps) {
         </div>
       )}
 
-      {/* 競合比較 — verified=true のみ表示 */}
-      {primary.competitors && primary.competitors.filter((c) => (c as VerifiedCompetitor).verified).length > 0 && (
+      {/* 競合比較 — verified=true かつ discontinued=false のみ表示 */}
+      {primary.competitors && primary.competitors.filter((c) => isShowableCompetitor(c as VerifiedCompetitor)).length > 0 && (
         <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-sm">
           <div className="px-5 py-3.5 border-b border-gray-100">
             <h3 className="text-sm font-semibold text-gray-700">近い競合品との比較</h3>
@@ -306,7 +314,7 @@ export function ResultCard({ result }: ResultCardProps) {
                 <td className="py-2.5 px-3 text-xs text-red-500 font-medium">本推奨品</td>
               </tr>
               {primary.competitors
-                .filter((c) => (c as VerifiedCompetitor).verified)
+                .filter((c) => isShowableCompetitor(c as VerifiedCompetitor))
                 .map((comp, i) => (
                   <tr key={i} className="border-b border-gray-100 last:border-0">
                     <td className="py-2.5 px-5 text-gray-600">

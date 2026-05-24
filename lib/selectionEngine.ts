@@ -19,8 +19,9 @@ export interface Product {
   competitors: Array<{
     manufacturer: string;
     model: string;
-    verified: boolean;  // false の場合は表示しない
-    source: string;     // 情報ソース（例: "3Mジャパン営業資料", "モノタロウ", "日東電工公式"）
+    verified: boolean;      // false の場合は表示しない（実在未確認）
+    discontinued: boolean;  // true の場合は表示しない（販売終了品）
+    source: string;         // 情報ソース・確認日
   }>;
   workTime?: string;
   cureTime?: string;
