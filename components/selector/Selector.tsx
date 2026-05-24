@@ -1,7 +1,7 @@
 "use client";
 
 import { useSelectorStore } from "@/lib/store";
-import { categoryQuestion, getQuestionsForCategory, getTotalSteps } from "@/lib/questions";
+import { categoryQuestion, getQuestionsForCategory, getQuestionsForCategoryAndAnswers, getTotalStepsForAnswers } from "@/lib/questions";
 import type { Question, QuestionOption } from "@/lib/questions";
 import { QuestionCard } from "./QuestionCard";
 import { ResultCard } from "./ResultCard";
@@ -17,7 +17,7 @@ function getOptionLabel(question: Question, value: string): string {
 function AnswerChips({ answers, currentStep }: { answers: Answers; currentStep: number }) {
   const category = answers.category as string | undefined;
   const allQuestions = category
-    ? [categoryQuestion, ...getQuestionsForCategory(category)]
+    ? [categoryQuestion, ...getQuestionsForCategoryAndAnswers(category, answers)]
     : [categoryQuestion];
 
   const chips: string[] = [];
@@ -52,13 +52,13 @@ export function Selector() {
   const { currentStep, answers, result, noMatchReason, isComplete, nextStep, prevStep, reset } = useSelectorStore();
 
   const category = answers.category as string | undefined;
-  const totalSteps = category ? getTotalSteps(category) : 1;
+  const totalSteps = category ? getTotalStepsForAnswers(category, answers) : 1;
 
   const currentQuestion =
     currentStep === 0
       ? categoryQuestion
       : category
-        ? getQuestionsForCategory(category)[currentStep - 1]
+        ? getQuestionsForCategoryAndAnswers(category, answers)[currentStep - 1]
         : null;
 
   const progressPercent = isComplete

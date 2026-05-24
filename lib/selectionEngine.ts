@@ -368,10 +368,15 @@ function buildReasons(product: Product, criteria: SelectionCriteria): string[] {
   // 床マーキング専用理由
   if (product.id === "971L" && criteria.features.includes("フォークリフト耐久")) {
     reasons.push("フォークリフト・重量台車通行に耐える重耐久フロアテープで、工場内安全ラインの長期耐久性を確保します");
-    reasons.push("厚手（0.5mm）設計により摩耗耐久性に優れ、カッター施工でシャープなラインが維持できます");
+    reasons.push("厚手（0.5mm）設計により摩耗耐久性に優れ、カッター施工でシャープなラインが長期維持できます");
   }
   if (product.id === "764" && criteria.application.includes("マーキング")) {
-    reasons.push("一般工場床ラインとして流通量が多く、多色展開によるエリア区分・安全ラインのコストバランスに優れます");
+    reasons.push("一般工場床ライン用途として流通量が多く、多色展開によるエリア区分・通路ラインのコストバランスに優れます");
+    reasons.push("標準的な工場床・倉庫ラインに実績があり、施工性と耐久性のバランスが取れた定番品です");
+  }
+  if (product.id === "471" && criteria.application.includes("マーキング")) {
+    reasons.push("曲線ライン・デザインラインに対応し、高い視認性と多色展開で設備・通路の色分けマーキングに最適です");
+    reasons.push("薄手で曲線施工性に優れ、視認性重視の仮マーキング・デザインラインに適しています");
   }
   if (criteria.priceSensitive && product.price === "economy") reasons.push("コストパフォーマンスに優れ、大量使用にも対応できます");
 
@@ -537,6 +542,32 @@ function isValidAlternative(
 }
 
 export function selectProducts(criteria: SelectionCriteria): SelectionResult | null {
+
+  // ── 床ラインマーキング: ルールベース固定選定 ────────────────────────
+  // 一般スコアリングより優先。用途が明確なため機械的に決定する。
+  // ルール: forklift=true→971L / priceSensitive=true→764 / else→471
+  if (criteria.category === "片面テープ" && criteria.application.includes("マーキング")) {
+    const isForklift   = criteria.features.includes("フォークリフト耐久");
+    const isCostFirst  = criteria.priceSensitive;
+    const targetId = isForklift ? "971L" : (isCostFirst ? "764" : "471");
+    const altIds   = isForklift ? ["764", "471"] : (isCostFirst ? ["971L", "471"] : ["764", "971L"]);
+
+    const target = products.find((p) => p.id === targetId);
+    if (target) {
+      const alternatives = altIds
+        .map((id) => products.find((p) => p.id === id))
+        .filter((p): p is Product => p !== undefined);
+      return {
+        primary: target,
+        alternatives,
+        reasons: buildReasons(target, criteria),
+        warnings: [],
+        category: criteria.category,
+        matchScore: 100,
+      };
+    }
+  }
+
   const categoryProducts = products.filter((p) => p.category === criteria.category);
   if (categoryProducts.length === 0) return null;
 

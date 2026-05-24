@@ -305,91 +305,115 @@ export const fastenerQuestions: Question[] = [
   },
 ];
 
-// ─── 片面テープ フロー（7問） ─────────────────────────────
+// ─── 片面テープ 個別質問（動的フロー用） ────────────────────
+// 床ラインマーキング用フロー: mainPurpose → forklift → [priceSensitive]
+// その他用途フロー:          mainPurpose → substrate → heat → handCut → otherReqs → price
+
+const stMainPurpose: Question = {
+  id: "mainPurpose",
+  text: "主な用途は？",
+  type: "single",
+  criteriaKey: "mainPurpose",
+  options: [
+    { value: "marking",    label: "床・設備のラインマーキング",    description: "工場床・通路の色分け等" },
+    { value: "insulation", label: "電気絶縁・ハーネス結束",       description: "配線・ケーブルの絶縁・束ねる" },
+    { value: "waterproof", label: "防水・ケーブル防水（自己融着）", description: "屋外ジョイント・接続部保護" },
+    { value: "aluminum",   label: "熱反射・EMIシールド・ダクト補修", description: "アルミ箔テープ用途" },
+    { value: "protection", label: "表面保護・補強",               description: "傷付き防止・補強テープ" },
+    { value: "masking",    label: "マスキング（塗装・めっき保護）", description: "塗装マスク・工程保護" },
+  ],
+};
+
+const stForklift: Question = {
+  id: "forkliftDurability",
+  text: "フォークリフト・台車通行などの高耐久性が必要ですか？",
+  subtext: "「はい」を選択すると971L（重耐久フロアテープ）を即時推奨します",
+  type: "boolean",
+  criteriaKey: "forkliftDurability",
+  options: [
+    { value: "true",  label: "はい（重量車両通行あり）",    description: "フォークリフト・重量台車が通行する工場床" },
+    { value: "false", label: "いいえ（歩行・軽作業中心）", description: "人が歩く程度・軽作業エリア" },
+  ],
+};
+
+const stPriceFloor: Question = {
+  id: "priceSensitive",
+  text: "コスト重視ですか？",
+  subtext: "コスト重視 → 764（標準ライン）、性能優先 → 471（高視認性・曲線）",
+  type: "boolean",
+  criteriaKey: "priceSensitive",
+  options: [
+    { value: "true",  label: "はい（コスト重視・一般ライン）",       description: "コストバランスの高い汎用ラインテープ" },
+    { value: "false", label: "いいえ（高視認性・曲線ライン優先）",  description: "視認性重視・曲線対応テープ" },
+  ],
+};
+
+const stSubstrate: Question = {
+  id: "substrateA",
+  text: "貼り付ける面の素材は？",
+  type: "single",
+  criteriaKey: "substrateA",
+  options: [
+    { value: "SUS",      label: "金属（SUS・アルミ・鉄）" },
+    { value: "ABS",      label: "樹脂・プラスチック" },
+    { value: "コンクリート", label: "コンクリート・木材" },
+    { value: "配線",     label: "配線・ケーブル" },
+  ],
+};
+
+const stHeat: Question = {
+  id: "heatReq",
+  text: "耐熱温度の要件は？",
+  type: "single",
+  criteriaKey: "heatReq",
+  options: [
+    { value: "normal", label: "常温〜80°C（一般用途）" },
+    { value: "medium", label: "80〜150°C（中高温）" },
+    { value: "high",   label: "150°C以上（高耐熱）" },
+  ],
+};
+
+const stHandCut: Question = {
+  id: "handCut",
+  text: "手でカットして使いますか？",
+  subtext: "ハサミ・カッターなしで手でちぎる必要があるか",
+  type: "boolean",
+  criteriaKey: "handCut",
+  options: [
+    { value: "true",  label: "はい（手でサクッと切れてほしい）" },
+    { value: "false", label: "いいえ（ハサミ・カッター使用）" },
+  ],
+};
+
+const stOther: Question = {
+  id: "otherReqs",
+  text: "その他、必要な特性は？",
+  subtext: "複数選択可",
+  type: "multi",
+  criteriaKey: "otherReqs",
+  options: [
+    { value: "outdoor",   label: "屋外・耐候性" },
+    { value: "chemical",  label: "耐薬品・耐溶剤" },
+    { value: "waterproof", label: "防水・自己融着" },
+    { value: "ul",        label: "UL規格認定（電気用途必須）" },
+    { value: "none",      label: "特になし" },
+  ],
+};
+
+const stPriceGeneral: Question = {
+  id: "priceSensitive",
+  text: "コスト重視ですか？",
+  type: "boolean",
+  criteriaKey: "priceSensitive",
+  options: [
+    { value: "false", label: "いいえ（性能優先）" },
+    { value: "true",  label: "はい（コスト重視）" },
+  ],
+};
+
+// 非マーキング用途の標準フロー（forklift質問なし）
 export const singleTapeQuestions: Question[] = [
-  {
-    id: "mainPurpose",
-    text: "主な用途は？",
-    type: "single",
-    criteriaKey: "mainPurpose",
-    options: [
-      { value: "marking", label: "床・設備のラインマーキング", description: "工場床・通路の色分け等" },
-      { value: "insulation", label: "電気絶縁・ハーネス結束", description: "配線・ケーブルの絶縁・束ねる" },
-      { value: "waterproof", label: "防水・ケーブル防水（自己融着）", description: "屋外ジョイント・接続部保護" },
-      { value: "aluminum", label: "熱反射・EMIシールド・ダクト補修", description: "アルミ箔テープ用途" },
-      { value: "protection", label: "表面保護・補強", description: "傷付き防止・補強テープ" },
-      { value: "masking", label: "マスキング（塗装・めっき保護）", description: "塗装マスク・工程保護" },
-    ],
-  },
-  {
-    id: "forkliftDurability",
-    text: "フォークリフト・台車通行などの高耐久性が必要ですか？",
-    subtext: "床ラインマーキング用途の方のみ対象（その他は「いいえ」を選択）",
-    type: "boolean",
-    criteriaKey: "forkliftDurability",
-    options: [
-      { value: "true", label: "はい（重量車両通行あり）", description: "フォークリフト・重量台車が通行する工場床" },
-      { value: "false", label: "いいえ（歩行・軽作業中心）", description: "人が歩く程度・軽作業エリア" },
-    ],
-  },
-  {
-    id: "substrateA",
-    text: "貼り付ける面の素材は？",
-    type: "single",
-    criteriaKey: "substrateA",
-    options: [
-      { value: "SUS", label: "金属（SUS・アルミ・鉄）" },
-      { value: "ABS", label: "樹脂・プラスチック" },
-      { value: "コンクリート", label: "コンクリート・木材" },
-      { value: "配線", label: "配線・ケーブル" },
-    ],
-  },
-  {
-    id: "heatReq",
-    text: "耐熱温度の要件は？",
-    type: "single",
-    criteriaKey: "heatReq",
-    options: [
-      { value: "normal", label: "常温〜80°C（一般用途）" },
-      { value: "medium", label: "80〜150°C（中高温）" },
-      { value: "high", label: "150°C以上（高耐熱）" },
-    ],
-  },
-  {
-    id: "handCut",
-    text: "手でカットして使いますか？",
-    subtext: "ハサミ・カッターなしで手でちぎる必要があるか",
-    type: "boolean",
-    criteriaKey: "handCut",
-    options: [
-      { value: "true", label: "はい（手でサクッと切れてほしい）" },
-      { value: "false", label: "いいえ（ハサミ・カッター使用）" },
-    ],
-  },
-  {
-    id: "otherReqs",
-    text: "その他、必要な特性は？",
-    subtext: "複数選択可",
-    type: "multi",
-    criteriaKey: "otherReqs",
-    options: [
-      { value: "outdoor", label: "屋外・耐候性" },
-      { value: "chemical", label: "耐薬品・耐溶剤" },
-      { value: "waterproof", label: "防水・自己融着" },
-      { value: "ul", label: "UL規格認定（電気用途必須）" },
-      { value: "none", label: "特になし" },
-    ],
-  },
-  {
-    id: "priceSensitive",
-    text: "コスト重視ですか？",
-    type: "boolean",
-    criteriaKey: "priceSensitive",
-    options: [
-      { value: "false", label: "いいえ（性能優先）" },
-      { value: "true", label: "はい（コスト重視）" },
-    ],
-  },
+  stMainPurpose, stSubstrate, stHeat, stHandCut, stOther, stPriceGeneral,
 ];
 
 // ─── 用途選択 質問（カテゴリ選択直後・Step 1） ───────────────
@@ -451,17 +475,51 @@ export const fastenerApplicationQuestion: Question = {
   ],
 };
 
-// ─── カテゴリ別フロー取得 ──────────────────────────────────
+// ─── カテゴリ別フロー取得（静的・後方互換） ──────────────────
 export function getQuestionsForCategory(category: string): Question[] {
   switch (category) {
     case "両面テープ": return [tapeApplicationQuestion, ...tapeQuestions];
     case "接着剤":    return [adhesiveApplicationQuestion, ...adhesiveQuestions];
     case "ファスナー": return [fastenerApplicationQuestion, ...fastenerQuestions];
-    case "片面テープ": return singleTapeQuestions;  // mainPurposeが用途選択を兼ねる
+    case "片面テープ": return singleTapeQuestions;  // 非マーキング用フォールバック
     default:          return [];
   }
 }
 
 export function getTotalSteps(category: string): number {
   return 1 + getQuestionsForCategory(category).length;
+}
+
+// ─── 動的フロー取得（回答状態に応じて質問リストが変化） ─────
+type DynAnswers = Partial<Record<string, string | string[] | boolean>>;
+
+/**
+ * 現在の回答状態に応じた質問リストを返す。
+ * 片面テープ+床ラインマーキング用途の場合は短縮フローを適用：
+ *   forklift=YES → [mainPurpose, forklift]  (2問で終了)
+ *   forklift=NO  → [mainPurpose, forklift, priceSensitive]  (3問で終了)
+ */
+export function getQuestionsForCategoryAndAnswers(
+  category: string,
+  answers: DynAnswers
+): Question[] {
+  if (category === "片面テープ") {
+    const purpose = answers.mainPurpose as string | undefined;
+    if (purpose === "marking") {
+      const forklift = answers.forkliftDurability;
+      if (forklift === "true" || forklift === true) {
+        // forklift YES → 次の質問は不要、この2問で選定
+        return [stMainPurpose, stForklift];
+      }
+      // forklift NO（または未回答）→ コスト質問のみ追加
+      return [stMainPurpose, stForklift, stPriceFloor];
+    }
+    // 非マーキング用途 → 標準フロー（forklift質問なし）
+    return singleTapeQuestions;
+  }
+  return getQuestionsForCategory(category);
+}
+
+export function getTotalStepsForAnswers(category: string, answers: DynAnswers): number {
+  return 1 + getQuestionsForCategoryAndAnswers(category, answers).length;
 }

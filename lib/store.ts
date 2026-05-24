@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 import { SelectionCriteria, SelectionResult, selectProducts } from "./selectionEngine";
-import { getTotalSteps } from "./questions";
+import { getTotalStepsForAnswers, getQuestionsForCategoryAndAnswers } from "./questions";
 
 type Answers = Partial<Record<string, string | string[] | boolean>>;
 
@@ -137,12 +137,15 @@ function buildCriteria(answers: Answers): SelectionCriteria {
     if (mainPurpose === "marking") {
       application.push("マーキング");
       features.push("マーキング");
-      // フォークリフト耐久性 → 製品選定の優先度を決定
+      // 床ライン3ルール: forklift → 971L / cost → 764 / else → 471
       const forklift = answers.forkliftDurability === "true" || answers.forkliftDurability === true;
+      const costPriority = answers.priceSensitive === "true" || answers.priceSensitive === true;
       if (forklift) {
-        features.push("フォークリフト耐久");  // → 971L 優先
+        features.push("フォークリフト耐久");  // → 971L（ルールベース）
+      } else if (costPriority) {
+        features.push("標準ライン");           // → 764（ルールベース）
       } else {
-        features.push("標準ライン");           // → 764 優先
+        features.push("視認性");              // → 471（ルールベース）
       }
     }
     else if (mainPurpose === "insulation") { application.push("絶縁"); features.push("電気絶縁"); }
@@ -200,7 +203,7 @@ export const useSelectorStore = create<SelectorState>((set, get) => ({
   nextStep: () => {
     const { currentStep, answers, compute } = get();
     const category = answers.category as string | undefined;
-    const totalSteps = category ? getTotalSteps(category) : 1;
+    const totalSteps = category ? getTotalStepsForAnswers(category, answers) : 1;
     if (currentStep < totalSteps - 1) {
       set({ currentStep: currentStep + 1 });
     } else {
@@ -213,7 +216,7 @@ export const useSelectorStore = create<SelectorState>((set, get) => ({
     const { currentStep, answers, isComplete } = get();
     if (isComplete) {
       const category = answers.category as string | undefined;
-      const totalSteps = category ? getTotalSteps(category) : 1;
+      const totalSteps = category ? getTotalStepsForAnswers(category, answers) : 1;
       set({ isComplete: false, currentStep: totalSteps - 1 });
       return;
     }
