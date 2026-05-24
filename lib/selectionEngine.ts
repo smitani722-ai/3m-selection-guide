@@ -16,7 +16,12 @@ export interface Product {
   price: string;
   permanence?: string;
   notes: string;
-  competitors: Array<{ manufacturer: string; model: string }>;
+  competitors: Array<{
+    manufacturer: string;
+    model: string;
+    verified: boolean;  // false の場合は表示しない
+    source: string;     // 情報ソース（例: "3Mジャパン営業資料", "モノタロウ", "日東電工公式"）
+  }>;
   workTime?: string;
   cureTime?: string;
   colors?: string[];

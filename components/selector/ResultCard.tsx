@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 import { SelectionResult } from "@/lib/selectionEngine";
-import { generateSalesTalk, CLOSING_LINES } from "@/lib/salesTalk";
+import { generateSalesTalk } from "@/lib/salesTalk";
 import { cn } from "@/lib/utils";
 import {
   CheckCircle2, ChevronRight, Copy, Check, MessageSquare,
   Lightbulb, Package, Star, Award, ArrowRight,
   FileText, Globe, Download,
 } from "lucide-react";
+
+// verified=true の競合品のみ表示する
+type VerifiedCompetitor = { manufacturer: string; model: string; verified: boolean; source: string };
 
 interface ResultCardProps {
   result: SelectionResult;
@@ -284,8 +287,8 @@ export function ResultCard({ result }: ResultCardProps) {
         </div>
       )}
 
-      {/* 競合比較 */}
-      {primary.competitors && primary.competitors.length > 0 && (
+      {/* 競合比較 — verified=true のみ表示 */}
+      {primary.competitors && primary.competitors.filter((c) => (c as VerifiedCompetitor).verified).length > 0 && (
         <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-sm">
           <div className="px-5 py-3.5 border-b border-gray-100">
             <h3 className="text-sm font-semibold text-gray-700">近い競合品との比較</h3>
@@ -302,35 +305,22 @@ export function ResultCard({ result }: ResultCardProps) {
                 <td className="py-2.5 px-5 font-bold text-red-700">3M {primary.name}</td>
                 <td className="py-2.5 px-3 text-xs text-red-500 font-medium">本推奨品</td>
               </tr>
-              {primary.competitors.map((comp, i) => (
-                <tr key={i} className="border-b border-gray-100 last:border-0">
-                  <td className="py-2.5 px-5 text-gray-600">
-                    <span className="text-gray-500 text-xs mr-1">{comp.manufacturer}</span>
-                    <span className="font-medium">{comp.model}</span>
-                  </td>
-                  <td className="py-2.5 px-3 text-xs text-gray-400">競合品</td>
-                </tr>
-              ))}
+              {primary.competitors
+                .filter((c) => (c as VerifiedCompetitor).verified)
+                .map((comp, i) => (
+                  <tr key={i} className="border-b border-gray-100 last:border-0">
+                    <td className="py-2.5 px-5 text-gray-600">
+                      <span className="text-gray-500 text-xs mr-1">{comp.manufacturer}</span>
+                      <span className="font-medium">{comp.model}</span>
+                    </td>
+                    <td className="py-2.5 px-3 text-xs text-gray-400">競合品</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
       )}
 
-      {/* ⑥ クロージング ───────────────────────────────────────── */}
-      <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden shadow-sm">
-        <div className="px-5 py-3.5 border-b border-gray-100">
-          <h3 className="text-sm font-bold text-gray-800 flex items-center gap-2">
-            <MessageSquare size={14} className="text-gray-500" />
-            クロージング一言
-            <span className="text-xs text-gray-400 font-normal">クリックでコピー</span>
-          </h3>
-        </div>
-        <div className="divide-y divide-gray-50">
-          {CLOSING_LINES.map((line, i) => (
-            <ClosingLine key={i} line={line} index={i} />
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
@@ -397,35 +387,3 @@ function ProductLinks({ product }: { product: import("@/lib/selectionEngine").Pr
   );
 }
 
-function ClosingLine({ line, index }: { line: string; index: number }) {
-  const [copied, setCopied] = useState(false);
-  const handle = () => {
-    navigator.clipboard.writeText(line).catch(() => {});
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1800);
-  };
-  const icons = ["🤝", "📦", "🔬"];
-  return (
-    <button
-      onClick={handle}
-      className={cn(
-        "w-full flex items-center gap-3 px-5 py-3.5 text-left transition-all",
-        copied ? "bg-green-50" : "hover:bg-gray-50"
-      )}
-    >
-      <span className="text-base flex-shrink-0">{icons[index]}</span>
-      <span className={cn("text-sm flex-1 leading-relaxed", copied ? "text-green-700 font-medium" : "text-gray-700")}>
-        {line}
-      </span>
-      <span className={cn(
-        "flex-shrink-0 flex items-center gap-1 text-xs px-2 py-1 rounded-lg border transition-all",
-        copied
-          ? "border-green-300 bg-green-100 text-green-700"
-          : "border-gray-200 text-gray-400"
-      )}>
-        {copied ? <Check size={10} /> : <Copy size={10} />}
-        {copied ? "✓" : ""}
-      </span>
-    </button>
-  );
-}

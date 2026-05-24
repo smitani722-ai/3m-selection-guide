@@ -6,11 +6,6 @@ export interface SalesTalk {
   detailed: string;
 }
 
-export const CLOSING_LINES = [
-  "ではこの仕様で見積を進めましょうか？",
-  "まずサンプルでお試しになりますか？",
-  "テスト用の小ロットからご案内できます。いかがでしょうか？",
-] as const;
 
 export function generateSalesTalk(result: SelectionResult): SalesTalk {
   const { primary, reasons, alternatives, category, matchScore } = result;
