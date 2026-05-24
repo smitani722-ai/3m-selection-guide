@@ -305,7 +305,7 @@ export const fastenerQuestions: Question[] = [
   },
 ];
 
-// ─── 片面テープ フロー（6問） ─────────────────────────────
+// ─── 片面テープ フロー（7問） ─────────────────────────────
 export const singleTapeQuestions: Question[] = [
   {
     id: "mainPurpose",
@@ -319,6 +319,17 @@ export const singleTapeQuestions: Question[] = [
       { value: "aluminum", label: "熱反射・EMIシールド・ダクト補修", description: "アルミ箔テープ用途" },
       { value: "protection", label: "表面保護・補強", description: "傷付き防止・補強テープ" },
       { value: "masking", label: "マスキング（塗装・めっき保護）", description: "塗装マスク・工程保護" },
+    ],
+  },
+  {
+    id: "forkliftDurability",
+    text: "フォークリフト・台車通行などの高耐久性が必要ですか？",
+    subtext: "床ラインマーキング用途の方のみ対象（その他は「いいえ」を選択）",
+    type: "boolean",
+    criteriaKey: "forkliftDurability",
+    options: [
+      { value: "true", label: "はい（重量車両通行あり）", description: "フォークリフト・重量台車が通行する工場床" },
+      { value: "false", label: "いいえ（歩行・軽作業中心）", description: "人が歩く程度・軽作業エリア" },
     ],
   },
   {

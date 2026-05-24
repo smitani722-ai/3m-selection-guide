@@ -49,7 +49,7 @@ function AnswerChips({ answers, currentStep }: { answers: Answers; currentStep: 
 }
 
 export function Selector() {
-  const { currentStep, answers, result, isComplete, nextStep, prevStep, reset } = useSelectorStore();
+  const { currentStep, answers, result, noMatchReason, isComplete, nextStep, prevStep, reset } = useSelectorStore();
 
   const category = answers.category as string | undefined;
   const totalSteps = category ? getTotalSteps(category) : 1;
@@ -195,18 +195,33 @@ export function Selector() {
               <ResultCard result={result} />
             ) : (
               <div className="bg-white rounded-2xl border border-gray-200 p-10 text-center">
-                <div className="text-5xl mb-4">🔍</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">該当製品が見つかりません</h3>
+                <div className="text-5xl mb-4">
+                  {noMatchReason === "floor_handTear" ? "⚠️" : "🔍"}
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  現在の条件に一致する製品が見つかりませんでした。
+                </h3>
                 <p className="text-gray-500 text-sm mb-5 max-w-xs mx-auto">
-                  入力条件に合う製品がデータベースに見つかりませんでした。条件を変更してお試しください。
+                  {noMatchReason === "floor_handTear"
+                    ? "床ライン用途では、耐久性・施工性を優先するため、通常はカッター施工タイプをご使用いただきます。「手でカット不要」を選択してご確認ください。"
+                    : "入力条件に合う製品がデータベースに見つかりませんでした。条件を変更してお試しください。"}
                 </p>
-                <button
-                  onClick={reset}
-                  className="inline-flex items-center gap-2 text-sm text-red-600 border border-red-300 px-5 py-2 rounded-full hover:bg-red-50 transition-colors"
-                >
-                  <RotateCcw size={13} />
-                  条件をリセット
-                </button>
+                <div className="flex gap-2 justify-center">
+                  <button
+                    onClick={prevStep}
+                    className="inline-flex items-center gap-2 text-sm text-gray-700 border border-gray-300 px-5 py-2 rounded-full hover:bg-gray-100 transition-colors"
+                  >
+                    <ArrowLeft size={13} />
+                    条件を変更
+                  </button>
+                  <button
+                    onClick={reset}
+                    className="inline-flex items-center gap-2 text-sm text-red-600 border border-red-300 px-5 py-2 rounded-full hover:bg-red-50 transition-colors"
+                  >
+                    <RotateCcw size={13} />
+                    最初から
+                  </button>
+                </div>
               </div>
             )}
           </div>

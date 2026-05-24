@@ -365,6 +365,14 @@ function buildReasons(product: Product, criteria: SelectionCriteria): string[] {
   if (product.subcategory.includes("VHB")) reasons.push("VHBテープは構造接合レベルの超高強度を持ち、ボルト・リベットの代替になる接合強度を発揮します");
   if (product.features.includes("フォーム")) reasons.push("フォーム基材が段差・曲面に追従し、不均一な面への密着性を確保します");
   if (product.features.includes("加工性良好")) reasons.push("打ち抜き・スリット加工が容易で、量産工程への組み込みが可能です");
+  // 床マーキング専用理由
+  if (product.id === "971L" && criteria.features.includes("フォークリフト耐久")) {
+    reasons.push("フォークリフト・重量台車通行に耐える重耐久フロアテープで、工場内安全ラインの長期耐久性を確保します");
+    reasons.push("厚手（0.5mm）設計により摩耗耐久性に優れ、カッター施工でシャープなラインが維持できます");
+  }
+  if (product.id === "764" && criteria.application.includes("マーキング")) {
+    reasons.push("一般工場床ラインとして流通量が多く、多色展開によるエリア区分・安全ラインのコストバランスに優れます");
+  }
   if (criteria.priceSensitive && product.price === "economy") reasons.push("コストパフォーマンスに優れ、大量使用にも対応できます");
 
   // 色・外観条件の影響を理由として追加

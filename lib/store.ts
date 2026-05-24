@@ -10,6 +10,7 @@ interface SelectorState {
   currentStep: number;
   answers: Answers;
   result: SelectionResult | null;
+  noMatchReason: string | null;  // "floor_handTear" など
   isComplete: boolean;
   setAnswer: (key: string, value: string | string[] | boolean) => void;
   nextStep: () => void;
@@ -133,7 +134,17 @@ function buildCriteria(answers: Answers): SelectionCriteria {
 
   } else if (category === "片面テープ") {
     const mainPurpose = answers.mainPurpose as string;
-    if (mainPurpose === "marking") { application.push("マーキング"); features.push("マーキング"); }
+    if (mainPurpose === "marking") {
+      application.push("マーキング");
+      features.push("マーキング");
+      // フォークリフト耐久性 → 製品選定の優先度を決定
+      const forklift = answers.forkliftDurability === "true" || answers.forkliftDurability === true;
+      if (forklift) {
+        features.push("フォークリフト耐久");  // → 971L 優先
+      } else {
+        features.push("標準ライン");           // → 764 優先
+      }
+    }
     else if (mainPurpose === "insulation") { application.push("絶縁"); features.push("電気絶縁"); }
     else if (mainPurpose === "waterproof") { application.push("防水"); features.push("防水", "自己融着"); }
     else if (mainPurpose === "aluminum") { application.push("シール"); features.push("アルミ箔", "熱反射"); }
@@ -145,7 +156,10 @@ function buildCriteria(answers: Answers): SelectionCriteria {
     else if (heatReq === "high") { environment.push("高温"); features.push("高耐熱"); }
     else environment.push("屋内");
 
-    if (answers.handCut === "true" || answers.handCut === true) features.push("手切れ性");
+    // 手切れ性は床ライン以外でのみ有効（床ラインはカッター施工が標準）
+    if ((answers.handCut === "true" || answers.handCut === true) && mainPurpose !== "marking") {
+      features.push("手切れ性");
+    }
 
     const otherReqs = (answers.otherReqs as string[]) ?? [];
     if (otherReqs.includes("outdoor")) environment.push("屋外");
@@ -176,6 +190,7 @@ export const useSelectorStore = create<SelectorState>((set, get) => ({
   currentStep: 0,
   answers: {},
   result: null,
+  noMatchReason: null,
   isComplete: false,
 
   setAnswer: (key, value) => {
@@ -208,11 +223,18 @@ export const useSelectorStore = create<SelectorState>((set, get) => ({
   },
 
   reset: () => {
-    set({ currentStep: 0, answers: {}, result: null, isComplete: false });
+    set({ currentStep: 0, answers: {}, result: null, noMatchReason: null, isComplete: false });
   },
 
   compute: () => {
     const { answers } = get();
-    set({ result: selectProducts(buildCriteria(answers)) });
+    // 床ライン + 手切れ性 → 使用できる製品なし（カッター施工が前提）
+    const isFloorMarking = answers.mainPurpose === "marking";
+    const isHandCut = answers.handCut === "true" || answers.handCut === true;
+    if (isFloorMarking && isHandCut) {
+      set({ result: null, noMatchReason: "floor_handTear" });
+      return;
+    }
+    set({ result: selectProducts(buildCriteria(answers)), noMatchReason: null });
   },
 }));
