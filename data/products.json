@@ -779,6 +779,27 @@
       "catalogUrl": null
     },
     {
+      "id": "233Plus",
+      "name": "233+",
+      "category": "片面テープ",
+      "subcategory": "マスキングテープ（高性能）",
+      "description": "精密マスキング・クリーンライン用高性能マスキングテープ。塗装・めっき・コーティング工程のマスキングに。剥離後も糊残りなし。",
+      "features": ["マスキング", "精密マスキング", "クリーンライン", "再剥離", "耐熱"],
+      "applications": ["マスキング"],
+      "substrates": ["SUS", "アルミ", "鉄", "ABS", "PC", "塗装面"],
+      "environment": ["屋内"],
+      "thickness": "0.12mm",
+      "tempRange": { "min": -20, "max": 120 },
+      "lse": false,
+      "price": "economy",
+      "permanence": "再剥離",
+      "notes": "塗装乾燥後（常温〜80°C）の除去が容易。120°C超の高温焼付塗装工程では別途耐熱マスキングテープをご確認ください。自動車・産業塗装の精密マスキングに実績多数。",
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/1182834O/3m-high-performance-masking-tape-233plus.pdf",
+      "productPageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005041899/",
+      "catalogUrl": null
+    },
+    {
       "id": "2228",
       "name": "2228",
       "category": "片面テープ",

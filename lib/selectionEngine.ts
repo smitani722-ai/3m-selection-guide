@@ -358,7 +358,18 @@ function buildReasons(product: Product, criteria: SelectionCriteria): string[] {
   }
   if (product.features.includes("超高耐熱")) reasons.push(`超高耐熱性（最大${product.tempRange?.max ?? ""}°C）で、FPC実装・高温プロセスにも対応します`);
   if (product.features.includes("油面対応")) reasons.push("油が付着した金属面でも強固に接着する特殊処方です");
-  if (product.permanence === "再剥離" || product.features.includes("再剥離")) reasons.push("糊残りなく綺麗に再剥離できるため、貼り直しや仮固定に最適です");
+  if (product.permanence === "再剥離" || product.features.includes("再剥離")) {
+    if (criteria.application.includes("マスキング")) {
+      reasons.push("塗装・めっき後も糊残りなく綺麗に除去できる再剥離性を持ちます");
+    } else {
+      reasons.push("糊残りなく綺麗に再剥離できるため、貼り直しや仮固定に最適です");
+    }
+  }
+  // マスキングテープ専用理由
+  if (product.id === "233Plus" && criteria.application.includes("マスキング")) {
+    reasons.push("クリーンライン性に優れ、塗り分けラインをシャープに仕上げます");
+    reasons.push("自動車・産業塗装の精密マスキングに実績があり、塗装工程への組み込みが容易です");
+  }
   if (product.features.includes("柔軟")) reasons.push("優れた柔軟性・弾性で振動・衝撃を吸収し、応力集中を防ぎます");
   if (product.features.includes("粗面対応")) reasons.push("コンクリート・モルタル等の粗い表面に食い込む特殊接着剤層で、粗面固定に特化しています");
   if (product.features.includes("低温接着")) reasons.push("低温環境（-40°Cまで）でも高い初期タックを維持し、寒冷地での施工に最適です");
@@ -371,6 +382,9 @@ function buildReasons(product: Product, criteria: SelectionCriteria): string[] {
     reasons.push("厚手（0.5mm）設計により摩耗耐久性に優れ、カッター施工でシャープなラインが長期維持できます");
   }
   if (product.id === "764" && criteria.application.includes("マーキング")) {
+    if (criteria.features.includes("標準ライン")) {
+      reasons.push("コストパフォーマンスに優れた一般直線ライン用定番品で、大量施工でもコストを抑えられます");
+    }
     reasons.push("一般工場床ライン用途として流通量が多く、多色展開によるエリア区分・通路ラインのコストバランスに優れます");
     reasons.push("標準的な工場床・倉庫ラインに実績があり、施工性と耐久性のバランスが取れた定番品です");
   }
@@ -450,6 +464,10 @@ function buildWarnings(product: Product, criteria: SelectionCriteria): string[] 
   // PP + 非LSE → LSE変更を積極提案
   if (allSubstrates.includes("PP") && !product.lse && product.category !== "接着剤") {
     warnings.push("PP素材への接着をより確実にするには、LSE専用品（93015LE等）がお勧めです。まず小面積でのテスト貼りをお試しください");
+  }
+  // 233Plus + 高温環境 → 耐熱上限の案内
+  if (product.id === "233Plus" && criteria.environment.includes("高温")) {
+    warnings.push(`233+の耐熱温度は約120°C（短時間）です。それ以上の高温焼付塗装工程には別途耐熱マスキングテープが必要です。担当者にご相談ください`);
   }
   // 高温 + 低耐熱 → 高耐熱品を具体的に案内
   if (criteria.environment.includes("高温") && (product.tempRange?.max ?? 0) < 120) {

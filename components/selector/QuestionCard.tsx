@@ -23,10 +23,15 @@ export function QuestionCard({ question }: QuestionCardProps) {
   const handleSelect = (value: string) => {
     if (question.type === "multi") {
       const prev = Array.isArray(current) ? (current as string[]) : [];
-      if (prev.includes(value)) {
+      if (value === "none") {
+        // 「特になし」: 単独選択（既にnoneなら全クリア → 未回答に戻る）
+        setAnswer(question.criteriaKey, prev.includes("none") ? [] : ["none"]);
+      } else if (prev.includes(value)) {
+        // 選択済み → 解除
         setAnswer(question.criteriaKey, prev.filter((v) => v !== value));
       } else {
-        setAnswer(question.criteriaKey, [...prev, value]);
+        // 新規選択 → 「特になし」は自動解除して追加
+        setAnswer(question.criteriaKey, [...prev.filter((v) => v !== "none"), value]);
       }
     } else {
       setAnswer(question.criteriaKey, value);

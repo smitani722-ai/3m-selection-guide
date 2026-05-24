@@ -306,7 +306,9 @@ export const fastenerQuestions: Question[] = [
 ];
 
 // ─── 片面テープ 個別質問（動的フロー用） ────────────────────
-// 床ラインマーキング用フロー: mainPurpose → forklift → [priceSensitive]
+// 床ラインマーキング用フロー: mainPurpose → forklift → [lineFeature]
+//   forklift=YES → [mainPurpose, forklift]          (2問で終了→971L)
+//   forklift=NO  → [mainPurpose, forklift, lineFeature]  (3問で終了→471 or 764)
 // その他用途フロー:          mainPurpose → substrate → heat → handCut → otherReqs → price
 
 const stMainPurpose: Question = {
@@ -319,7 +321,6 @@ const stMainPurpose: Question = {
     { value: "insulation", label: "電気絶縁・ハーネス結束",       description: "配線・ケーブルの絶縁・束ねる" },
     { value: "waterproof", label: "防水・ケーブル防水（自己融着）", description: "屋外ジョイント・接続部保護" },
     { value: "aluminum",   label: "熱反射・EMIシールド・ダクト補修", description: "アルミ箔テープ用途" },
-    { value: "protection", label: "表面保護・補強",               description: "傷付き防止・補強テープ" },
     { value: "masking",    label: "マスキング（塗装・めっき保護）", description: "塗装マスク・工程保護" },
   ],
 };
@@ -498,8 +499,8 @@ type DynAnswers = Partial<Record<string, string | string[] | boolean>>;
 /**
  * 現在の回答状態に応じた質問リストを返す。
  * 片面テープ+床ラインマーキング用途の場合は短縮フローを適用：
- *   forklift=YES → [mainPurpose, forklift]  (2問で終了)
- *   forklift=NO  → [mainPurpose, forklift, priceSensitive]  (3問で終了)
+ *   forklift=YES → [mainPurpose, forklift]             (2問で終了 → 971L)
+ *   forklift=NO  → [mainPurpose, forklift, lineFeature] (3問で終了 → 471 or 764)
  */
 export function getQuestionsForCategoryAndAnswers(
   category: string,

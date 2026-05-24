@@ -152,8 +152,11 @@ function buildCriteria(answers: Answers): SelectionCriteria {
     else if (mainPurpose === "insulation") { application.push("絶縁"); features.push("電気絶縁"); }
     else if (mainPurpose === "waterproof") { application.push("防水"); features.push("防水", "自己融着"); }
     else if (mainPurpose === "aluminum") { application.push("シール"); features.push("アルミ箔", "熱反射"); }
-    else if (mainPurpose === "protection") application.push("保護");
-    else if (mainPurpose === "masking") application.push("マスキング");
+    else if (mainPurpose === "masking") {
+      application.push("マスキング");
+      features.push("マスキング");
+      // マスキングは塗装後に除去するため再剥離前提
+    }
 
     const heatReq = answers.heatReq as string;
     if (heatReq === "medium") features.push("耐熱");
@@ -171,7 +174,8 @@ function buildCriteria(answers: Answers): SelectionCriteria {
     if (otherReqs.includes("waterproof") && !features.includes("自己融着")) features.push("防水", "自己融着");
     if (otherReqs.includes("ul")) features.push("UL");
 
-    permanent = true;
+    // マスキングは塗装後に除去するため再剥離前提（それ以外は恒久固定）
+    permanent = mainPurpose !== "masking";
   }
 
   return {

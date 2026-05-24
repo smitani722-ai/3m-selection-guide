@@ -287,6 +287,33 @@ export function ResultCard({ result }: ResultCardProps) {
                         ))}
                       </div>
                     )}
+                    {/* 代替品のデータシートリンク */}
+                    {(alt.dataSheetUrl || alt.productPageUrl) && (
+                      <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t border-gray-100">
+                        {alt.dataSheetUrl && (
+                          <a
+                            href={alt.dataSheetUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[11px] font-medium text-red-600 hover:text-red-700 border border-red-200 bg-red-50 hover:bg-red-100 rounded px-2 py-0.5 transition-colors"
+                          >
+                            <FileText size={10} />
+                            データシート
+                          </a>
+                        )}
+                        {alt.productPageUrl && (
+                          <a
+                            href={alt.productPageUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[11px] font-medium text-gray-500 hover:text-gray-700 border border-gray-200 bg-gray-50 hover:bg-gray-100 rounded px-2 py-0.5 transition-colors"
+                          >
+                            <Globe size={10} />
+                            製品ページ
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
