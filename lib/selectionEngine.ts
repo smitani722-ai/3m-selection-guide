@@ -242,12 +242,12 @@ function calcApplicationBoost(product: Product, appCtx: string): number {
       break;
 
     case "高耐熱用途":
-      // 高耐熱・超高耐熱品をブースト
-      if (feats.includes("超高耐熱")) boost += 40;
-      if (feats.includes("高耐熱")) boost += 25;
-      if ((product.tempRange?.max ?? 0) >= 200) boost += 20;
-      // GPHはVHBかつ高耐熱
-      if (feats.includes("VHB") || sub.includes("VHB")) boost += 10;
+      // 粉体塗装乾燥工程・150〜200°C想定 → Y4825を最優先
+      if (product.id === "Y4825") boost += 55;       // 粉体塗装対応VHBを第一推奨
+      if (feats.includes("粉体塗装対応")) boost += 25;
+      if (feats.includes("高温保持")) boost += 10;
+      // 200°C超の連続高温用途はGPHシリーズ
+      if (feats.includes("超高耐熱") && (product.tempRange?.max ?? 0) >= 200) boost += 30;
       break;
 
     // ── 接着剤 ───────────────────────────────────────────────
@@ -376,7 +376,7 @@ function buildReasons(product: Product, criteria: SelectionCriteria): string[] {
       "パネル固定":       "産業機器・筐体パネルの構造固定に実績のあるVHBシリーズです",
       "ガラス固定":       "ガラス被着体への高強度固定に対応するVHBシリーズです",
       "車内装":           "自動車内外装部品の固定に実績の多いVHBシリーズです",
-      "高耐熱用途":       "200°C超の高温プロセス・エンジン周辺にも対応する高耐熱品です",
+      "高耐熱用途":       "粉体塗装乾燥工程・150〜200°C高温プロセスでの構造固定に実績があります",
       "金属接着":         "金属面への高い親和性と接合強度を持つ接着剤です",
       "プラスチック接着": "幅広いプラスチック素材に対応する多用途接着剤です",
       "ゴム接着":         "ゴム・エラストマー系素材への接着実績がある製品です",
@@ -422,7 +422,11 @@ function buildWarnings(product: Product, criteria: SelectionCriteria): string[] 
   }
   // 高温 + 低耐熱 → 高耐熱品を具体的に案内
   if (criteria.environment.includes("高温") && (product.tempRange?.max ?? 0) < 120) {
-    warnings.push(`使用温度上限（${product.tempRange?.max}°C）を超える環境では、高耐熱品（467MP・GPHシリーズ）への変更でより安心です。すぐご提案できます`);
+    warnings.push(`使用温度上限（${product.tempRange?.max}°C）を超える環境では、高耐熱品（Y4825・467MP・GPHシリーズ）への変更でより安心です。すぐご提案できます`);
+  }
+  // 高耐熱用途コンテキスト + Y4825 → 適用条件のガイダンス
+  if (criteria.applicationContext === "高耐熱用途" && product.id === "Y4825") {
+    warnings.push("粉体塗装乾燥工程（150〜200°C・短時間ばく露）での構造固定に実績があります。200°C超の連続高温用途にはGPHシリーズも選択肢としてご提案できます");
   }
   // シリコン + 非専用品 → 専用品へ誘導 + サンプル提供
   if (allSubstrates.some((s) => s.includes("シリコン")) && !product.features.includes("シリコン接着")) {

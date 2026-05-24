@@ -75,7 +75,7 @@ export const tapeQuestions: Question[] = [
       { value: "normal", label: "常温屋内（〜60°C）", description: "一般的な室内使用" },
       { value: "outdoor", label: "屋外・耐候性が必要", description: "紫外線・雨・温度変化あり" },
       { value: "warm", label: "高温（60〜150°C）", description: "電気部品・自動車内装等" },
-      { value: "hot", label: "高耐熱（150〜200°C）", description: "電子機器・エンジン周辺等" },
+      { value: "hot", label: "高耐熱（150〜200°C）", description: "粉体塗装乾燥工程・150〜200°C高温プロセス" },
       { value: "superhot", label: "超高温（200°C超）", description: "FPC・高温プロセス・工業炉等" },
     ],
   },
@@ -400,7 +400,7 @@ export const tapeApplicationQuestion: Question = {
     { value: "パネル固定",       label: "金属・樹脂パネル固定",       description: "産業機器・筐体パネルの構造固定（VHB）" },
     { value: "ガラス固定",       label: "ガラス・サッシへの固定",     description: "ガラス面への高強度固定（VHB）" },
     { value: "車内装",           label: "車両内装・自動車部品",       description: "自動車内装・外装部品のテープ固定" },
-    { value: "高耐熱用途",       label: "高温・高耐熱用途",           description: "エンジン周辺・200°C超の高温プロセス" },
+    { value: "高耐熱用途",       label: "高温・高耐熱用途",           description: "粉体塗装乾燥工程・高温環境用途（150〜200°C）" },
     { value: "指定なし",         label: "指定なし",                   description: "被着体・条件から総合選定" },
   ],
 };
