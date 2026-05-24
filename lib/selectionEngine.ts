@@ -375,8 +375,14 @@ function buildReasons(product: Product, criteria: SelectionCriteria): string[] {
     reasons.push("標準的な工場床・倉庫ラインに実績があり、施工性と耐久性のバランスが取れた定番品です");
   }
   if (product.id === "471" && criteria.application.includes("マーキング")) {
-    reasons.push("曲線ライン・デザインラインに対応し、高い視認性と多色展開で設備・通路の色分けマーキングに最適です");
-    reasons.push("薄手で曲線施工性に優れ、視認性重視の仮マーキング・デザインラインに適しています");
+    if (criteria.features.includes("剥離性")) {
+      reasons.push("糊残りが少なく剥がしやすい特性で、貼り替え頻度の高いラインや一時的なマーキングに最適です");
+    } else if (criteria.features.includes("密着性")) {
+      reasons.push("端部のめくれ・剥がれに強く、歩行エリアや継続使用のラインに安定した密着性を発揮します");
+    } else if (criteria.features.includes("曲線対応")) {
+      reasons.push("薄手で柔軟性が高く、コーナー・曲線ラインへの追従施工が容易です");
+    }
+    reasons.push("多色展開で設備・通路の色分けマーキングに対応し、視認性の高いラインを長期維持できます");
   }
   if (criteria.priceSensitive && product.price === "economy") reasons.push("コストパフォーマンスに優れ、大量使用にも対応できます");
 
@@ -547,10 +553,10 @@ export function selectProducts(criteria: SelectionCriteria): SelectionResult | n
   // 一般スコアリングより優先。用途が明確なため機械的に決定する。
   // ルール: forklift=true→971L / priceSensitive=true→764 / else→471
   if (criteria.category === "片面テープ" && criteria.application.includes("マーキング")) {
-    const isForklift   = criteria.features.includes("フォークリフト耐久");
-    const isCostFirst  = criteria.priceSensitive;
-    const targetId = isForklift ? "971L" : (isCostFirst ? "764" : "471");
-    const altIds   = isForklift ? ["764", "471"] : (isCostFirst ? ["971L", "471"] : ["764", "971L"]);
+    const isForklift = criteria.features.includes("フォークリフト耐久");
+    const is471      = criteria.features.some((f) => ["剥離性", "密着性", "曲線対応"].includes(f));
+    const targetId   = isForklift ? "971L" : (is471 ? "471" : "764");
+    const altIds     = isForklift ? ["764", "471"] : (is471 ? ["764", "971L"] : ["471", "971L"]);
 
     const target = products.find((p) => p.id === targetId);
     if (target) {

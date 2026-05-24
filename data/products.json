@@ -732,8 +732,8 @@
       "permanence": "恒久固定",
       "notes": "フォークリフト・重量台車が通行する工場床ラインに最適。カッター施工タイプで長期耐久性に優れる。歩行エリアや曲線ラインには764・471を検討。",
       "competitors": [],
-      "dataSheetUrl": null,
-      "productPageUrl": null,
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/1231093O/3m-floor-marking-tape-971l.pdf",
+      "productPageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/v000131267/",
       "catalogUrl": null
     },
     {
@@ -752,7 +752,10 @@
       "price": "economy",
       "permanence": "恒久固定",
       "notes": "視認性重視・曲線ライン・デザインライン用途に。一般直線ラインには764、フォークリフト耐久用途には971Lを優先。",
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/1231091O/3m-vinyl-tape-471.pdf",
+      "productPageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042119/",
+      "catalogUrl": null
     },
     {
       "id": "764",
@@ -770,7 +773,10 @@
       "price": "economy",
       "permanence": "恒久固定",
       "notes": "一般工場床ラインテープ。多色展開で通路・区画ライン用途に実績。フォークリフト通行には971L、曲線・デザインには471を推奨。",
-      "competitors": []
+      "competitors": [],
+      "dataSheetUrl": "https://multimedia.3m.com/mws/media/1231092O/3m-vinyl-tape-764.pdf",
+      "productPageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042120/",
+      "catalogUrl": null
     },
     {
       "id": "2228",

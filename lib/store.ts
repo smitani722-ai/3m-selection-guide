@@ -137,15 +137,16 @@ function buildCriteria(answers: Answers): SelectionCriteria {
     if (mainPurpose === "marking") {
       application.push("マーキング");
       features.push("マーキング");
-      // 床ライン3ルール: forklift → 971L / cost → 764 / else → 471
+      // 床ライン3ルール: forklift → 971L / lineFeature → 471 or 764
       const forklift = answers.forkliftDurability === "true" || answers.forkliftDurability === true;
-      const costPriority = answers.priceSensitive === "true" || answers.priceSensitive === true;
       if (forklift) {
         features.push("フォークリフト耐久");  // → 971L（ルールベース）
-      } else if (costPriority) {
-        features.push("標準ライン");           // → 764（ルールベース）
       } else {
-        features.push("視認性");              // → 471（ルールベース）
+        const lineFeature = answers.lineFeature as string | undefined;
+        if (lineFeature === "easyRemoval") features.push("剥離性");       // → 471
+        else if (lineFeature === "antiLift") features.push("密着性");      // → 471
+        else if (lineFeature === "curvedLine") features.push("曲線対応"); // → 471
+        else features.push("標準ライン");                                  // → 764
       }
     }
     else if (mainPurpose === "insulation") { application.push("絶縁"); features.push("電気絶縁"); }

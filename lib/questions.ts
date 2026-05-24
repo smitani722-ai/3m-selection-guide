@@ -336,15 +336,17 @@ const stForklift: Question = {
   ],
 };
 
-const stPriceFloor: Question = {
-  id: "priceSensitive",
-  text: "コスト重視ですか？",
-  subtext: "コスト重視 → 764（標準ライン）、性能優先 → 471（高視認性・曲線）",
-  type: "boolean",
-  criteriaKey: "priceSensitive",
+const stLineFeature: Question = {
+  id: "lineFeature",
+  text: "ラインテープで重視する特性は？",
+  subtext: "用途に合わせた最適テープを選定します",
+  type: "single",
+  criteriaKey: "lineFeature",
   options: [
-    { value: "true",  label: "はい（コスト重視・一般ライン）",       description: "コストバランスの高い汎用ラインテープ" },
-    { value: "false", label: "いいえ（高視認性・曲線ライン優先）",  description: "視認性重視・曲線対応テープ" },
+    { value: "easyRemoval", label: "糊残りが少ない（剥がしやすい）", description: "貼り替えや一時的なラインマーキング" },
+    { value: "antiLift",    label: "めくれ・剥がれが少ない",          description: "端部がめくれにくい高密着タイプ" },
+    { value: "curvedLine",  label: "曲線ライン施工が必要",             description: "コーナー・曲線のある複雑なライン形状" },
+    { value: "none",        label: "特になし（コスト重視）",           description: "一般直線ライン・コストを優先" },
   ],
 };
 
@@ -511,8 +513,8 @@ export function getQuestionsForCategoryAndAnswers(
         // forklift YES → 次の質問は不要、この2問で選定
         return [stMainPurpose, stForklift];
       }
-      // forklift NO（または未回答）→ コスト質問のみ追加
-      return [stMainPurpose, stForklift, stPriceFloor];
+      // forklift NO（または未回答）→ ライン特性質問を追加
+      return [stMainPurpose, stForklift, stLineFeature];
     }
     // 非マーキング用途 → 標準フロー（forklift質問なし）
     return singleTapeQuestions;
