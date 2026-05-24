@@ -138,6 +138,14 @@ function calcScore(product: Product, criteria: SelectionCriteria): number {
   if (!criteria.permanent && product.permanence === "再剥離") score += 12;
   if (!criteria.permanent && product.permanence === "再剥離可") score += 8;
 
+  // VHB × 再剥離要求 — カテゴリ分離ルール
+  // 再剥離・着脱・仮固定要求がある場合にVHBをスコアから除外（ペナルティ）
+  const needsRemovable =
+    !criteria.permanent ||
+    criteria.features.includes("再剥離") ||
+    criteria.application.some((a) => ["再剥離", "仮固定", "着脱"].includes(a));
+  if (needsRemovable && product.subcategory.includes("VHB")) score -= 60;
+
   // Price sensitivity
   if (criteria.priceSensitive && product.price === "economy") score += 18;
   if (criteria.priceSensitive && product.price === "premium") score -= 8;
@@ -400,9 +408,13 @@ function buildWarnings(product: Product, criteria: SelectionCriteria): string[] 
   if (criteria.permanent && product.permanence === "再剥離") {
     warnings.push("再剥離タイプのため貼り直しが可能ですが、完全固定が必要な場合は代替候補の恒久固定品もご提案できます");
   }
-  // VHB → 使用注意 + 再剥離案
+  // VHB → 使用注意（再剥離カテゴリとは別物である点を明示）
   if (product.subcategory.includes("VHB")) {
-    warnings.push("VHBは超強力接着のため、位置を確認してから本貼りしてください。取り外し予定がある場合は再剥離タイプへの変更もご案内できます");
+    warnings.push("VHBは超強力接着のため、剥離時に被着体破壊や糊残りが発生する場合があります。再剥離用途には適しません。位置を確認してから本貼りしてください");
+  }
+  // VHB + 非恒久（再剥離・着脱要求あり）→ カテゴリ変更を積極提案
+  if (product.subcategory.includes("VHB") && (!criteria.permanent || criteria.features.includes("再剥離"))) {
+    warnings.push("着脱・再剥離が必要な場合は、VHBではなくDual Lock（SJ3540シリーズ）やファスナーカテゴリをご検討ください。カテゴリをファスナーに変更してご相談いただくと的確なご提案ができます");
   }
   // PP + 非LSE → LSE変更を積極提案
   if (allSubstrates.includes("PP") && !product.lse && product.category !== "接着剤") {
@@ -461,6 +473,14 @@ function isValidAlternative(
   if (criteria.features.includes("フォーム") && !candidate.features.includes("フォーム")) return false;
   // 再剥離が必須なのに恒久固定品は不可
   if (criteria.features.includes("再剥離") && candidate.permanence === "恒久固定") return false;
+
+  // VHB × 再剥離カテゴリ分離ルール
+  // 再剥離・着脱・仮固定要求がある場合、VHBは代替候補にも出さない
+  const needsRemovableAlt =
+    !criteria.permanent ||
+    criteria.features.includes("再剥離") ||
+    criteria.application.some((a) => ["再剥離", "仮固定", "着脱"].includes(a));
+  if (needsRemovableAlt && candidate.subcategory.includes("VHB")) return false;
 
   // ③ 耐熱要件——primaryが担保している耐熱性の70%以上をカバーすること
   if (criteria.environment.includes("高温") && primary.tempRange) {
