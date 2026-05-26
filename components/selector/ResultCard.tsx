@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { SelectionResult } from "@/lib/selectionEngine";
 import { generateSalesTalk } from "@/lib/salesTalk";
+import { isDisplayableDataSheetUrl, isValidProductPageUrl } from "@/lib/urlValidation";
 import { cn } from "@/lib/utils";
 import {
   CheckCircle2, ChevronRight, Copy, Check, MessageSquare,
   Lightbulb, Package, Star, Award, ArrowRight,
-  FileText, Globe, Download,
+  FileText, Globe, Download, AlertCircle,
 } from "lucide-react";
 
 // verified=true かつ discontinued=false の競合品のみ表示する（現行・実在確認済み品のみ）
@@ -287,12 +288,12 @@ export function ResultCard({ result }: ResultCardProps) {
                         ))}
                       </div>
                     )}
-                    {/* 代替品のデータシートリンク */}
-                    {(alt.dataSheetUrl || alt.productPageUrl) && (
+                    {/* 代替品のデータシートリンク（URL検証済みのみ表示） */}
+                    {(isDisplayableDataSheetUrl(alt.dataSheetUrl) || isValidProductPageUrl(alt.productPageUrl)) && (
                       <div className="flex flex-wrap gap-1.5 mt-2 pt-2 border-t border-gray-100">
-                        {alt.dataSheetUrl && (
+                        {isDisplayableDataSheetUrl(alt.dataSheetUrl) && (
                           <a
-                            href={alt.dataSheetUrl}
+                            href={alt.dataSheetUrl!}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1 text-[11px] font-medium text-red-600 hover:text-red-700 border border-red-200 bg-red-50 hover:bg-red-100 rounded px-2 py-0.5 transition-colors"
@@ -301,9 +302,9 @@ export function ResultCard({ result }: ResultCardProps) {
                             データシート
                           </a>
                         )}
-                        {alt.productPageUrl && (
+                        {isValidProductPageUrl(alt.productPageUrl) && (
                           <a
-                            href={alt.productPageUrl}
+                            href={alt.productPageUrl!}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1 text-[11px] font-medium text-gray-500 hover:text-gray-700 border border-gray-200 bg-gray-50 hover:bg-gray-100 rounded px-2 py-0.5 transition-colors"
@@ -361,20 +362,26 @@ export function ResultCard({ result }: ResultCardProps) {
 }
 
 // ─── ドキュメントリンク ──────────────────────────────────────
-// 将来的にproducts.jsonへURLを追記するだけで自動表示される構造
+// products.json の URL バリデーションを通過したURLのみ表示する。
+// dataSheetUrl が空・禁止パターンの場合は「資料確認中」バッジを表示。
+// productPageUrl が 3M Japan パターン外の場合はリンクを非表示にする。
 function ProductLinks({ product }: { product: import("@/lib/selectionEngine").Product }) {
-  const hasAny = product.dataSheetUrl || product.productPageUrl || product.catalogUrl;
+  const dataSheetOk = isDisplayableDataSheetUrl(product.dataSheetUrl);
+  const dataSheetMissing = !product.dataSheetUrl || product.dataSheetUrl.trim() === "";
+  const productPageOk = isValidProductPageUrl(product.productPageUrl);
+  const hasAny = dataSheetOk || dataSheetMissing || productPageOk || product.catalogUrl;
+
   if (!hasAny) return null;
 
   return (
     <div className="pt-3 mt-1 border-t border-gray-100">
       <div className="text-[10px] text-gray-400 uppercase tracking-wider font-bold mb-2">製品ドキュメント</div>
       <div className="flex flex-wrap gap-2">
-        {product.dataSheetUrl && (
+        {dataSheetOk ? (
           <>
-            {/* データシートを見る */}
+            {/* データシートを見る（URL検証済み） */}
             <a
-              href={product.dataSheetUrl}
+              href={product.dataSheetUrl!}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-700 transition-all hover:bg-red-100 hover:border-red-300 active:scale-95"
@@ -384,7 +391,7 @@ function ProductLinks({ product }: { product: import("@/lib/selectionEngine").Pr
             </a>
             {/* PDFダウンロード */}
             <a
-              href={product.dataSheetUrl}
+              href={product.dataSheetUrl!}
               target="_blank"
               rel="noopener noreferrer"
               download
@@ -394,10 +401,17 @@ function ProductLinks({ product }: { product: import("@/lib/selectionEngine").Pr
               PDFダウンロード
             </a>
           </>
-        )}
-        {product.productPageUrl && (
+        ) : !dataSheetMissing ? (
+          /* 禁止パターンURLが入っている場合のフェイルセーフ */
+          <span className="inline-flex items-center gap-1.5 rounded-lg border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-medium text-amber-700 cursor-not-allowed">
+            <AlertCircle size={12} />
+            資料確認中
+          </span>
+        ) : null}
+
+        {productPageOk && (
           <a
-            href={product.productPageUrl}
+            href={product.productPageUrl!}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 transition-all hover:bg-gray-100 hover:border-gray-300 active:scale-95"
