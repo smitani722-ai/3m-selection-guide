@@ -470,7 +470,13 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "467MPのLSE対応版。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/f9460pc-tds.pdf",
+      "datasheetTitle": "3M F9460PC Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40065871/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "F9469PC",
@@ -510,7 +516,13 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "468MPのLSE対応版。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/f9469pc-tds.pdf",
+      "datasheetTitle": "3M F9469PC Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40065862/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "9077",
@@ -915,7 +927,13 @@
       "price": "economy",
       "permanence": "恒久固定",
       "notes": "コスト重視の汎用固定用途向け。特殊用途には非推奨。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/gpt-020f-tds.pdf",
+      "datasheetTitle": "3M GPT-020F Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005163007/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "Y4950",
@@ -1091,7 +1109,13 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "透明性が必要な0.3〜1mm領域の固定用途向け。再剥離不可。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/y-4905j-y-4910j-tb.pdf",
+      "datasheetTitle": "Y-4905J / Y-4910J Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40065643/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "Y4910",
@@ -1130,7 +1154,13 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "透明性が必要な1mm以上の固定用途向け。再剥離不可。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/y-4905j-y-4910j-tb.pdf",
+      "datasheetTitle": "Y-4905J / Y-4910J Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042109/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "GPH-060GF",
@@ -1313,7 +1343,13 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "LSE材の厚手フォームVHB用途で0.6mm以上1.1mm未満の厚み要求に使用する。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/lse-060wf-lse-110wf-lse-160wf-tb.pdf",
+      "datasheetTitle": "LSE-060WF / LSE-110WF / LSE-160WF Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005036159/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "LSE-110WF",
@@ -1352,7 +1388,13 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "LSE材の厚手フォームVHB用途で1mm以上の厚み要求に使用する。再剥離不可。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/lse-060wf-lse-110wf-lse-160wf-tb.pdf",
+      "datasheetTitle": "LSE-060WF / LSE-110WF / LSE-160WF Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005036160/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "LVO-110BF",
@@ -2092,7 +2134,13 @@
       "price": "standard",
       "permanence": "着脱可能",
       "notes": "SJ3541（透明）・SJ3542（黒）・SJ3544（白）など色展開あり。押す・引くの動作で脱着。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/sj-344xj-sj-354xj-sj-355xcf-tb.pdf",
+      "datasheetTitle": "SJ-344XJ / SJ-354XJ / SJ-355XCF Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40068895/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "SJ3550",
@@ -2129,7 +2177,13 @@
       "price": "standard",
       "permanence": "再剥離",
       "notes": "SJ3540より接着力が低い。繰り返し着脱前提の用途に。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/sj-344xj-sj-354xj-sj-355xcf-tb.pdf",
+      "datasheetTitle": "SJ-344XJ / SJ-354XJ / SJ-355XCF Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40068940/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "SJ3526N",
@@ -2201,7 +2255,13 @@
       "price": "standard",
       "permanence": "着脱可能",
       "notes": "SJ3540シリーズより薄い。スペースが制限される電子機器・OA機器内部に。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/sj-4570-tb.pdf",
+      "datasheetTitle": "SJ-4570 Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40068890/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "SJ3560",
@@ -2240,7 +2300,13 @@
       "price": "premium",
       "permanence": "着脱可能",
       "notes": "透明タイプで高保持力・厚手・構造固定が必要な用途に使用する。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/sj-3560-tb.pdf",
+      "datasheetTitle": "SJ-3560 Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40072057/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "SJ4580",
@@ -2277,7 +2343,13 @@
       "price": "standard",
       "permanence": "着脱可能",
       "notes": "透明・薄型で通常被着体に使用する。LSE材の薄型透明用途はSJ4570を優先する。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/sj-4580-tb.pdf",
+      "datasheetTitle": "SJ-4580 Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40068924/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "471",
