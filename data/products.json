@@ -884,7 +884,9 @@
       "description": "コスト重視の汎用薄手両面テープ。一般用途の恒久固定向け。",
       "features": [
         "低価格",
-        "汎用"
+        "汎用",
+        "LSE対応",
+        "PP/PE対応"
       ],
       "applications": [
         "固定",
@@ -893,18 +895,23 @@
       "substrates": [
         "SUS",
         "アルミ",
+        "PP",
+        "PE",
+        "TPO",
+        "オレフィン系樹脂",
+        "LSE材",
         "木材",
         "紙"
       ],
       "environment": [
         "屋内"
       ],
-      "thickness": "0.08mm",
+      "thickness": "0.20mm",
       "tempRange": {
         "min": -20,
         "max": 80
       },
-      "lse": false,
+      "lse": true,
       "price": "economy",
       "permanence": "恒久固定",
       "notes": "コスト重視の汎用固定用途向け。特殊用途には非推奨。",
@@ -958,6 +965,172 @@
       "datasheetTitle": "3M VHBテープ Y-4920 / Y-4930 / Y-4950 / Y-4922 Technical Data Sheet",
       "datasheetDocumentType": "Technical Data Sheet",
       "datasheetLanguage": "Japanese"
+    },
+    {
+      "id": "Y4914",
+      "name": "Y4914",
+      "category": "両面テープ",
+      "subcategory": "VHB（高保持力・薄手）",
+      "description": "高保持力が必要な薄手固定向けVHBテープ。0.25mmクラスの薄型高保持力用途に向く。",
+      "features": [
+        "高保持力",
+        "高接着",
+        "VHB",
+        "薄型"
+      ],
+      "applications": [
+        "固定",
+        "恒久固定",
+        "構造接合"
+      ],
+      "substrates": [
+        "SUS",
+        "アルミ",
+        "鉄",
+        "ガラス",
+        "ABS",
+        "PC",
+        "塗装面"
+      ],
+      "environment": [
+        "屋内",
+        "屋外"
+      ],
+      "thickness": "0.25mm",
+      "tempRange": {
+        "min": -40,
+        "max": 149
+      },
+      "lse": false,
+      "price": "premium",
+      "permanence": "恒久固定",
+      "notes": "高保持力が必要だが厚みを抑えたい用途向け。再剥離不可。",
+      "datasheetUrl": "/datasheets/y4950-tds.pdf",
+      "datasheetTitle": "3M VHBテープ Y-4920 / Y-4930 / Y-4950 / Y-4922 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese",
+      "competitors": []
+    },
+    {
+      "id": "Y4920",
+      "name": "Y4920",
+      "category": "両面テープ",
+      "subcategory": "VHB（高保持力）",
+      "description": "高保持力が必要な中厚手固定向けVHBテープ。0.4mmクラスの高保持力用途に向く。",
+      "features": [
+        "高保持力",
+        "高接着",
+        "VHB"
+      ],
+      "applications": [
+        "固定",
+        "恒久固定",
+        "構造接合"
+      ],
+      "substrates": [
+        "SUS",
+        "アルミ",
+        "鉄",
+        "ガラス",
+        "ABS",
+        "PC",
+        "塗装面"
+      ],
+      "environment": [
+        "屋内",
+        "屋外"
+      ],
+      "thickness": "0.4mm",
+      "tempRange": {
+        "min": -40,
+        "max": 149
+      },
+      "lse": false,
+      "price": "premium",
+      "permanence": "恒久固定",
+      "notes": "高保持力が必要な0.3〜1mm領域の固定用途向け。再剥離不可。",
+      "datasheetUrl": "/datasheets/y4950-tds.pdf",
+      "datasheetTitle": "3M VHBテープ Y-4920 / Y-4930 / Y-4950 / Y-4922 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese",
+      "competitors": []
+    },
+    {
+      "id": "Y4905",
+      "name": "Y4905",
+      "category": "両面テープ",
+      "subcategory": "VHB（透明）",
+      "description": "透明性が必要な中厚手固定向けVHBテープ。0.5mmクラスの透明固定用途に向く。",
+      "features": [
+        "透明",
+        "高接着",
+        "VHB"
+      ],
+      "applications": [
+        "固定",
+        "恒久固定"
+      ],
+      "substrates": [
+        "ガラス",
+        "SUS",
+        "アルミ",
+        "ABS",
+        "PC",
+        "アクリル"
+      ],
+      "environment": [
+        "屋内",
+        "屋外"
+      ],
+      "thickness": "0.5mm",
+      "tempRange": {
+        "min": -40,
+        "max": 149
+      },
+      "lse": false,
+      "price": "premium",
+      "permanence": "恒久固定",
+      "notes": "透明性が必要な0.3〜1mm領域の固定用途向け。再剥離不可。",
+      "competitors": []
+    },
+    {
+      "id": "Y4910",
+      "name": "Y4910",
+      "category": "両面テープ",
+      "subcategory": "VHB（透明）",
+      "description": "透明性が必要な厚手固定向けVHBテープ。1.0mmクラスの透明固定用途に向く。",
+      "features": [
+        "透明",
+        "高接着",
+        "VHB",
+        "フォーム"
+      ],
+      "applications": [
+        "固定",
+        "恒久固定"
+      ],
+      "substrates": [
+        "ガラス",
+        "SUS",
+        "アルミ",
+        "ABS",
+        "PC",
+        "アクリル"
+      ],
+      "environment": [
+        "屋内",
+        "屋外"
+      ],
+      "thickness": "1.0mm",
+      "tempRange": {
+        "min": -40,
+        "max": 149
+      },
+      "lse": false,
+      "price": "premium",
+      "permanence": "恒久固定",
+      "notes": "透明性が必要な1mm以上の固定用途向け。再剥離不可。",
+      "competitors": []
     },
     {
       "id": "GPH-060GF",
@@ -1140,6 +1313,45 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "LSE材の厚手フォームVHB用途で0.6mm以上1.1mm未満の厚み要求に使用する。",
+      "competitors": []
+    },
+    {
+      "id": "LSE-110WF",
+      "name": "LSE-110WF",
+      "category": "両面テープ",
+      "subcategory": "VHB（LSE対応フォーム）",
+      "description": "LSE材向け1.1mm厚フォームテープ。PP・PE・TPOなどの低表面エネルギー素材で厚みが必要な固定用途に向く。",
+      "features": [
+        "LSE対応",
+        "高強度",
+        "PP/PE対応",
+        "VHB",
+        "フォーム"
+      ],
+      "applications": [
+        "固定",
+        "恒久固定"
+      ],
+      "substrates": [
+        "PP",
+        "PE",
+        "TPO",
+        "オレフィン系樹脂",
+        "LSE材"
+      ],
+      "environment": [
+        "屋内",
+        "屋外"
+      ],
+      "thickness": "1.1mm",
+      "tempRange": {
+        "min": -40,
+        "max": 121
+      },
+      "lse": true,
+      "price": "premium",
+      "permanence": "恒久固定",
+      "notes": "LSE材の厚手フォームVHB用途で1mm以上の厚み要求に使用する。再剥離不可。",
       "competitors": []
     },
     {

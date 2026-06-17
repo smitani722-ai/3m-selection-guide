@@ -90,8 +90,24 @@ function isSiliconeRoute(answers: AnswerRecord): boolean {
   return includesAny(selectedValues, ["シリコン", "シリコンゴム", "シリコン接着"]);
 }
 
+function isLowVocRoute(answers: AnswerRecord): boolean {
+  return includesAny(answerList(answers.features), ["低VOC", "低アウトガス"]);
+}
+
+function isFlexibleRoute(answers: AnswerRecord): boolean {
+  return includesAny(answerList(answers.features), ["柔軟", "弾性"]);
+}
+
 export function shouldShowOption(question: Question, option: QuestionOption, answers: AnswerRecord): boolean {
   if (question.id === "thickness" && option.value === "極薄" && isHighAdhesionRoute(answers)) {
+    return false;
+  }
+
+  if (question.id === "thickness" && option.value === "極薄" && isLowVocRoute(answers)) {
+    return false;
+  }
+
+  if (question.id === "thickness" && ["極薄", "0.1mm"].includes(option.value) && isFlexibleRoute(answers)) {
     return false;
   }
 

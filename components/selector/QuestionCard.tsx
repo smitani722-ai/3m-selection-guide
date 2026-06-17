@@ -31,7 +31,28 @@ export function QuestionCard({ question }: QuestionCardProps) {
       if (prev.includes(value)) {
         setAnswer(question.criteriaKey, prev.filter((v) => v !== value));
       } else {
-        setAnswer(question.criteriaKey, [...prev, value]);
+        let next = [...prev, value];
+
+        if (question.criteriaKey === "features" && value === "高接着") {
+          next = next.filter((v) => v !== "再剥離");
+          const application = answers.application;
+          if (Array.isArray(application) && application.includes("再剥離")) {
+            setAnswer("application", application.filter((v) => v !== "再剥離"));
+          }
+        }
+
+        if (question.criteriaKey === "features" && value === "再剥離") {
+          next = next.filter((v) => v !== "高接着");
+        }
+
+        if (question.criteriaKey === "application" && value === "再剥離") {
+          const features = answers.features;
+          if (Array.isArray(features) && features.includes("高接着")) {
+            setAnswer("features", features.filter((v) => v !== "高接着"));
+          }
+        }
+
+        setAnswer(question.criteriaKey, next);
       }
     } else {
       setAnswer(question.criteriaKey, value);

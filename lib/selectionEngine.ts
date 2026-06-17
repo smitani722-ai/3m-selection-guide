@@ -57,7 +57,7 @@ export interface SelectionResult {
 
 const products: Product[] = productsData.products as Product[];
 const GPH_PRODUCT_IDS = ["GPH-060GF", "GPH-110GF", "GPH-160GF"];
-const LSE_VHB_PRODUCT_IDS = ["LSE-060WF", "LVO-110BF", "LSE-160WF"];
+const LSE_VHB_PRODUCT_IDS = ["LSE-060WF", "LSE-110WF", "LVO-110BF", "LSE-160WF"];
 const NON_RECOMMENDED_PRODUCT_IDS = ["9472LE", "9672LE"];
 
 const LSE_SUBSTRATES = ["PP", "PE", "TPO", "TPE", "オレフィン系樹脂", "LSE材", "シリコン", "シリコンゴム", "ナイロン", "POM", "PBT", "PA"];
@@ -88,6 +88,7 @@ function hasKeyword(items: string[], keywords: string[]): boolean {
 }
 
 function thicknessNumber(thickness?: string): number | null {
+  if (thickness?.includes("極薄")) return 0.05;
   const match = thickness?.match(/[0-9.]+/);
   return match ? Number(match[0]) : null;
 }
@@ -180,9 +181,9 @@ function gphTargetProductIds(criteria: SelectionCriteria): string[] {
 
 function lseVhbTargetProductIds(criteria: SelectionCriteria): string[] {
   const thickness = thicknessNumber(criteria.thickness);
-  if (thickness === null) return ["LVO-110BF"];
+  if (thickness === null) return ["LSE-110WF"];
   if (thickness >= 0.6 && thickness < 1.1) return ["LSE-060WF"];
-  if (thickness >= 1.1 && thickness < 1.6) return ["LVO-110BF"];
+  if (thickness >= 1.1 && thickness < 1.6) return ["LSE-110WF"];
   if (thickness >= 1.6) return ["LSE-160WF"];
   return [];
 }
@@ -199,9 +200,10 @@ function lseTapeTargetProductId(criteria: SelectionCriteria): string | null {
 function priorityLseHighAdhesionTargetProductId(criteria: SelectionCriteria): string | null {
   const thickness = thicknessNumber(criteria.thickness);
   if (thickness === null) return null;
-  if (thickness >= 0.1 && thickness < 0.3) return "GPT-020F";
+  if (thickness <= 0.1) return "93010LE";
+  if (thickness > 0.1 && thickness < 0.3) return "GPT-020F";
   if (thickness >= 0.3 && thickness < 1.0) return "LSE-060WF";
-  if (thickness >= 1.0) return "LVO-110BF";
+  if (thickness >= 1.0) return "LSE-110WF";
   return null;
 }
 
@@ -212,6 +214,64 @@ function roughSurfaceTargetProductId(criteria: SelectionCriteria): string | null
   if (thickness >= 0.3 && thickness < 1.0) return "5925";
   if (thickness >= 0.1 && thickness < 0.3) return "GPT-020F";
   return null;
+}
+
+function tapeRuleTargetProductId(criteria: SelectionCriteria): string | null | undefined {
+  if (criteria.category !== "両面テープ") return undefined;
+
+  const allValues = values(criteria);
+  const allSubstrates = [criteria.substrateA, criteria.substrateB].filter(Boolean);
+  const thickness = thicknessNumber(criteria.thickness);
+  if (thickness === null) return undefined;
+
+  const isSilicone = includesAny(allSubstrates, ["シリコン", "シリコンゴム"]) || hasKeyword(allValues, ["シリコン接着"]);
+  if (isSilicone) return undefined;
+
+  const isPlainRemovable =
+    hasKeyword(allValues, ["再剥離", "仮固定"]) &&
+    !hasKeyword(allValues, ["片側弱接着", "片側超弱接着", "再利用", "繰り返し", "リワーク", "剥がしやすさ", "フィルム基材"]);
+  if (isPlainRemovable) {
+    if (thickness >= 0.1 && thickness < 0.3) return "1110";
+    if (thickness >= 0.3) return null;
+    return null;
+  }
+
+  const needsLowVoc = hasKeyword(allValues, ["低VOC", "低アウトガス"]);
+  if (needsLowVoc && thickness <= 0.1) return null;
+
+  const needsFlexible = hasKeyword(allValues, ["柔軟", "弾性"]);
+  if (needsFlexible) {
+    if (thickness <= 0.3) return null;
+    if (thickness > 0.3 && thickness < 1.0) return "5925";
+    if (thickness >= 1.0) return "5952";
+  }
+
+  const isMetalTapeBonding = includesAny(allSubstrates, METAL_SUBSTRATES);
+  const isHighAdhesion = hasKeyword(allValues, ["高接着", "VHB", "構造接合", "高保持力"]);
+  if (hasKeyword(allValues, ["超高温"]) && isMetalTapeBonding && isHighAdhesion) return "Y4825";
+
+  const isLSE = includesAny(allSubstrates, LSE_SUBSTRATES) || allValues.includes("LSE対応");
+  if (isLSE) {
+    if (thickness <= 0.1) return "93010LE";
+    if (thickness > 0.1 && thickness < 0.3) return "GPT-020F";
+    if (thickness >= 0.3 && thickness < 1.0) return "LSE-060WF";
+    if (thickness >= 1.0) return "LSE-110WF";
+  }
+
+  if (hasKeyword(allValues, ["透明"])) {
+    if (thickness <= 0.1) return "467MP";
+    if (thickness > 0.1 && thickness < 0.3) return "468MP";
+    if (thickness >= 0.3 && thickness < 1.0) return "Y4905";
+    if (thickness >= 1.0) return "Y4910";
+  }
+
+  if (hasKeyword(allValues, ["高保持力"])) {
+    if (thickness <= 0.3) return "Y4914";
+    if (thickness > 0.3 && thickness < 1.0) return "Y4920";
+    if (thickness >= 1.0) return "Y4950";
+  }
+
+  return undefined;
 }
 
 function calcScore(product: Product, criteria: SelectionCriteria): number {
@@ -332,6 +392,39 @@ function calcScore(product: Product, criteria: SelectionCriteria): number {
 
   if (product.category !== criteria.category) return -1;
   if (NON_RECOMMENDED_PRODUCT_IDS.includes(product.id)) return -1;
+
+  const tapeRuleTargetId = tapeRuleTargetProductId(criteria);
+  if (tapeRuleTargetId === null) return -1;
+  if (tapeRuleTargetId !== undefined) {
+    if (product.id === tapeRuleTargetId) score += 1400;
+    else if (
+      [
+        "Y4825",
+        "467MP",
+        "468MP",
+        "93010LE",
+        "93015LE",
+        "93020LE",
+        "GPT-020F",
+        "LSE-060WF",
+        "LSE-110WF",
+        "LVO-110BF",
+        "LSE-160WF",
+        "Y4910",
+        "Y4905",
+        "Y4950",
+        "Y4920",
+        "Y4914",
+        "1110",
+        "5952",
+        "5925",
+        ...GPH_PRODUCT_IDS,
+      ].includes(product.id)
+    ) {
+      score -= 420;
+    }
+  }
+
   if (
     priorityLseHighAdhesionTargetId &&
     ["93010LE", "93015LE", "93020LE", "467MP", "468MP"].includes(product.id) &&
@@ -610,6 +703,8 @@ function buildReasons(product: Product, criteria: SelectionCriteria, productIsVh
     reasons.push("大型パネルや高応力部位など、より強い接合力を求められる場面で説明しやすい製品です");
     reasons.push("150℃以下の使用環境で、強度重視のお客様に出しやすい上位VHBです");
   }
+  if (product.id === "Y4920") reasons.push("0.3〜1mm領域で高保持力が必要な固定に、厚みと保持力のバランスで提案できます");
+  if (product.id === "Y4914") reasons.push("0.3mm以下でも保持力を重視したい薄型固定用途に提案しやすい候補です");
   if (GPH_PRODUCT_IDS.includes(product.id)) reasons.push("軟質PVCや塩ビ素材でも提案しやすく、可塑剤による接着トラブルを避けたい案件に向いています");
   if (GPH_PRODUCT_IDS.includes(product.id)) reasons.push("Y4825で説明しにくい塩ビ案件の代替として、お客様に使い分けを示しやすい製品です");
   if (product.id === "93010LE") reasons.push("PP・PEなどのLSE材で、薄く仕上げたい銘板やラベル固定に提案しやすい製品です");
@@ -622,7 +717,10 @@ function buildReasons(product: Product, criteria: SelectionCriteria, productIsVh
   if (product.id === "468MP") reasons.push("UL認証が必要で、467MPより少し厚みを持たせたい銘板・ラベル固定に向いています");
   if (product.id === "468MP") reasons.push("高耐熱の薄手固定として、認証と作業性の両方を説明しやすい製品です");
   if (product.id === "468MP") reasons.push("0.1〜0.3mm領域の認証用途で、薄すぎる不安を避けたい場合に提案できます");
+  if (product.id === "Y4905") reasons.push("透明性が必要な0.3〜1mm領域で、外観を損ねにくいVHB提案ができます");
+  if (product.id === "Y4910") reasons.push("透明性と厚みが必要な1mm以上の固定で、ガラスや透明部材に提案しやすい製品です");
   if (product.id === "LSE-060WF") reasons.push("LSE材でもフォームの追従性が必要な薄めのVHB案件に提案しやすい製品です");
+  if (product.id === "LSE-110WF") reasons.push("PP・PEなどのLSE材で1mm以上の厚手フォーム固定が必要な場合の第一候補です");
   if (product.id === "LVO-110BF") reasons.push("LSE材の厚手フォーム固定で、低VOC・低アウトガスも同時に説明できる提案しやすい製品です");
   if (product.id === "LSE-160WF") reasons.push("LSE材でしっかり厚みを持たせ、段差や凹凸も吸収したい案件に向いています");
   if (product.id === "F9460PC") reasons.push("FPCやポリイミド部品で、通常の高耐熱品では説明しきれない260℃級案件に提案できます");

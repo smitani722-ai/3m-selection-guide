@@ -31,6 +31,7 @@ Module._resolveFilename = function resolveFilename(request, parent, isMain, opti
 };
 
 const { selectProducts } = await import("../lib/selectionEngine");
+const { getVisibleOptions, questions, shouldShowPermanentQuestion } = await import("../lib/questions");
 
 type SalesRuleCase = {
   no: number;
@@ -201,13 +202,13 @@ const cases: SalesRuleCase[] = [
   {
     no: 16,
     name: "LSE標準",
-    expected: "93015LE",
+    expected: "GPT-020F",
     criteria: tape({ substrateA: "PP", substrateB: "PE", features: ["LSE対応"], thickness: "0.15mm" }),
   },
   {
     no: 17,
     name: "LSE厚手",
-    expected: "93020LE",
+    expected: "LSE-060WF",
     criteria: tape({ substrateA: "PP", substrateB: "PE", features: ["LSE対応"], thickness: "0.3mm" }),
   },
   {
@@ -225,13 +226,13 @@ const cases: SalesRuleCase[] = [
   {
     no: 20,
     name: "LSEフォーム 1.1mm",
-    expected: "LVO-110BF",
+    expected: "LSE-110WF",
     criteria: tape({ substrateA: "PP", substrateB: "PE", features: ["LSE対応", "VHB", "フォーム"], thickness: "1.1mm" }),
   },
   {
     no: 21,
     name: "LSEフォーム 1.6mm",
-    expected: "LVO-110BF",
+    expected: "LSE-110WF",
     criteria: tape({ substrateA: "PP", substrateB: "PE", features: ["LSE対応", "VHB", "フォーム"], thickness: "1.6mm" }),
   },
   {
@@ -483,7 +484,7 @@ const cases: SalesRuleCase[] = [
   {
     no: 63,
     name: "PP高接着 1.1mm",
-    expected: "LVO-110BF",
+    expected: "LSE-110WF",
     criteria: tape({ substrateA: "PP", substrateB: "PE", application: ["固定"], features: ["高接着"], thickness: "1.1mm" }),
   },
   {
@@ -516,6 +517,96 @@ const cases: SalesRuleCase[] = [
     expected: "5925",
     criteria: tape({ substrateA: "木材", substrateB: "木材", application: ["固定"], features: ["高接着"], thickness: "0.6mm" }),
   },
+  {
+    no: 69,
+    name: "超高温金属高接着 0.2mm",
+    expected: "Y4825",
+    criteria: tape({ substrateA: "SUS", substrateB: "アルミ", environment: ["超高温"], features: ["高接着"], thickness: "0.2mm" }),
+  },
+  {
+    no: 70,
+    name: "再剥離 0.2mm",
+    expected: "1110",
+    criteria: tape({ application: ["再剥離"], features: ["再剥離"], thickness: "0.2mm", permanent: false }),
+  },
+  {
+    no: 71,
+    name: "再剥離 0.6mm 該当なし",
+    expected: "(no recommendation)",
+    criteria: tape({ application: ["再剥離"], features: ["再剥離"], thickness: "0.6mm", permanent: false }),
+  },
+  {
+    no: 72,
+    name: "低VOC 極薄 該当なし",
+    expected: "(no recommendation)",
+    criteria: tape({ features: ["低VOC"], thickness: "極薄" }),
+  },
+  {
+    no: 73,
+    name: "LSE 0.1mm以下",
+    expected: "93010LE",
+    criteria: tape({ substrateA: "PP", substrateB: "PE", features: ["LSE対応"], thickness: "極薄" }),
+  },
+  {
+    no: 74,
+    name: "透明 1mm以上",
+    expected: "Y4910",
+    criteria: tape({ substrateA: "ガラス", substrateB: "PC", features: ["透明"], thickness: "1mm以上" }),
+  },
+  {
+    no: 75,
+    name: "透明 0.6mm",
+    expected: "Y4905",
+    criteria: tape({ substrateA: "ガラス", substrateB: "PC", features: ["透明"], thickness: "0.6mm" }),
+  },
+  {
+    no: 76,
+    name: "透明 0.2mm",
+    expected: "468MP",
+    criteria: tape({ substrateA: "ガラス", substrateB: "PC", features: ["透明"], thickness: "0.2mm" }),
+  },
+  {
+    no: 77,
+    name: "透明 0.1mm以下",
+    expected: "467MP",
+    criteria: tape({ substrateA: "ガラス", substrateB: "PC", features: ["透明"], thickness: "極薄" }),
+  },
+  {
+    no: 78,
+    name: "柔軟 1mm以上",
+    expected: "5952",
+    criteria: tape({ features: ["柔軟"], thickness: "1mm以上" }),
+  },
+  {
+    no: 79,
+    name: "柔軟 0.6mm",
+    expected: "5925",
+    criteria: tape({ features: ["柔軟"], thickness: "0.6mm" }),
+  },
+  {
+    no: 80,
+    name: "柔軟 0.2mm 該当なし",
+    expected: "(no recommendation)",
+    criteria: tape({ features: ["柔軟"], thickness: "0.2mm" }),
+  },
+  {
+    no: 81,
+    name: "高保持力 1mm以上",
+    expected: "Y4950",
+    criteria: tape({ features: ["高保持力"], thickness: "1mm以上" }),
+  },
+  {
+    no: 82,
+    name: "高保持力 0.6mm",
+    expected: "Y4920",
+    criteria: tape({ features: ["高保持力"], thickness: "0.6mm" }),
+  },
+  {
+    no: 83,
+    name: "高保持力 0.2mm",
+    expected: "Y4914",
+    criteria: tape({ features: ["高保持力"], thickness: "0.2mm" }),
+  },
 ];
 
 const failures = cases
@@ -535,6 +626,34 @@ if (failures.length > 0) {
       `No.${failure.no} ${failure.name}: expected ${failure.expected}, actual ${failure.actual}`,
     );
   }
+  process.exit(1);
+}
+
+const thicknessQuestion = questions.find((question: { id: string }) => question.id === "thickness");
+if (!thicknessQuestion) {
+  console.error("FAIL thickness question not found");
+  process.exit(1);
+}
+
+const uiFailures: string[] = [];
+const lowVocThicknessOptions = getVisibleOptions(thicknessQuestion, { category: "両面テープ", features: ["低VOC"] }).map((option: { value: string }) => option.value);
+if (lowVocThicknessOptions.includes("極薄")) uiFailures.push("低VOC route should hide 極薄");
+
+const flexibleThicknessOptions = getVisibleOptions(thicknessQuestion, { category: "両面テープ", features: ["柔軟"] }).map((option: { value: string }) => option.value);
+if (flexibleThicknessOptions.includes("極薄") || flexibleThicknessOptions.includes("0.1mm")) {
+  uiFailures.push("柔軟 route should hide 極薄 and 0.1mm");
+}
+
+const highAdhesionThicknessOptions = getVisibleOptions(thicknessQuestion, { category: "両面テープ", application: ["固定"], features: ["高接着"] }).map((option: { value: string }) => option.value);
+if (highAdhesionThicknessOptions.includes("極薄")) uiFailures.push("高接着 route should hide 極薄");
+
+if (shouldShowPermanentQuestion({ category: "両面テープ", application: ["固定"], features: ["高接着", "再剥離"] })) {
+  uiFailures.push("高接着 and 再剥離 conflict should skip permanent question");
+}
+
+if (uiFailures.length > 0) {
+  console.error(`FAIL UI ${uiFailures.length}`);
+  for (const failure of uiFailures) console.error(failure);
   process.exit(1);
 }
 
