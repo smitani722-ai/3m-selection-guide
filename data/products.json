@@ -848,7 +848,13 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "高耐熱、はんだ工程、ウェーブソルダー周辺の薄手固定用途に使用する。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/4390-tds.pdf",
+      "datasheetTitle": "3M 4390 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042085/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "DCX-1018",
@@ -886,7 +892,13 @@
       "price": "premium",
       "permanence": "恒久固定",
       "notes": "光学センサー周辺・電子機器内部など低VOCが必要な用途に。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/dcx1018-tds.pdf",
+      "datasheetTitle": "3M DCX-1018 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005035063/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "GPT-020F",
@@ -2385,7 +2397,13 @@
       "price": "economy",
       "permanence": "恒久固定",
       "notes": "多色展開。工場床のラインテープとして広く使用。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/471-tds.pdf",
+      "datasheetTitle": "3M 471 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40071909/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "5702",
@@ -2462,7 +2480,13 @@
       "price": "economy",
       "permanence": "恒久固定",
       "notes": "UL認定取得品。電気用途の標準テープ。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/764-tds.pdf",
+      "datasheetTitle": "3M 764 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40071910/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     }
   ]
 }
