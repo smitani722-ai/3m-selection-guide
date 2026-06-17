@@ -61,7 +61,7 @@ const LSE_VHB_PRODUCT_IDS = ["LSE-060WF", "LVO-110BF", "LSE-160WF"];
 const NON_RECOMMENDED_PRODUCT_IDS = ["9472LE", "9672LE"];
 
 const LSE_SUBSTRATES = ["PP", "PE", "TPO", "TPE", "オレフィン系樹脂", "LSE材", "シリコン", "シリコンゴム", "ナイロン", "POM", "PBT", "PA"];
-const ROUGH_SUBSTRATES = ["コンクリート", "モルタル", "木材", "粗面", "凹凸面", "塗装面"];
+const ROUGH_SUBSTRATES = ["コンクリート", "モルタル", "木材", "ベニヤ", "OSB", "粗面塗装面", "粗面", "凹凸面", "塗装面"];
 const METAL_SUBSTRATES = ["SUS", "アルミ", "鉄", "銅", "金属", "鋼"];
 const LINE_TAPE_APPLICATIONS = ["床ライン", "安全表示", "区画表示", "通路表示", "フォークリフト導線", "工場マーキング", "マーキング"];
 const NON_LINE_TAPE_APPLICATIONS = ["ケーブル防水", "ダクト補修", "配線結束", "電気絶縁処理", "ケーブルジョイント保護", "HVACシール", "防水", "絶縁", "結束", "シール", "補強"];
@@ -101,7 +101,7 @@ function nameplateTargetProductId(criteria: SelectionCriteria): string | null | 
 
   const thickness = thicknessNumber(criteria.thickness);
   const needsGapAbsorption = hasKeyword(allValues, ["段差吸収", "防振", "フォーム必要", "フォーム", "追従性"]);
-  const isRoughSurface = includesAny(allSubstrates, ["粗面", "コンクリート", "モルタル", "木材", "凹凸面"]) || hasKeyword(allValues, ["粗面", "凹凸面"]);
+  const isRoughSurface = includesAny(allSubstrates, ROUGH_SUBSTRATES) || hasKeyword(allValues, ["粗面", "凹凸面", "粗面塗装面"]);
   const isSilicone = hasKeyword(allSubstrates, ["シリコンゴム", "シリコン樹脂", "シリコン"]);
   const needsHighHeat = hasKeyword(allValues, ["高耐熱", "耐熱"]);
   const needsFoamLowVoc = hasKeyword(allValues, ["フォーム材貼り合わせ", "フォーム材", "フォーム"]) && hasKeyword(allValues, ["低VOC", "低アウトガス"]);
@@ -126,8 +126,9 @@ function nameplateTargetProductId(criteria: SelectionCriteria): string | null | 
   }
   if (isRoughSurface) {
     if (thickness >= 1.0 || needsLargeRoughSurface) return "5952";
-    if (thickness < 1.0 || needsCompactRoughSurface) return "5925";
-    if (thickness > 0.1 && thickness < 1.0) return "5925";
+    if (thickness >= 0.3 && thickness < 1.0) return "5925";
+    if (thickness >= 0.1 && thickness < 0.3) return "GPT-020F";
+    if (needsCompactRoughSurface) return "5925";
     return null;
   }
 
@@ -195,6 +196,24 @@ function lseTapeTargetProductId(criteria: SelectionCriteria): string | null {
   return null;
 }
 
+function priorityLseHighAdhesionTargetProductId(criteria: SelectionCriteria): string | null {
+  const thickness = thicknessNumber(criteria.thickness);
+  if (thickness === null) return null;
+  if (thickness >= 0.1 && thickness < 0.3) return "GPT-020F";
+  if (thickness >= 0.3 && thickness < 1.0) return "LSE-060WF";
+  if (thickness >= 1.0) return "LVO-110BF";
+  return null;
+}
+
+function roughSurfaceTargetProductId(criteria: SelectionCriteria): string | null {
+  const thickness = thicknessNumber(criteria.thickness);
+  if (thickness === null) return null;
+  if (thickness >= 1.0) return "5952";
+  if (thickness >= 0.3 && thickness < 1.0) return "5925";
+  if (thickness >= 0.1 && thickness < 0.3) return "GPT-020F";
+  return null;
+}
+
 function calcScore(product: Product, criteria: SelectionCriteria): number {
   let score = 0;
   const allValues = values(criteria);
@@ -207,7 +226,7 @@ function calcScore(product: Product, criteria: SelectionCriteria): number {
   );
   const hasCommodityLseResin = allSubstrates.some((substrate) => ["PP", "PE", "TPO"].includes(substrate));
   const hasRoughSurfaceCondition = includesAny(allSubstrates, ROUGH_SUBSTRATES) || includesAny(allValues, ["粗面", "フォーム追従"]);
-  const hasExplicitRoughSurfaceCondition = includesAny(allSubstrates, ["粗面", "コンクリート", "モルタル", "木材", "凹凸面"]) || includesAny(allValues, ["粗面", "凹凸", "段差", "フォーム追従"]);
+  const hasExplicitRoughSurfaceCondition = includesAny(allSubstrates, ROUGH_SUBSTRATES) || includesAny(allValues, ["粗面", "凹凸", "段差", "フォーム追従", "粗面塗装面"]);
   const isRough = hasRoughSurfaceCondition || includesAny(allValues, ["段差"]);
   const isHighTemp = includesAny(criteria.environment, ["高温"]) || includesAny(criteria.features, ["高耐熱"]);
   const isGphException = hasKeyword(allValues, ["GPH指定", "海外規格", "海外案件", "特殊条件", "極端な高温", "超高温", "200℃超"]);
@@ -259,10 +278,22 @@ function calcScore(product: Product, criteria: SelectionCriteria): number {
     ]);
   const needsLvo = isLSE && hasKeyword(allValues, ["VHB", "フォーム", "追従性", "段差吸収", "ギャップ吸収"]);
   const targetLseVhbIds = lseVhbTargetProductIds(criteria);
+  const priorityLseHighAdhesionTargetId =
+    criteria.category === "両面テープ" &&
+    isLSE &&
+    !isSilicone &&
+    criteria.application.includes("固定") &&
+    hasKeyword(allValues, ["高接着", "VHB", "構造接合", "超高強度", "高保持力"])
+      ? priorityLseHighAdhesionTargetProductId(criteria)
+      : null;
   const needsFoamLowVoc = hasKeyword(allValues, ["フォーム材貼り合わせ", "フォーム材", "フォーム"]) && hasKeyword(allValues, ["低VOC", "低アウトガス"]);
   const needsGapFoamVhb = hasKeyword(allValues, ["段差吸収", "防振", "フォーム必要", "フォーム", "追従性"]);
   const needsLargeRoughSurface = hasKeyword(allValues, ["大面積", "パネル固定", "歪みあり", "反りあり", "凹凸が大きい", "追従性重視"]);
   const needsCompactRoughSurface = hasKeyword(allValues, ["小面積", "銘板サイズ", "厚みを目立たせたくない", "薄く仕上げたい", "コンパクトな固定"]);
+  const shouldApplyRoughSurfaceLogic =
+    criteria.category === "両面テープ" && hasExplicitRoughSurfaceCondition && !isLSE && !isSilicone;
+  const roughSurfaceTargetId =
+    shouldApplyRoughSurfaceLogic ? roughSurfaceTargetProductId(criteria) : null;
   const needsLowCostLse = isLSE && !needsLvo && (criteria.priceSensitive || hasKeyword(allValues, ["価格が安い", "コスト重視", "低価格"]));
   const isGeneralStructuralAdhesive =
     criteria.category === "接着剤" &&
@@ -301,8 +332,15 @@ function calcScore(product: Product, criteria: SelectionCriteria): number {
 
   if (product.category !== criteria.category) return -1;
   if (NON_RECOMMENDED_PRODUCT_IDS.includes(product.id)) return -1;
+  if (
+    priorityLseHighAdhesionTargetId &&
+    ["93010LE", "93015LE", "93020LE", "467MP", "468MP"].includes(product.id) &&
+    product.id !== priorityLseHighAdhesionTargetId
+  ) {
+    return -1;
+  }
   if (needsLowCostLse && ["93010LE", "93015LE", "93020LE", "GPT-020F"].includes(product.id) && product.id !== "GPT-020F") return -1;
-  const targetLseTapeId = isLSE && !isSilicone && !needsLvo ? lseTapeTargetProductId(criteria) : null;
+  const targetLseTapeId = isLSE && !isSilicone && !needsLvo && !priorityLseHighAdhesionTargetId ? lseTapeTargetProductId(criteria) : null;
   if (targetLseTapeId && ["93010LE", "93015LE", "93020LE", "467MP", "468MP"].includes(product.id) && product.id !== targetLseTapeId) {
     return -1;
   }
@@ -348,6 +386,15 @@ function calcScore(product: Product, criteria: SelectionCriteria): number {
   if (isLSE && isThin && product.id === "93015LE") score -= 10;
   if (needsLowCostLse && product.id === "GPT-020F") score += 280;
   if (isLSE && !needsLvo && ["467MP", "468MP"].includes(product.id)) score -= 150;
+  if (priorityLseHighAdhesionTargetId && product.id === priorityLseHighAdhesionTargetId) score += 720;
+  if (
+    priorityLseHighAdhesionTargetId &&
+    [...LSE_VHB_PRODUCT_IDS, "GPT-020F"].includes(product.id) &&
+    product.id !== priorityLseHighAdhesionTargetId
+  ) {
+    score -= 90;
+  }
+  if (priorityLseHighAdhesionTargetId && ["Y4825", "Y4950", "5952", "5925", ...GPH_PRODUCT_IDS].includes(product.id)) score -= 180;
   if (criteria.category === "両面テープ" && requestedThickness !== null && requestedThickness <= 0.1 && product.id === "467MP") score += 120;
   if (criteria.category === "両面テープ" && requestedThickness !== null && requestedThickness > 0.1 && requestedThickness < 0.3 && product.id === "468MP") score += 120;
   if (needsFpcUltraHighHeat && criteria.category === "両面テープ" && requestedThickness !== null && requestedThickness <= 0.05 && product.id === "F9460PC") score += 420;
@@ -380,16 +427,18 @@ function calcScore(product: Product, criteria: SelectionCriteria): number {
   if (criteria.category === "接着剤" && hasCommodityLseResin && !hasEngineeringPlastic && product.id === "DP8010") score += 130;
   if (criteria.category === "接着剤" && hasCommodityLseResin && !hasEngineeringPlastic && product.id === "DP8910NS") score -= 90;
 
-  if (hasRoughSurfaceCondition && product.id === "5925") score += 65;
-  if (hasRoughSurfaceCondition && product.id === "5952") score += 35;
-  if (hasExplicitRoughSurfaceCondition && requestedThickness !== null && requestedThickness < 1.0 && product.id === "5925") score += 230;
-  if (hasExplicitRoughSurfaceCondition && requestedThickness !== null && requestedThickness < 1.0 && product.id === "5952") score -= 90;
-  if (hasExplicitRoughSurfaceCondition && needsLargeRoughSurface && product.id === "5952") score += 220;
-  if (hasExplicitRoughSurfaceCondition && needsLargeRoughSurface && product.id === "5925") score -= 80;
-  if (hasExplicitRoughSurfaceCondition && needsCompactRoughSurface && product.id === "5925") score += 220;
-  if (hasExplicitRoughSurfaceCondition && needsCompactRoughSurface && product.id === "5952") score -= 80;
-  if (hasExplicitRoughSurfaceCondition && requestedThickness !== null && requestedThickness >= 1.0 && product.id === "5952") score += 170;
-  if (hasExplicitRoughSurfaceCondition && requestedThickness !== null && requestedThickness >= 1.0 && product.id === "5925") score -= 60;
+  if (shouldApplyRoughSurfaceLogic && product.id === "5925") score += 65;
+  if (shouldApplyRoughSurfaceLogic && product.id === "5952") score += 35;
+  if (roughSurfaceTargetId && product.id === roughSurfaceTargetId) score += 720;
+  if (roughSurfaceTargetId && ["Y4825", "Y4950", "5952", "5925", "GPT-020F", ...GPH_PRODUCT_IDS].includes(product.id) && product.id !== roughSurfaceTargetId) score -= 180;
+  if (shouldApplyRoughSurfaceLogic && requestedThickness !== null && requestedThickness < 1.0 && product.id === "5925") score += 230;
+  if (shouldApplyRoughSurfaceLogic && requestedThickness !== null && requestedThickness < 1.0 && product.id === "5952") score -= 90;
+  if (shouldApplyRoughSurfaceLogic && needsLargeRoughSurface && product.id === "5952") score += 220;
+  if (shouldApplyRoughSurfaceLogic && needsLargeRoughSurface && product.id === "5925") score -= 80;
+  if (shouldApplyRoughSurfaceLogic && needsCompactRoughSurface && product.id === "5925") score += 220;
+  if (shouldApplyRoughSurfaceLogic && needsCompactRoughSurface && product.id === "5952") score -= 80;
+  if (shouldApplyRoughSurfaceLogic && requestedThickness !== null && requestedThickness >= 1.0 && product.id === "5952") score += 170;
+  if (shouldApplyRoughSurfaceLogic && requestedThickness !== null && requestedThickness >= 1.0 && product.id === "5925") score -= 60;
   if (!needsFoamLowVoc && !hasRoughSurfaceCondition && needsGapFoamVhb && product.id === "Y4825") score += 320;
   if (!hasRoughSurfaceCondition && needsGapFoamVhb && product.id === "5925") score -= 220;
   if (needsFoamLowVoc && product.id === "DCX-1018") score += 520;

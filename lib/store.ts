@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 import { SelectionCriteria, SelectionResult, selectProducts } from "./selectionEngine";
-import { TOTAL_STEPS } from "./questions";
+import { getVisibleQuestions, questions, shouldShowPermanentQuestion } from "./questions";
 
 type AnswerValue = string | string[] | boolean;
 
@@ -32,9 +32,11 @@ export const useSelectorStore = create<SelectorState>((set, get) => ({
   },
 
   nextStep: () => {
-    const { currentStep, compute } = get();
-    if (currentStep < TOTAL_STEPS - 1) {
-      set({ currentStep: currentStep + 1 });
+    const { currentStep, answers, compute } = get();
+    const nextQuestion = questions.slice(currentStep + 1).find((question) => getVisibleQuestions(answers).includes(question));
+
+    if (nextQuestion) {
+      set({ currentStep: questions.indexOf(nextQuestion) });
     } else {
       compute();
       set({ isComplete: true });
@@ -42,13 +44,22 @@ export const useSelectorStore = create<SelectorState>((set, get) => ({
   },
 
   prevStep: () => {
-    const { currentStep, isComplete } = get();
+    const { currentStep, answers, isComplete } = get();
+    const visibleQuestions = getVisibleQuestions(answers);
+
     if (isComplete) {
-      set({ isComplete: false, currentStep: TOTAL_STEPS - 1 });
+      const lastQuestion = visibleQuestions[visibleQuestions.length - 1];
+      set({ isComplete: false, currentStep: lastQuestion ? questions.indexOf(lastQuestion) : 0 });
       return;
     }
-    if (currentStep > 0) {
-      set({ currentStep: currentStep - 1 });
+
+    const previousQuestion = questions
+      .slice(0, currentStep)
+      .reverse()
+      .find((question) => visibleQuestions.includes(question));
+
+    if (previousQuestion) {
+      set({ currentStep: questions.indexOf(previousQuestion) });
     }
   },
 
@@ -68,7 +79,9 @@ export const useSelectorStore = create<SelectorState>((set, get) => ({
       thickness: (answers.thickness as string) ?? "指定なし",
       processingMethod: (answers.processingMethod as string) ?? "",
       priceSensitive: answers.priceSensitive === "true" || answers.priceSensitive === true,
-      permanent: answers.permanent === "true" || answers.permanent === true,
+      permanent: shouldShowPermanentQuestion(answers)
+        ? answers.permanent === "true" || answers.permanent === true
+        : true,
     };
     const result = selectProducts(criteria);
     set({ result });

@@ -1,6 +1,6 @@
 "use client";
 
-import { Question } from "@/lib/questions";
+import { getVisibleOptions, Question } from "@/lib/questions";
 import { useSelectorStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 import { CheckCircle2, Circle } from "lucide-react";
@@ -11,6 +11,7 @@ interface QuestionCardProps {
 
 export function QuestionCard({ question }: QuestionCardProps) {
   const { answers, setAnswer } = useSelectorStore();
+  const visibleOptions = getVisibleOptions(question, answers);
   const current = answers[question.criteriaKey as keyof typeof answers] as
     | string
     | string[]
@@ -39,7 +40,7 @@ export function QuestionCard({ question }: QuestionCardProps) {
 
   return (
     <div className="grid gap-3">
-      {question.options.map((opt) => {
+      {visibleOptions.map((opt) => {
         const selected = isSelected(opt.value);
         return (
           <button

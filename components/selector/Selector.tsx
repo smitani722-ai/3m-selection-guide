@@ -1,7 +1,7 @@
 "use client";
 
 import { useSelectorStore } from "@/lib/store";
-import { questions, TOTAL_STEPS } from "@/lib/questions";
+import { getVisibleOptions, getVisibleQuestions, questions } from "@/lib/questions";
 import { QuestionCard } from "./QuestionCard";
 import { ResultCard } from "./ResultCard";
 import { Progress } from "@/components/ui/progress";
@@ -11,15 +11,26 @@ export function Selector() {
   const { currentStep, answers, result, isComplete, nextStep, prevStep, reset } = useSelectorStore();
 
   const question = questions[currentStep];
-  const progressPercent = isComplete ? 100 : Math.round(((currentStep) / TOTAL_STEPS) * 100);
+  const visibleQuestions = getVisibleQuestions(answers);
+  const visibleStepIndex = Math.max(
+    0,
+    visibleQuestions.findIndex((visibleQuestion) => visibleQuestion.id === question?.id),
+  );
+  const visibleStepCount = visibleQuestions.length;
+  const isLastVisibleQuestion = visibleStepIndex === visibleStepCount - 1;
+  const progressPercent = isComplete ? 100 : Math.round((visibleStepIndex / visibleStepCount) * 100);
 
   const currentAnswer = answers[question?.criteriaKey as keyof typeof answers] as
     | string
     | string[]
     | boolean
     | undefined;
-  const hasAnswer = currentAnswer !== undefined &&
-    (Array.isArray(currentAnswer) ? currentAnswer.length > 0 : currentAnswer !== "");
+  const visibleOptionValues = question ? getVisibleOptions(question, answers).map((option) => option.value) : [];
+  const hasAnswer =
+    currentAnswer !== undefined &&
+    (Array.isArray(currentAnswer)
+      ? currentAnswer.some((answer) => visibleOptionValues.includes(answer))
+      : visibleOptionValues.includes(String(currentAnswer)));
   const showIntro = currentStep === 0 && Object.keys(answers).length === 0 && !isComplete;
   const termHelps = [
     { term: "VHB", text: "ビスやリベットの代替にも使える高強度フォーム両面テープです。" },
@@ -79,7 +90,7 @@ export function Selector() {
         {/* Progress Bar */}
         <div className="mb-6">
           <div className="flex items-center justify-between text-xs text-gray-500 mb-2">
-            <span>{isComplete ? "選定完了" : `STEP ${currentStep + 1} / ${TOTAL_STEPS}`}</span>
+            <span>{isComplete ? "選定完了" : `STEP ${visibleStepIndex + 1} / ${visibleStepCount}`}</span>
             <span>{progressPercent}%</span>
           </div>
           <Progress value={progressPercent} className="h-2" />
@@ -132,7 +143,7 @@ export function Selector() {
                 disabled={!hasAnswer}
                 className="flex items-center gap-2 bg-red-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm"
               >
-                {currentStep === TOTAL_STEPS - 1 ? (
+                {isLastVisibleQuestion ? (
                   <>
                     <Sparkles size={14} />
                     製品を選定する

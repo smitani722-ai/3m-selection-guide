@@ -15,6 +15,101 @@ export interface Question {
   criteriaKey: string;
 }
 
+type AnswerValue = string | string[] | boolean | undefined;
+type AnswerRecord = Record<string, AnswerValue>;
+
+function answerList(value: AnswerValue): string[] {
+  if (Array.isArray(value)) return value;
+  if (typeof value === "string") return [value];
+  return [];
+}
+
+function includesAny(values: string[], keywords: string[]): boolean {
+  return values.some((value) => keywords.some((keyword) => value.includes(keyword)));
+}
+
+export function shouldShowPermanentQuestion(answers: AnswerRecord): boolean {
+  const category = answers.category;
+  const application = answerList(answers.application);
+  const features = answerList(answers.features);
+  const selectedValues = [...application, ...features];
+
+  if (category !== "両面テープ") return false;
+  if (isSiliconeRoute(answers)) return false;
+
+  const hasRemovableRoute = includesAny(selectedValues, [
+    "再剥離",
+    "仮固定",
+    "片側弱接着",
+    "弱粘着",
+    "再利用",
+    "繰り返し",
+    "貼り替え",
+    "リワーク",
+    "剥がしやすさ",
+  ]);
+
+  if (!hasRemovableRoute) return false;
+
+  const isPermanentRoute =
+    application.includes("固定") ||
+    includesAny(selectedValues, [
+      "構造接合",
+      "高接着",
+      "VHB",
+      "超高強度",
+      "高保持力",
+    ]);
+
+  return !isPermanentRoute;
+}
+
+export function shouldShowQuestion(question: Question, answers: AnswerRecord): boolean {
+  if (question.id === "permanent") return shouldShowPermanentQuestion(answers);
+  return true;
+}
+
+function isHighAdhesionRoute(answers: AnswerRecord): boolean {
+  const application = answerList(answers.application);
+  const features = answerList(answers.features);
+  const selectedValues = [...application, ...features];
+
+  return (
+    application.includes("固定") &&
+    includesAny(selectedValues, ["高接着", "VHB", "構造接合", "超高強度", "高保持力"])
+  );
+}
+
+function isSiliconeRoute(answers: AnswerRecord): boolean {
+  const selectedValues = [
+    ...answerList(answers.substrateA),
+    ...answerList(answers.substrateB),
+    ...answerList(answers.features),
+  ];
+
+  return includesAny(selectedValues, ["シリコン", "シリコンゴム", "シリコン接着"]);
+}
+
+export function shouldShowOption(question: Question, option: QuestionOption, answers: AnswerRecord): boolean {
+  if (question.id === "thickness" && option.value === "極薄" && isHighAdhesionRoute(answers)) {
+    return false;
+  }
+
+  if (question.id === "thickness" && option.value === "1mm以上" && isSiliconeRoute(answers)) {
+    return false;
+  }
+
+  return true;
+}
+
+export function getVisibleOptions(question: Question, answers: AnswerRecord): QuestionOption[] {
+  return question.options.filter((option) => shouldShowOption(question, option, answers));
+}
+
+export function getVisibleQuestions(answers: AnswerRecord): Question[] {
+  return questions.filter((question) => shouldShowQuestion(question, answers));
+}
+
 export const questions: Question[] = [
   {
     id: "category",

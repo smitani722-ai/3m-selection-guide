@@ -231,7 +231,7 @@ const cases: SalesRuleCase[] = [
   {
     no: 21,
     name: "LSEフォーム 1.6mm",
-    expected: "LSE-160WF",
+    expected: "LVO-110BF",
     criteria: tape({ substrateA: "PP", substrateB: "PE", features: ["LSE対応", "VHB", "フォーム"], thickness: "1.6mm" }),
   },
   {
@@ -467,6 +467,54 @@ const cases: SalesRuleCase[] = [
     name: "UL不要価格重視銘板",
     expected: "9660",
     criteria: tape({ application: ["銘板固定"], features: [], thickness: "0.2mm", priceSensitive: true }),
+  },
+  {
+    no: 61,
+    name: "PP高接着 0.2mm",
+    expected: "GPT-020F",
+    criteria: tape({ substrateA: "PP", substrateB: "PE", application: ["固定"], features: ["高接着"], thickness: "0.2mm" }),
+  },
+  {
+    no: 62,
+    name: "PP高接着 0.6mm",
+    expected: "LSE-060WF",
+    criteria: tape({ substrateA: "PP", substrateB: "PE", application: ["固定"], features: ["高接着"], thickness: "0.6mm" }),
+  },
+  {
+    no: 63,
+    name: "PP高接着 1.1mm",
+    expected: "LVO-110BF",
+    criteria: tape({ substrateA: "PP", substrateB: "PE", application: ["固定"], features: ["高接着"], thickness: "1.1mm" }),
+  },
+  {
+    no: 64,
+    name: "コンクリート高接着 1.1mm",
+    expected: "5952",
+    criteria: tape({ substrateA: "コンクリート", substrateB: "コンクリート", application: ["固定"], features: ["高接着"], thickness: "1.1mm" }),
+  },
+  {
+    no: 65,
+    name: "コンクリート高接着 0.6mm",
+    expected: "5925",
+    criteria: tape({ substrateA: "コンクリート", substrateB: "コンクリート", application: ["固定"], features: ["高接着"], thickness: "0.6mm" }),
+  },
+  {
+    no: 66,
+    name: "コンクリート高接着 0.2mm",
+    expected: "GPT-020F",
+    criteria: tape({ substrateA: "コンクリート", substrateB: "コンクリート", application: ["固定"], features: ["高接着"], thickness: "0.2mm" }),
+  },
+  {
+    no: 67,
+    name: "木材高接着 1.1mm",
+    expected: "5952",
+    criteria: tape({ substrateA: "木材", substrateB: "木材", application: ["固定"], features: ["高接着"], thickness: "1.1mm" }),
+  },
+  {
+    no: 68,
+    name: "木材高接着 0.6mm",
+    expected: "5925",
+    criteria: tape({ substrateA: "木材", substrateB: "木材", application: ["固定"], features: ["高接着"], thickness: "0.6mm" }),
   },
 ];
 
