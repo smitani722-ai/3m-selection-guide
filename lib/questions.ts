@@ -69,7 +69,10 @@ export function shouldShowPermanentQuestion(answers: AnswerRecord): boolean {
 export function shouldShowQuestion(question: Question, answers: AnswerRecord): boolean {
   if (question.id === "category") return true;
   if (answers.category === "片面テープ") {
-    if (question.id === "singleTapePerformance2") {
+    if (
+      isSingleSidedTapeQuestion(question.id) &&
+      ["singleTapePerformance1", "singleTapePerformance2"].includes(question.id)
+    ) {
       const options = getSingleSidedTapeOptions(question.id, answers as Record<string, string>);
       return !(options.length === 1 && options[0].value === "指定なし");
     }

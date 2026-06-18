@@ -37,7 +37,7 @@ Module._resolveFilename = function resolveFilename(request, parent, isMain, opti
 
 const { selectProducts } = await import("../lib/selectionEngine");
 const { getVisibleOptions, getVisibleQuestions, questions, shouldShowPermanentQuestion } = await import("../lib/questions");
-const { singleSidedTapeRoutes } = await import("../lib/singleSidedTapeLogic");
+const { getSingleSidedTapeQuestionCopy, singleSidedTapeRoutes } = await import("../lib/singleSidedTapeLogic");
 
 type SalesRuleCase = {
   no: number;
@@ -716,6 +716,36 @@ for (const expectedLabel of ["固定・結束", "スプライス", "耐熱・難
 if (singleTapeSubUseQuestion.text !== "何業界向けですか？") uiFailures.push("singleTapeSubUse question text mismatch");
 if (singleTapeWorkQuestion.text !== "施工部位はどこですか？") uiFailures.push("singleTapeWork question text mismatch");
 
+const protectionFilmCopy = getSingleSidedTapeQuestionCopy("singleTapeSubUse", {
+  category: "片面テープ",
+  singleTapeUse: "保護膜剥離",
+});
+if (protectionFilmCopy.text !== "作業方法はどちらですか？") uiFailures.push("保護膜剥離 route question text mismatch");
+
+const heatPurposeCopy = getSingleSidedTapeQuestionCopy("singleTapeSubUse", {
+  category: "片面テープ",
+  singleTapeUse: "熱・燃焼から守る",
+});
+if (heatPurposeCopy.text !== "どちらの目的ですか？") uiFailures.push("耐熱・難燃 route Q4 text mismatch");
+
+const heatTempCopy = getSingleSidedTapeQuestionCopy("singleTapeWork", {
+  category: "片面テープ",
+  singleTapeUse: "熱・燃焼から守る",
+});
+if (heatTempCopy.text !== "耐熱温度は？") uiFailures.push("耐熱・難燃 route Q5 text mismatch");
+
+const slideFunctionCopy = getSingleSidedTapeQuestionCopy("singleTapeSubUse", {
+  category: "片面テープ",
+  singleTapeUse: "滑らせる、振動音をおさえる",
+});
+if (slideFunctionCopy.text !== "必要な機能は何ですか？") uiFailures.push("滑り助長・異音防止 route Q4 text mismatch");
+
+const slideThicknessCopy = getSingleSidedTapeQuestionCopy("singleTapeWork", {
+  category: "片面テープ",
+  singleTapeUse: "滑らせる、振動音をおさえる",
+});
+if (slideThicknessCopy.text !== "厚みの希望はどちらですか？") uiFailures.push("滑り助長・異音防止 route Q5 text mismatch");
+
 const workLabels = getVisibleOptions(singleTapeWorkQuestion, {
   category: "片面テープ",
   singleTapeUse: "マスキング",
@@ -744,6 +774,29 @@ const glassPriceQuestions = getVisibleQuestions({
 if (glassPriceQuestions.some((question: { id: string }) => question.id === "singleTapePerformance2")) {
   uiFailures.push("singleTapePerformance2 should be skipped when only 指定なし is available");
 }
+
+const blastQuestions = getVisibleQuestions({
+  category: "片面テープ",
+  singleTapeUse: "マスキング",
+  singleTapeSubUse: "一般工業",
+  singleTapeWork: "ブラストマスキング",
+});
+if (blastQuestions.some((question: { id: string }) => question.id === "singleTapePerformance1")) {
+  uiFailures.push("singleTapePerformance1 should be skipped when only 指定なし is available");
+}
+if (blastQuestions.some((question: { id: string }) => question.id === "singleTapePerformance2")) {
+  uiFailures.push("singleTapePerformance2 should be skipped when only 指定なし is available after Q6 skip");
+}
+
+const anodizingRoute = singleSidedTapeRoutes.find((route: { no: number }) => route.no === 33);
+if (anodizingRoute?.productId !== "8992") uiFailures.push("No.33 should recommend 8992");
+if (anodizingRoute?.alternativeIds?.[0] !== "470") uiFailures.push("No.33 should include 470 as first alternative");
+if (anodizingRoute?.reason !== "シリコン系粘着剤のため、剥離剤処理された離型紙・剥離フィルムにも接着可能です。") {
+  uiFailures.push("No.33 reason mismatch");
+}
+
+const blastRoute = singleSidedTapeRoutes.find((route: { no: number }) => route.no === 36);
+if (blastRoute?.productId !== "361") uiFailures.push("No.36 should recommend 361");
 
 const paintMaskingOptions = getVisibleOptions(singleTapePerformance1Question, {
   category: "片面テープ",

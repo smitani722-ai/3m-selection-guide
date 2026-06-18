@@ -2,7 +2,11 @@
 
 import { useSelectorStore } from "@/lib/store";
 import { getVisibleOptions, getVisibleQuestions, questions } from "@/lib/questions";
-import { getSingleSidedTapeDisplayLabel, isSingleSidedTapeQuestion } from "@/lib/singleSidedTapeLogic";
+import {
+  getSingleSidedTapeDisplayLabel,
+  getSingleSidedTapeQuestionCopy,
+  isSingleSidedTapeQuestion,
+} from "@/lib/singleSidedTapeLogic";
 import { QuestionCard } from "./QuestionCard";
 import { ResultCard } from "./ResultCard";
 import { Progress } from "@/components/ui/progress";
@@ -12,6 +16,7 @@ export function Selector() {
   const { currentStep, answers, result, isComplete, nextStep, prevStep, reset } = useSelectorStore();
 
   const question = questions[currentStep];
+  const questionCopy = question ? getSingleSidedTapeQuestionCopy(question.id, answers as Record<string, string>) : {};
   const visibleQuestions = getVisibleQuestions(answers);
   const visibleStepIndex = Math.max(
     0,
@@ -125,9 +130,9 @@ export function Selector() {
                 <Sparkles size={12} />
                 Q{currentStep + 1}
               </div>
-              <h2 className="text-xl font-bold text-gray-900">{question.text}</h2>
-              {question.subtext && (
-                <p className="text-sm text-gray-500 mt-1">{question.subtext}</p>
+              <h2 className="text-xl font-bold text-gray-900">{questionCopy.text ?? question.text}</h2>
+              {(questionCopy.subtext ?? question.subtext) && (
+                <p className="text-sm text-gray-500 mt-1">{questionCopy.subtext ?? question.subtext}</p>
               )}
             </div>
 

@@ -9,6 +9,7 @@ export interface SingleSidedTapeRoute {
   performance1: string;
   performance2: string;
   productId: string;
+  alternativeIds?: string[];
   reason: string;
 }
 
@@ -69,6 +70,35 @@ const displayLabelByQuestionId: Partial<Record<SingleSidedTapeQuestionId, Record
   },
 };
 
+const questionCopyByUse: Record<string, Partial<Record<SingleSidedTapeQuestionId, { text: string; subtext?: string }>>> = {
+  保護膜剥離: {
+    singleTapeSubUse: {
+      text: "作業方法はどちらですか？",
+      subtext: "手貼りか機械貼りかを選択してください",
+    },
+  },
+  "熱・燃焼から守る": {
+    singleTapeSubUse: {
+      text: "どちらの目的ですか？",
+      subtext: "遮熱か、火花・耐熱保護かを選択してください",
+    },
+    singleTapeWork: {
+      text: "耐熱温度は？",
+      subtext: "必要な耐熱温度を選択してください",
+    },
+  },
+  "滑らせる、振動音をおさえる": {
+    singleTapeSubUse: {
+      text: "必要な機能は何ですか？",
+      subtext: "滑り性、再剥離性、接着力、帯電防止などから選択してください",
+    },
+    singleTapeWork: {
+      text: "厚みの希望はどちらですか？",
+      subtext: "厚みや色など、追加で重視する条件を選択してください",
+    },
+  },
+};
+
 const performance1SortOrder = [
   "粉体塗装・塗装乾燥温度200度1時間以下",
   "塗装乾燥温度190度1時間以下",
@@ -122,6 +152,16 @@ export function getSingleSidedTapeDisplayLabel(questionId: string, value: string
   return displayLabelByQuestionId[questionId]?.[value] ?? value;
 }
 
+export function getSingleSidedTapeQuestionCopy(
+  questionId: string,
+  answers: SingleSidedTapeAnswers,
+): { text?: string; subtext?: string } {
+  if (!isSingleSidedTapeQuestion(questionId)) return {};
+  const use = answers.singleTapeUse;
+  if (!use) return {};
+  return questionCopyByUse[use]?.[questionId] ?? {};
+}
+
 export function getSingleSidedTapeRoute(criteria: SelectionCriteria): SingleSidedTapeRoute | null {
   if (criteria.category !== "片面テープ") return null;
   if (!criteria.singleTapeUse) return null;
@@ -150,10 +190,14 @@ export function buildSingleSidedTapeResult(
   const primary = allProducts.find((product) => product.id === route.productId);
   if (!primary) return null;
 
-  const alternatives = allProducts
-    .filter((product) => product.category === "片面テープ" && product.id !== primary.id)
-    .filter((product) => product.applications.some((application) => [route.use, route.subUse, route.work].includes(application)))
-    .slice(0, 3);
+  const alternatives = route.alternativeIds
+    ? route.alternativeIds
+        .map((id) => allProducts.find((product) => product.id === id))
+        .filter((product): product is Product => Boolean(product))
+    : allProducts
+        .filter((product) => product.category === "片面テープ" && product.id !== primary.id)
+        .filter((product) => product.applications.some((application) => [route.use, route.subUse, route.work].includes(application)))
+        .slice(0, 3);
 
   return {
     primary,
