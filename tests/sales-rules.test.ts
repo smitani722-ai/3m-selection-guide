@@ -823,8 +823,8 @@ for (const route of singleSidedTapeRoutes) {
       questions.find((question: { id: string }) => question.id === questionId)!,
       routeAnswers,
     );
-    if (options.length === 1 && options[0].value === "指定なし") {
-      uiFailures.push(`No.${route.no} ${questionId} should be skipped because it only has 指定なし`);
+    if (options.length <= 1) {
+      uiFailures.push(`No.${route.no} ${questionId} should be skipped because it only has one displayable option`);
     }
   }
 

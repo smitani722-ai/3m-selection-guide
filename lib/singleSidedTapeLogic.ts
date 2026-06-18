@@ -153,10 +153,11 @@ export function getSingleSidedTapeOptions(questionId: SingleSidedTapeQuestionId,
   }));
 }
 
-export function hasOnlyUnspecifiedSingleSidedTapeOption(questionId: string, answers: SingleSidedTapeAnswers): boolean {
+export function hasOnlyOneDisplayableSingleSidedTapeOption(questionId: string, answers: SingleSidedTapeAnswers): boolean {
   if (!isSingleSidedTapeQuestion(questionId)) return false;
   const options = getSingleSidedTapeOptions(questionId, answers);
-  return options.length === 1 && options[0].value === "\u6307\u5b9a\u306a\u3057";
+  const displayableOptions = options.filter((option) => option.value && option.label);
+  return displayableOptions.length <= 1;
 }
 
 export function getSingleSidedTapeDisplayLabel(questionId: string, value: string): string {

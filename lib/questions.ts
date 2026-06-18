@@ -1,6 +1,6 @@
 import {
   getSingleSidedTapeOptions,
-  hasOnlyUnspecifiedSingleSidedTapeOption,
+  hasOnlyOneDisplayableSingleSidedTapeOption,
   isSingleSidedTapeQuestion,
 } from "./singleSidedTapeLogic";
 
@@ -73,7 +73,7 @@ export function shouldShowPermanentQuestion(answers: AnswerRecord): boolean {
 export function shouldShowQuestion(question: Question, answers: AnswerRecord): boolean {
   if (question.id === "category") return true;
   if (answers.category === "片面テープ") {
-    if (hasOnlyUnspecifiedSingleSidedTapeOption(question.id, answers as Record<string, string>)) return false;
+    if (hasOnlyOneDisplayableSingleSidedTapeOption(question.id, answers as Record<string, string>)) return false;
     return isSingleSidedTapeQuestion(question.id);
   }
   if (isSingleSidedTapeQuestion(question.id)) return false;
