@@ -3315,7 +3315,12 @@
       "price": "standard",
       "permanence": "再剥離",
       "notes": "再剥離性が必要で厚み0.3mm以上のすべり・振動音対策向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/5423-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40072069",
+      "datasheetTitle": "5423 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "5430",
@@ -3335,7 +3340,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "すべり・振動音対策で接着力を重視する用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/5430-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40070582",
+      "datasheetTitle": "5430 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "5461",
@@ -3354,7 +3364,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "滑り止め用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/5461-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40066688",
+      "datasheetTitle": "5461 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "79H",
@@ -3377,7 +3392,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "ガラスシーリングで多少の湿りがある現場でも作業しやすい製品です。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/79h-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005006048",
+      "datasheetTitle": "79H Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "79SX",
@@ -3400,7 +3420,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "ガラスシーリングで直線をきれいに出したい用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/79sx-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b10489887",
+      "datasheetTitle": "79SX Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "80",
@@ -3423,7 +3448,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "防汚加工ボードのシーリング作業に合わせたマスキング用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/80-technical-bulletin.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005056269",
+      "datasheetTitle": "80 Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "80N",
@@ -3469,7 +3499,12 @@
       "price": "economy",
       "permanence": "用途依存",
       "notes": "ガラスシーリングで価格を優先したい場合の選択肢です。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/80s-technical-bulletin.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005006050",
+      "datasheetTitle": "80S Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "8416AL",
@@ -3489,7 +3524,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "金属検知が必要なスプライス用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/8416al-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b10464138",
+      "datasheetTitle": "8416AL Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "8495",
@@ -3510,7 +3550,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "機械貼りの保護膜剥離で価格を優先する用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/8495-it1710-technical-paper.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b10489934",
+      "datasheetTitle": "8495 / IT1710 Technical Paper",
+      "datasheetDocumentType": "Technical Paper",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "879",
@@ -3603,7 +3648,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "油面接着性が必要な金属コイルエンド止め用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/890msr-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067710",
+      "datasheetTitle": "890MSR Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "893",
@@ -3623,7 +3673,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "パイプなど中荷重部材の結束用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/893-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067705",
+      "datasheetTitle": "893 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "8979",
@@ -3643,7 +3698,12 @@
       "price": "standard",
       "permanence": "再剥離",
       "notes": "屋外で6か月以内の仮固定用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/8979-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40066001",
+      "datasheetTitle": "8979 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "898",
@@ -3664,7 +3724,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "重荷重の金属コイルエンド止めで油面接着性を不要とする用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/898-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067693",
+      "datasheetTitle": "898 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "8992",
@@ -3739,7 +3804,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "フォークリフトやパレットによる摩耗が多い現場向けのライン表示用途です。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/971l-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005313004",
+      "datasheetTitle": "971L Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "99BB",
@@ -3849,7 +3919,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "機械貼りで長さを重視する保護膜剥離用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/8495-it1710-technical-paper.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005063027",
+      "datasheetTitle": "IT1710 / 8495 Technical Paper",
+      "datasheetDocumentType": "Technical Paper",
+      "datasheetLanguage": "Japanese"
     }
   ]
 }
