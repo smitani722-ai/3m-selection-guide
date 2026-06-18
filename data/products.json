@@ -3476,7 +3476,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "サイディングなど粗い面でのシーリングマスキング向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/80n-technical-bulletin.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005056270",
+      "datasheetTitle": "80N Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "80S",
@@ -3596,7 +3601,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "軽荷重部品の出荷時仮固定で価格を優先する用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/8888-flyer.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005577017",
+      "datasheetTitle": "8888 Flyer",
+      "datasheetDocumentType": "Flyer",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "8898",
@@ -3898,7 +3908,12 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "屋内の防水・シール用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/is1-technical-paper.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005594000",
+      "datasheetTitle": "IS1 Technical Paper",
+      "datasheetDocumentType": "Technical Paper",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "IT1710",
