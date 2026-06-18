@@ -30,7 +30,7 @@
       "environment": [
         "屋内"
       ],
-      "thickness": "0.08mm",
+      "thickness": "0.16mm",
       "tempRange": {
         "min": -40,
         "max": 80
@@ -416,7 +416,7 @@
         "屋外",
         "高温"
       ],
-      "thickness": "0.13mm",
+      "thickness": "0.127mm",
       "tempRange": {
         "min": -40,
         "max": 204
@@ -1698,7 +1698,7 @@
         "屋内",
         "屋外"
       ],
-      "thickness": "0.8mm",
+      "thickness": "0.2mm / 0.4mm / 1.2mm",
       "tempRange": {
         "min": -40,
         "max": 121
@@ -2113,7 +2113,7 @@
     },
     {
       "id": "SJ3540",
-      "name": "SJ3540シリーズ（Dual Lock）",
+      "name": "SJ3540シリーズ（SJ3541J / SJ3542J）",
       "category": "ファスナー",
       "subcategory": "Dual Lock（強固定）",
       "description": "高強度デュアルロックファスナー。互いに係合させるだけで強固定。",
@@ -2145,7 +2145,7 @@
       "lse": false,
       "price": "standard",
       "permanence": "着脱可能",
-      "notes": "SJ3541（透明）・SJ3542（黒）・SJ3544（白）など色展開あり。押す・引くの動作で脱着。",
+      "notes": "SJ3541J・SJ3542Jを含む黒LSE向けDual Lock候補。LSE材への固定ではSJ3550より優先する。",
       "competitors": [],
       "datasheetUrl": "/datasheets/sj-344xj-sj-354xj-sj-355xcf-tb.pdf",
       "datasheetTitle": "SJ-344XJ / SJ-354XJ / SJ-355XCF Technical Bulletin",
@@ -2156,7 +2156,7 @@
     },
     {
       "id": "SJ3550",
-      "name": "SJ3550シリーズ（Dual Lock）",
+      "name": "SJ3550シリーズ（SJ3541J / SJ3542J）",
       "category": "ファスナー",
       "subcategory": "Dual Lock（再剥離）",
       "description": "再剥離型デュアルロックファスナー。繰り返し着脱に対応。",
@@ -2188,7 +2188,7 @@
       "lse": false,
       "price": "standard",
       "permanence": "再剥離",
-      "notes": "SJ3540より接着力が低い。繰り返し着脱前提の用途に。",
+      "notes": "SJ3541J・SJ3542Jを含む黒標準Dual Lock候補。強固定・長期固定用途で優先する。",
       "competitors": [],
       "datasheetUrl": "/datasheets/sj-344xj-sj-354xj-sj-355xcf-tb.pdf",
       "datasheetTitle": "SJ-344XJ / SJ-354XJ / SJ-355XCF Technical Bulletin",
@@ -2232,6 +2232,42 @@
       "price": "standard",
       "permanence": "着脱可能",
       "notes": "マジックテープタイプ。PP等LSE材への貼付が可能。",
+      "competitors": []
+    },
+    {
+      "id": "SJ3527J",
+      "name": "SJ3527J（Hook & Loop）",
+      "category": "ファスナー",
+      "subcategory": "Hook & Loop（LSE対応）",
+      "description": "LSE材向けHook & Loopファスナー。SJ3540推薦時の代替候補として扱う。",
+      "features": [
+        "PP対応",
+        "LSE対応",
+        "着脱可能",
+        "Hook & Loop"
+      ],
+      "applications": [
+        "固定",
+        "着脱"
+      ],
+      "substrates": [
+        "PP",
+        "PE",
+        "TPO",
+        "LSE材"
+      ],
+      "environment": [
+        "屋内"
+      ],
+      "thickness": "要確認",
+      "tempRange": {
+        "min": -30,
+        "max": 80
+      },
+      "lse": true,
+      "price": "standard",
+      "permanence": "着脱可能",
+      "notes": "SJ3540の代替候補として表示する。主推薦にはしない。",
       "competitors": []
     },
     {

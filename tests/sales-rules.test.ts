@@ -37,6 +37,8 @@ type SalesRuleCase = {
   no: number;
   name: string;
   expected: string;
+  expectedThickness?: string;
+  expectedAlternatives?: string[];
   criteria: SelectionCriteria;
 };
 
@@ -117,9 +119,10 @@ const cases: SalesRuleCase[] = [
   },
   {
     no: 2,
-    name: "通常銘板 0.2mm",
+    name: "通常銘板 0.16mm",
     expected: "9660",
-    criteria: tape({ application: ["銘板固定"], thickness: "0.2mm" }),
+    expectedThickness: "0.16mm",
+    criteria: tape({ application: ["銘板固定"], thickness: "0.16mm" }),
   },
   {
     no: 3,
@@ -129,9 +132,10 @@ const cases: SalesRuleCase[] = [
   },
   {
     no: 4,
-    name: "UL969 0.2mm",
+    name: "UL969 0.127mm",
     expected: "468MP",
-    criteria: tape({ application: ["銘板固定"], features: ["UL969"], thickness: "0.2mm" }),
+    expectedThickness: "0.127mm",
+    criteria: tape({ application: ["銘板固定"], features: ["UL969"], thickness: "0.127mm" }),
   },
   {
     no: 5,
@@ -149,7 +153,8 @@ const cases: SalesRuleCase[] = [
     no: 7,
     name: "金属構造接合VHB",
     expected: "Y4825",
-    criteria: tape({ application: ["構造接合"], features: ["VHB", "高接着"], substrateA: "SUS", substrateB: "鉄", thickness: "1.1mm" }),
+    expectedThickness: "1.2mm",
+    criteria: tape({ application: ["構造接合"], features: ["VHB", "高接着"], substrateA: "SUS", substrateB: "鉄", thickness: "1mm以上" }),
   },
   {
     no: 8,
@@ -195,9 +200,10 @@ const cases: SalesRuleCase[] = [
   },
   {
     no: 15,
-    name: "LSE薄手",
+    name: "LSE薄手 0.10mm",
     expected: "93010LE",
-    criteria: tape({ substrateA: "PP", substrateB: "PE", features: ["LSE対応"], thickness: "0.05mm" }),
+    expectedThickness: "0.10mm",
+    criteria: tape({ substrateA: "PP", substrateB: "PE", features: ["LSE対応"], thickness: "0.10mm" }),
   },
   {
     no: 16,
@@ -347,6 +353,7 @@ const cases: SalesRuleCase[] = [
     no: 40,
     name: "金属同士標準",
     expected: "メタルボンダー",
+    expectedAlternatives: ["メタルグリップ"],
     criteria: adhesive({ application: ["構造接合"], substrateA: "SUS", substrateB: "アルミ", features: ["金属接着", "高強度", "構造接着"], priceSensitive: false }),
   },
   {
@@ -401,6 +408,7 @@ const cases: SalesRuleCase[] = [
     no: 49,
     name: "黒LSE Dual Lock",
     expected: "SJ3540",
+    expectedAlternatives: ["SJ3527J"],
     criteria: fastener({ substrateA: "PP", substrateB: "PE", features: ["黒", "LSE対応", "Dual Lock"] }),
   },
   {
@@ -615,15 +623,26 @@ const failures = cases
     return {
       ...testCase,
       actual: result?.primary.id ?? "(no recommendation)",
+      actualThickness: result?.primary.thickness ?? "",
+      actualAlternatives: result?.alternatives.map((product: { id: string }) => product.id) ?? [],
     };
   })
-  .filter((result) => result.actual !== result.expected);
+  .filter((result) => {
+    if (result.actual !== result.expected) return true;
+    if (result.expectedThickness && result.actualThickness !== result.expectedThickness) return true;
+    if (result.expectedAlternatives) {
+      return result.expectedAlternatives.some(
+        (expectedAlternative, index) => result.actualAlternatives[index] !== expectedAlternative,
+      );
+    }
+    return false;
+  });
 
 if (failures.length > 0) {
   console.error(`FAIL ${cases.length - failures.length}/${cases.length}`);
   for (const failure of failures) {
     console.error(
-      `No.${failure.no} ${failure.name}: expected ${failure.expected}, actual ${failure.actual}`,
+      `No.${failure.no} ${failure.name}: expected ${failure.expected}, actual ${failure.actual}, thickness ${failure.actualThickness}, alternatives ${failure.actualAlternatives.join("/")}`,
     );
   }
   process.exit(1);

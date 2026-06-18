@@ -58,7 +58,7 @@ export interface SelectionResult {
 const products: Product[] = productsData.products as Product[];
 const GPH_PRODUCT_IDS = ["GPH-060GF", "GPH-110GF", "GPH-160GF"];
 const LSE_VHB_PRODUCT_IDS = ["LSE-060WF", "LSE-110WF", "LVO-110BF", "LSE-160WF"];
-const NON_RECOMMENDED_PRODUCT_IDS = ["9472LE", "9672LE"];
+const NON_RECOMMENDED_PRODUCT_IDS = ["9472LE", "9672LE", "SJ3527J"];
 
 const LSE_SUBSTRATES = ["PP", "PE", "TPO", "TPE", "オレフィン系樹脂", "LSE材", "シリコン", "シリコンゴム", "ナイロン", "POM", "PBT", "PA"];
 const ROUGH_SUBSTRATES = ["コンクリート", "モルタル", "木材", "ベニヤ", "OSB", "粗面塗装面", "粗面", "凹凸面", "塗装面"];
@@ -214,6 +214,18 @@ function roughSurfaceTargetProductId(criteria: SelectionCriteria): string | null
   if (thickness >= 0.3 && thickness < 1.0) return "5925";
   if (thickness >= 0.1 && thickness < 0.3) return "GPT-020F";
   return null;
+}
+
+function productForDisplay(product: Product, criteria: SelectionCriteria): Product {
+  if (product.id !== "Y4825") return product;
+
+  const thickness = thicknessNumber(criteria.thickness);
+  if (thickness === null) return product;
+  if (thickness >= 1.0) return { ...product, thickness: "1.2mm" };
+  if (thickness >= 0.3) return { ...product, thickness: "0.4mm" };
+  if (thickness >= 0.1) return { ...product, thickness: "0.2mm" };
+
+  return product;
 }
 
 function tapeRuleTargetProductId(criteria: SelectionCriteria): string | null | undefined {
@@ -831,7 +843,7 @@ export function selectProducts(criteria: SelectionCriteria): SelectionResult | n
 
   if (scored.length === 0) return null;
 
-  const primary = scored[0].product;
+  const primary = productForDisplay(scored[0].product, criteria);
   const defaultAlternatives = scored
     .slice(1, 4)
     .filter((x) => x.score >= scored[0].score * 0.5)
@@ -847,29 +859,33 @@ export function selectProducts(criteria: SelectionCriteria): SelectionResult | n
             ? ["5702"]
             : GPH_PRODUCT_IDS.includes(primary.id)
               ? ["Y4825"]
-              : primary.id === "メタルグリップ"
-            ? ["メタルボンダー"]
-            : primary.id === "GPT-020F"
-              ? ["93010LE", "93015LE", "93020LE"]
-              : primary.id === "ST416P"
-                ? ["1110"]
-                : primary.id === "1110"
-                  ? ["ST416P"]
-                  : primary.id === "4591HM"
-                    ? ["4591HL"]
-                    : primary.id === "4591HL"
-                      ? ["4591HM"]
-                      : primary.id === "9415PC"
-                        ? ["4591HM", "4591HL"]
-                        : primary.id === "DP420NS"
-                          ? ["DP460"]
-                          : primary.id === "DP460"
-                            ? ["DP420NS"]
-                            : [];
+              : primary.id === "メタルボンダー"
+                ? ["メタルグリップ"]
+                : primary.id === "メタルグリップ"
+                  ? ["メタルボンダー"]
+                  : primary.id === "SJ3540"
+                    ? ["SJ3527J"]
+                    : primary.id === "GPT-020F"
+                      ? ["93010LE", "93015LE", "93020LE"]
+                      : primary.id === "ST416P"
+                        ? ["1110"]
+                        : primary.id === "1110"
+                          ? ["ST416P"]
+                          : primary.id === "4591HM"
+                            ? ["4591HL"]
+                            : primary.id === "4591HL"
+                              ? ["4591HM"]
+                              : primary.id === "9415PC"
+                                ? ["4591HM", "4591HL"]
+                                : primary.id === "DP420NS"
+                                  ? ["DP460"]
+                                  : primary.id === "DP460"
+                                    ? ["DP420NS"]
+                                    : [];
   const preferredAlternatives = preferredAlternativeIds
     .map((id) => products.find((product) => product.id === id))
     .filter((product): product is Product => Boolean(product));
-  const usePreferredOnlyAlternatives = ["ST416P", "1110", "4591HM", "4591HL", "9415PC"].includes(primary.id);
+  const usePreferredOnlyAlternatives = ["ST416P", "1110", "4591HM", "4591HL", "9415PC", "SJ3540"].includes(primary.id);
   const alternatives = [...preferredAlternatives, ...(usePreferredOnlyAlternatives ? [] : defaultAlternatives)]
     .filter((product, index, list) => product.id !== primary.id && list.findIndex((item) => item.id === product.id) === index)
     .slice(0, 3);
