@@ -2567,7 +2567,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "ハンダメッキ工程のマスキング用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231493O/214-3mne.pdf?&fn=214-3MNE.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067085",
+      "datasheetTitle": "214-3MNE Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067085",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "2142",
@@ -2733,7 +2740,14 @@
       "price": "economy",
       "permanence": "用途依存",
       "notes": "建築塗装でコストを抑えたい場合の選択肢です。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231404O/2899.pdf?&fn=2899.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b00035791",
+      "datasheetTitle": "2899 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b00035791",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "361",
@@ -2757,7 +2771,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "溶射工程のマスキング用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231312O/361-v2.pdf?&fn=361-tds-jp-v3.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40068300",
+      "datasheetTitle": "361 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40068300",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "363",
@@ -2823,7 +2844,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "クロムメッキ工程のマスキング用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231128O/420.pdf?&fn=420.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067913",
+      "datasheetTitle": "420 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067913",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "425",
@@ -2850,7 +2878,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "電気メッキマスキングで薄手を重視する場合に適しています。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/2562124O/3m-aluminum-foil-tape-425-technical-bulletin-202503.pdf?&fn=tb-425-jp-202503.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067910",
+      "datasheetTitle": "425 Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067910",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "433",
@@ -2986,7 +3021,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "一般的な電気メッキマスキング用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231497O/470.pdf?&fn=470.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40069114",
+      "datasheetTitle": "470 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40069114",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "471黒",
@@ -3394,7 +3436,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "ブラスト工程で保護性能を重視するマスキング用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/2418520O/8898-technicalbulletin.pdf?&fn=tb-8898-jp-20240401.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067704",
+      "datasheetTitle": "8898 Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067704",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "890MSR",
@@ -3501,7 +3550,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "粉体塗装や200度級乾燥工程のマスキング用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1659988O/itd-278.pdf?&fn=ITD-278.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40070623",
+      "datasheetTitle": "8991 / 8992 Technical Paper",
+      "datasheetDocumentType": "Technical Paper",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40070623",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "8992470",
@@ -3568,7 +3624,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "夏場の糊残りを抑えたいサイディング現場向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/2418516O/99bb-technicalbulletin.pdf?&fn=tb-99bb-jp-202407.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005056271",
+      "datasheetTitle": "99BB Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005056271",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "EXPP",
@@ -3599,7 +3662,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "建築塗装で斜め切れしにくく、きれいに剥がしやすいマスキング用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/2367778O/technical-data-sheet-for-expp.pdf?&fn=tds-expp-jp-20230401.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042118",
+      "datasheetTitle": "EXPP Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042118",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "IS1",
