@@ -2997,7 +2997,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "屋外で厚み2mmの防水シールをしたい用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231433O/4412n.pdf?&fn=4412n-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40068325",
+      "datasheetTitle": "4412N Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40068325",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "4422B",
@@ -3020,7 +3027,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "屋外防水で黒色を選びたい用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231446O/4422w.pdf?&fn=4422w-g-b-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042102",
+      "datasheetTitle": "4422W / 4422G / 4422B Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042102",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "4422G",
@@ -3043,7 +3057,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "屋外防水で灰色を選びたい用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231446O/4422w.pdf?&fn=4422w-g-b-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042102",
+      "datasheetTitle": "4422W / 4422G / 4422B Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042102",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "4422W",
@@ -3066,7 +3087,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "屋外防水で白色を選びたい用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231446O/4422w.pdf?&fn=4422w-g-b-tds.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042102",
+      "datasheetTitle": "4422W / 4422G / 4422B Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005042102",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "470",
@@ -3118,7 +3146,14 @@
       "price": "standard",
       "permanence": "再剥離",
       "notes": "屋外で3か月以内の仮固定用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231253O/471.pdf?&fn=471.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40071909",
+      "datasheetTitle": "471 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40071909",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "4734",
@@ -3142,7 +3177,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "自動車塗装で直線の見切りをきれいに出したい用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231368O/2757.pdf?&fn=2757.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005006054",
+      "datasheetTitle": "2757 / 4733 / 4734 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005006054",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "5360T",
@@ -3162,7 +3204,13 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "薄さを重視するすべり・振動音対策用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231428O/5360t.pdf?&fn=5360T.pdf",
+      "datasheetTitle": "5360T Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "5410",
@@ -3183,7 +3231,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "帯電防止と滑り性を重視する用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231451O/5410.pdf?&fn=5410.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005056256",
+      "datasheetTitle": "5410 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005056256",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "5417",
@@ -3204,7 +3259,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "黒色・帯電防止で厚さ0.2mm以上を求める用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231464O/5417.pdf?&fn=5417.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b10464135",
+      "datasheetTitle": "5417 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b10464135",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "5421",
@@ -3225,7 +3287,14 @@
       "price": "standard",
       "permanence": "再剥離",
       "notes": "再剥離性が必要で薄手のすべり・振動音対策向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231486O/5421.pdf?&fn=5421.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40069119",
+      "datasheetTitle": "5421 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40069119",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "5423",
