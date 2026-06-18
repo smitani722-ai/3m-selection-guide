@@ -36,7 +36,7 @@ Module._resolveFilename = function resolveFilename(request, parent, isMain, opti
 };
 
 const { selectProducts } = await import("../lib/selectionEngine");
-const { getVisibleOptions, questions, shouldShowPermanentQuestion } = await import("../lib/questions");
+const { getVisibleOptions, getVisibleQuestions, questions, shouldShowPermanentQuestion } = await import("../lib/questions");
 const { singleSidedTapeRoutes } = await import("../lib/singleSidedTapeLogic");
 
 type SalesRuleCase = {
@@ -682,6 +682,17 @@ if (!thicknessQuestion) {
 }
 
 const uiFailures: string[] = [];
+const singleTapeUseQuestion = questions.find((question: { id: string }) => question.id === "singleTapeUse");
+const singleTapeSubUseQuestion = questions.find((question: { id: string }) => question.id === "singleTapeSubUse");
+const singleTapeWorkQuestion = questions.find((question: { id: string }) => question.id === "singleTapeWork");
+const singleTapePerformance1Question = questions.find((question: { id: string }) => question.id === "singleTapePerformance1");
+const singleTapePerformance2Question = questions.find((question: { id: string }) => question.id === "singleTapePerformance2");
+
+if (!singleTapeUseQuestion || !singleTapeSubUseQuestion || !singleTapeWorkQuestion || !singleTapePerformance1Question || !singleTapePerformance2Question) {
+  console.error("FAIL single-sided tape questions not found");
+  process.exit(1);
+}
+
 const lowVocThicknessOptions = getVisibleOptions(thicknessQuestion, { category: "両面テープ", features: ["低VOC"] }).map((option: { value: string }) => option.value);
 if (lowVocThicknessOptions.includes("極薄")) uiFailures.push("低VOC route should hide 極薄");
 
@@ -695,6 +706,60 @@ if (highAdhesionThicknessOptions.includes("極薄")) uiFailures.push("高接着 
 
 if (shouldShowPermanentQuestion({ category: "両面テープ", application: ["固定"], features: ["高接着", "再剥離"] })) {
   uiFailures.push("高接着 and 再剥離 conflict should skip permanent question");
+}
+
+const singleTapeUseLabels = getVisibleOptions(singleTapeUseQuestion, { category: "片面テープ" }).map((option: { label: string }) => option.label);
+for (const expectedLabel of ["固定・結束", "スプライス", "耐熱・難燃", "滑り助長・異音防止", "屋外仮固定", "ライン表示", "防水・シール"]) {
+  if (!singleTapeUseLabels.includes(expectedLabel)) uiFailures.push(`片面テープ用途 label missing: ${expectedLabel}`);
+}
+
+if (singleTapeSubUseQuestion.text !== "何業界向けですか？") uiFailures.push("singleTapeSubUse question text mismatch");
+if (singleTapeWorkQuestion.text !== "施工部位はどこですか？") uiFailures.push("singleTapeWork question text mismatch");
+
+const workLabels = getVisibleOptions(singleTapeWorkQuestion, {
+  category: "片面テープ",
+  singleTapeUse: "マスキング",
+  singleTapeSubUse: "建築用",
+}).map((option: { label: string }) => option.label);
+for (const expectedLabel of ["建築塗装部", "ガラス周辺", "サイディング目地", "コンクリート躯体"]) {
+  if (!workLabels.includes(expectedLabel)) uiFailures.push(`施工部位 label missing: ${expectedLabel}`);
+}
+
+const anodizingLabels = getVisibleOptions(singleTapeWorkQuestion, {
+  category: "片面テープ",
+  singleTapeUse: "マスキング",
+  singleTapeSubUse: "一般工業",
+}).map((option: { label: string }) => option.label);
+if (!anodizingLabels.includes("アノダイジング（アルマイト処理）マスキング")) {
+  uiFailures.push("アノダイジング display label mismatch");
+}
+
+const glassPriceQuestions = getVisibleQuestions({
+  category: "片面テープ",
+  singleTapeUse: "マスキング",
+  singleTapeSubUse: "建築用",
+  singleTapeWork: "ガラスシーリング",
+  singleTapePerformance1: "価格重視",
+});
+if (glassPriceQuestions.some((question: { id: string }) => question.id === "singleTapePerformance2")) {
+  uiFailures.push("singleTapePerformance2 should be skipped when only 指定なし is available");
+}
+
+const paintMaskingOptions = getVisibleOptions(singleTapePerformance1Question, {
+  category: "片面テープ",
+  singleTapeUse: "マスキング",
+  singleTapeSubUse: "一般工業",
+  singleTapeWork: "塗装マスキング",
+}).map((option: { value: string }) => option.value);
+const expectedPaintOrder = [
+  "粉体塗装・塗装乾燥温度200度1時間以下",
+  "塗装乾燥温度190度1時間以下",
+  "塗装乾燥温度160度1時間以下",
+  "塗装乾燥温度150度30分以下",
+];
+const actualPaintOrder = paintMaskingOptions.filter((value) => expectedPaintOrder.includes(value));
+if (actualPaintOrder.join("|") !== expectedPaintOrder.join("|")) {
+  uiFailures.push(`塗装マスキング order mismatch: ${actualPaintOrder.join(" > ")}`);
 }
 
 if (uiFailures.length > 0) {

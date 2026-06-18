@@ -49,6 +49,33 @@ const priorQuestionIds: Record<SingleSidedTapeQuestionId, SingleSidedTapeQuestio
   singleTapePerformance2: ["singleTapeUse", "singleTapeSubUse", "singleTapeWork", "singleTapePerformance1"],
 };
 
+const displayLabelByQuestionId: Partial<Record<SingleSidedTapeQuestionId, Record<string, string>>> = {
+  singleTapeUse: {
+    固定する: "固定・結束",
+    スプライスつなぐ: "スプライス",
+    "熱・燃焼から守る": "耐熱・難燃",
+    "滑らせる、振動音をおさえる": "滑り助長・異音防止",
+    屋外での仮固定: "屋外仮固定",
+    ラインテープ: "ライン表示",
+    防止テープ: "防水・シール",
+    防水テープ: "防水・シール",
+  },
+  singleTapeWork: {
+    塗装用: "建築塗装部",
+    ガラスシーリング: "ガラス周辺",
+    サイディングシーリング: "サイディング目地",
+    躯体コンクリート: "コンクリート躯体",
+    "アノダイジング（アルマイト処理）": "アノダイジング（アルマイト処理）マスキング",
+  },
+};
+
+const performance1SortOrder = [
+  "粉体塗装・塗装乾燥温度200度1時間以下",
+  "塗装乾燥温度190度1時間以下",
+  "塗装乾燥温度160度1時間以下",
+  "塗装乾燥温度150度30分以下",
+];
+
 function answerForQuestion(answers: SingleSidedTapeAnswers, questionId: SingleSidedTapeQuestionId): string | undefined {
   return answers[questionId];
 }
@@ -73,10 +100,26 @@ export function getSingleSidedTapeOptions(questionId: SingleSidedTapeQuestionId,
   const candidateRoutes = singleSidedTapeRoutes.filter((route) => routeMatchesAnswers(route, answers, priorQuestionIds[questionId]));
   const values = Array.from(new Set(candidateRoutes.map((route) => routeValueForQuestion(route, questionId)).filter(Boolean)));
 
+  if (questionId === "singleTapePerformance1") {
+    values.sort((a, b) => {
+      const aIndex = performance1SortOrder.indexOf(a);
+      const bIndex = performance1SortOrder.indexOf(b);
+      if (aIndex === -1 && bIndex === -1) return 0;
+      if (aIndex === -1) return 1;
+      if (bIndex === -1) return -1;
+      return aIndex - bIndex;
+    });
+  }
+
   return (values.length > 0 ? values : ["指定なし"]).map((value) => ({
     value,
-    label: value,
+    label: displayLabelByQuestionId[questionId]?.[value] ?? value,
   }));
+}
+
+export function getSingleSidedTapeDisplayLabel(questionId: string, value: string): string {
+  if (!isSingleSidedTapeQuestion(questionId)) return value;
+  return displayLabelByQuestionId[questionId]?.[value] ?? value;
 }
 
 export function getSingleSidedTapeRoute(criteria: SelectionCriteria): SingleSidedTapeRoute | null {

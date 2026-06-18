@@ -2,6 +2,7 @@
 
 import { useSelectorStore } from "@/lib/store";
 import { getVisibleOptions, getVisibleQuestions, questions } from "@/lib/questions";
+import { getSingleSidedTapeDisplayLabel, isSingleSidedTapeQuestion } from "@/lib/singleSidedTapeLogic";
 import { QuestionCard } from "./QuestionCard";
 import { ResultCard } from "./ResultCard";
 import { Progress } from "@/components/ui/progress";
@@ -101,7 +102,13 @@ export function Selector() {
           <div className="mb-4 p-3 bg-white rounded-xl border border-gray-200 text-xs text-gray-500 flex flex-wrap gap-2">
             {Object.entries(answers).map(([k, v]) => {
               if (!v || (Array.isArray(v) && v.length === 0)) return null;
-              const label = Array.isArray(v) ? v.join("・") : v === "true" ? "はい" : v === "false" ? "いいえ" : v as string;
+              const formatValue = (value: string | boolean) => {
+                if (value === "true" || value === true) return "はい";
+                if (value === "false" || value === false) return "いいえ";
+                const rawValue = value as string;
+                return isSingleSidedTapeQuestion(k) ? getSingleSidedTapeDisplayLabel(k, rawValue) : rawValue;
+              };
+              const label = Array.isArray(v) ? v.map(formatValue).join("・") : formatValue(v);
               return (
                 <span key={k} className="bg-gray-100 px-2 py-0.5 rounded-full">{label}</span>
               );

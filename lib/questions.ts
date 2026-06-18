@@ -68,7 +68,13 @@ export function shouldShowPermanentQuestion(answers: AnswerRecord): boolean {
 
 export function shouldShowQuestion(question: Question, answers: AnswerRecord): boolean {
   if (question.id === "category") return true;
-  if (answers.category === "片面テープ") return isSingleSidedTapeQuestion(question.id);
+  if (answers.category === "片面テープ") {
+    if (question.id === "singleTapePerformance2") {
+      const options = getSingleSidedTapeOptions(question.id, answers as Record<string, string>);
+      return !(options.length === 1 && options[0].value === "指定なし");
+    }
+    return isSingleSidedTapeQuestion(question.id);
+  }
   if (isSingleSidedTapeQuestion(question.id)) return false;
   if (question.id === "permanent") return shouldShowPermanentQuestion(answers);
   return true;
@@ -187,7 +193,7 @@ export const questions: Question[] = [
   {
     id: "singleTapeSubUse",
     step: 3,
-    text: "サブ用途は何ですか？",
+    text: "何業界向けですか？",
     subtext: "前の回答に応じて候補を絞り込みます",
     type: "single",
     criteriaKey: "singleTapeSubUse",
@@ -196,8 +202,8 @@ export const questions: Question[] = [
   {
     id: "singleTapeWork",
     step: 4,
-    text: "作業内容は何ですか？",
-    subtext: "実際の作業内容を選択してください",
+    text: "施工部位はどこですか？",
+    subtext: "実際の施工部位を選択してください",
     type: "single",
     criteriaKey: "singleTapeWork",
     options: [],
