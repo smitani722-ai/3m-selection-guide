@@ -3580,7 +3580,11 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "手貼りで初期接着力を重視する保護膜剥離用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "/datasheets/879-itd275.pdf",
+      "datasheetTitle": "879 / IT1710 / 8495 剥離プロセス用テープ",
+      "datasheetDocumentType": "Technical Paper",
+      "datasheetLanguage": "Japanese"
     },
     {
       "id": "8888",
