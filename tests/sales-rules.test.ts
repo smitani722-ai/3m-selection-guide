@@ -746,6 +746,12 @@ const slideThicknessCopy = getSingleSidedTapeQuestionCopy("singleTapeWork", {
 });
 if (slideThicknessCopy.text !== "厚みの希望はどちらですか？") uiFailures.push("滑り助長・異音防止 route Q5 text mismatch");
 
+const lineDisplayCopy = getSingleSidedTapeQuestionCopy("singleTapeWork", {
+  category: "片面テープ",
+  singleTapeUse: "ラインテープ",
+});
+if (lineDisplayCopy.text !== "希望するものはどれですか？") uiFailures.push("ライン表示 route Q5 text mismatch");
+
 const workLabels = getVisibleOptions(singleTapeWorkQuestion, {
   category: "片面テープ",
   singleTapeUse: "マスキング",
@@ -788,6 +794,66 @@ if (blastQuestions.some((question: { id: string }) => question.id === "singleTap
   uiFailures.push("singleTapePerformance2 should be skipped when only 指定なし is available after Q6 skip");
 }
 
+const indoorWaterproofQuestions = getVisibleQuestions({
+  category: "片面テープ",
+  singleTapeUse: "防水テープ",
+  singleTapeSubUse: "屋内使用",
+});
+for (const skippedQuestionId of ["singleTapeWork", "singleTapePerformance1", "singleTapePerformance2"]) {
+  if (indoorWaterproofQuestions.some((question: { id: string }) => question.id === skippedQuestionId)) {
+    uiFailures.push(`indoor waterproof ${skippedQuestionId} should be skipped when only 指定なし is available`);
+  }
+}
+
+const visibleQuestionIdsByRoute: Record<number, string[]> = {};
+for (const route of singleSidedTapeRoutes) {
+  const routeAnswers = {
+    category: "片面テープ",
+    singleTapeUse: route.use,
+    singleTapeSubUse: route.subUse,
+    singleTapeWork: route.work,
+    singleTapePerformance1: route.performance1,
+    singleTapePerformance2: route.performance2 || "指定なし",
+  };
+  const visibleQuestionIds = getVisibleQuestions(routeAnswers).map((question: { id: string }) => question.id);
+  visibleQuestionIdsByRoute[route.no] = visibleQuestionIds;
+
+  for (const questionId of visibleQuestionIds) {
+    const options = getVisibleOptions(
+      questions.find((question: { id: string }) => question.id === questionId)!,
+      routeAnswers,
+    );
+    if (options.length === 1 && options[0].value === "指定なし") {
+      uiFailures.push(`No.${route.no} ${questionId} should be skipped because it only has 指定なし`);
+    }
+  }
+
+  const visibleOnlyAnswers: Record<string, string> = { category: "片面テープ" };
+  for (const questionId of visibleQuestionIds) {
+    if (questionId === "singleTapeUse") visibleOnlyAnswers.singleTapeUse = route.use;
+    if (questionId === "singleTapeSubUse") visibleOnlyAnswers.singleTapeSubUse = route.subUse;
+    if (questionId === "singleTapeWork") visibleOnlyAnswers.singleTapeWork = route.work;
+    if (questionId === "singleTapePerformance1") visibleOnlyAnswers.singleTapePerformance1 = route.performance1;
+    if (questionId === "singleTapePerformance2") visibleOnlyAnswers.singleTapePerformance2 = route.performance2 || "指定なし";
+  }
+  const routeResult = selectProducts({
+    category: "片面テープ",
+    application: [],
+    substrateA: "",
+    substrateB: "",
+    environment: [],
+    features: [],
+    thickness: "指定なし",
+    processingMethod: "",
+    priceSensitive: false,
+    permanent: true,
+    ...visibleOnlyAnswers,
+  });
+  if (routeResult?.primary.id !== route.productId) {
+    uiFailures.push(`No.${route.no} visible-only route should recommend ${route.productId}, actual ${routeResult?.primary.id ?? "(none)"}`);
+  }
+}
+
 const anodizingRoute = singleSidedTapeRoutes.find((route: { no: number }) => route.no === 33);
 if (anodizingRoute?.productId !== "8992") uiFailures.push("No.33 should recommend 8992");
 if (anodizingRoute?.alternativeIds?.[0] !== "470") uiFailures.push("No.33 should include 470 as first alternative");
@@ -797,6 +863,12 @@ if (anodizingRoute?.reason !== "シリコン系粘着剤のため、剥離剤処
 
 const blastRoute = singleSidedTapeRoutes.find((route: { no: number }) => route.no === 36);
 if (blastRoute?.productId !== "361") uiFailures.push("No.36 should recommend 361");
+
+const indoorWaterproofRoute = singleSidedTapeRoutes.find((route: { no: number }) => route.no === 71);
+if (indoorWaterproofRoute?.productId !== "IS1") uiFailures.push("No.71 indoor waterproof should recommend IS1");
+if (indoorWaterproofRoute?.reason !== "屋内の防水・シール用途向けです。") {
+  uiFailures.push("No.71 indoor waterproof reason mismatch");
+}
 
 const paintMaskingOptions = getVisibleOptions(singleTapePerformance1Question, {
   category: "片面テープ",

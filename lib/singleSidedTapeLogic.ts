@@ -97,6 +97,12 @@ const questionCopyByUse: Record<string, Partial<Record<SingleSidedTapeQuestionId
       subtext: "厚みや色など、追加で重視する条件を選択してください",
     },
   },
+  ["\u30e9\u30a4\u30f3\u30c6\u30fc\u30d7"]: {
+    singleTapeWork: {
+      text: "\u5e0c\u671b\u3059\u308b\u3082\u306e\u306f\u3069\u308c\u3067\u3059\u304b\uff1f",
+      subtext: "\u30e9\u30a4\u30f3\u8868\u793a\u3067\u91cd\u8996\u3059\u308b\u73fe\u5834\u6761\u4ef6\u3092\u9078\u3093\u3067\u304f\u3060\u3055\u3044",
+    },
+  },
 };
 
 const performance1SortOrder = [
@@ -145,6 +151,12 @@ export function getSingleSidedTapeOptions(questionId: SingleSidedTapeQuestionId,
     value,
     label: displayLabelByQuestionId[questionId]?.[value] ?? value,
   }));
+}
+
+export function hasOnlyUnspecifiedSingleSidedTapeOption(questionId: string, answers: SingleSidedTapeAnswers): boolean {
+  if (!isSingleSidedTapeQuestion(questionId)) return false;
+  const options = getSingleSidedTapeOptions(questionId, answers);
+  return options.length === 1 && options[0].value === "\u6307\u5b9a\u306a\u3057";
 }
 
 export function getSingleSidedTapeDisplayLabel(questionId: string, value: string): string {
