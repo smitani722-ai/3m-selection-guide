@@ -856,7 +856,7 @@ for (const route of singleSidedTapeRoutes) {
 
 const anodizingRoute = singleSidedTapeRoutes.find((route: { no: number }) => route.no === 33);
 if (anodizingRoute?.productId !== "8992") uiFailures.push("No.33 should recommend 8992");
-if (anodizingRoute?.alternativeIds?.[0] !== "470") uiFailures.push("No.33 should include 470 as first alternative");
+if ((anodizingRoute?.alternativeIds?.length ?? 0) !== 0) uiFailures.push("No.33 should not include alternatives after audit review");
 if (anodizingRoute?.reason !== "シリコン系粘着剤のため、剥離剤処理された離型紙・剥離フィルムにも接着可能です。") {
   uiFailures.push("No.33 reason mismatch");
 }
