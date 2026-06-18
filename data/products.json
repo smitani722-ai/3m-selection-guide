@@ -2543,7 +2543,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "レールなどの表面保護用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231448O/1272.pdf?&fn=1272.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b10440890",
+      "datasheetTitle": "1272 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b10440890",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "214-3MNE",
@@ -2597,7 +2604,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "160度1時間以下の塗装乾燥工程向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231112O?&fn=2142_R3.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b00035685",
+      "datasheetTitle": "2142 Technical Bulletin",
+      "datasheetDocumentType": "Technical Bulletin",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b00035685",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "2364",
@@ -2620,7 +2634,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "塗装乾燥温度130度以下の指示書貼り用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/2370951O/technical-data-sheet-for-2364.pdf?&fn=tds-2364-jp-20231130.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067065",
+      "datasheetTitle": "2364 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067065",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "2380",
@@ -2643,7 +2664,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "塗装乾燥温度150度以下の指示書貼り用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231227O/2380.pdf?&fn=2380.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067086",
+      "datasheetTitle": "2380 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067086",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "243J",
@@ -2664,7 +2692,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "自動車補修時の塗装マスキングで扱いやすい製品です。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/988988O/aad-237.pdf?&fn=237.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005093002",
+      "datasheetTitle": "243J Plus Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005093002",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "244",
@@ -2688,7 +2723,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "150度30分以下で、手切れ性を重視する塗装マスキング向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/2367781O/technical-data-sheet-for-244.pdf?&fn=tds-244-jp-20221220.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067071",
+      "datasheetTitle": "244 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067071",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "2800",
@@ -2712,7 +2754,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "自動車塗装で曲線の見切りを出したい用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231383O/2800.pdf?&fn=2800.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005006055",
+      "datasheetTitle": "2800 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005006055",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "2899",
@@ -2799,7 +2848,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "316℃までの耐熱・火花保護用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231330O/363-363l.pdf?&fn=363L.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40074779",
+      "datasheetTitle": "363 / 363L Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40074779",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "3966W",
@@ -2819,7 +2875,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "厚みを持たせたいすべり・振動音対策用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231287O/3966w.pdf?&fn=3966W.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005056254",
+      "datasheetTitle": "3966W Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b5005056254",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "420",
@@ -2906,7 +2969,14 @@
       "price": "standard",
       "permanence": "用途依存",
       "notes": "310℃までの高温遮熱保護用途向けです。",
-      "competitors": []
+      "competitors": [],
+      "datasheetUrl": "https://multimedia.3m.com/mws/media/1231165O/433.pdf?&fn=433.pdf",
+      "productUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067935",
+      "datasheetTitle": "433 Technical Data Sheet",
+      "datasheetDocumentType": "Technical Data Sheet",
+      "datasheetLanguage": "ja-JP",
+      "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40067935",
+      "datasheetSourceSection": "3M Japan official product page resources"
     },
     {
       "id": "4412N",
