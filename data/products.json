@@ -2523,6 +2523,1124 @@
       "datasheetLanguage": "ja-JP",
       "datasheetSourcePageUrl": "https://www.3mcompany.jp/3M/ja_JP/p/d/b40071910/",
       "datasheetSourceSection": "3M Japan official product page resources"
+    },
+    {
+      "id": "1272",
+      "name": "1272",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 1272 の推奨候補。",
+      "features": [],
+      "applications": [
+        "マスキング",
+        "自動車用",
+        "レールなどの表面保護"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "レールなどの表面保護用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "214-3MNE",
+      "name": "214-3MNE",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 214-3MNE の推奨候補。",
+      "features": [
+        "塗装乾燥温度190度1時間以下"
+      ],
+      "applications": [
+        "マスキング",
+        "一般工業",
+        "ハンダメッキマスキング",
+        "塗装マスキング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "ハンダメッキ工程のマスキング用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "2142",
+      "name": "2142",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 2142 の推奨候補。",
+      "features": [
+        "塗装乾燥温度160度1時間以下"
+      ],
+      "applications": [
+        "マスキング",
+        "一般工業",
+        "塗装マスキング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "160度1時間以下の塗装乾燥工程向けです。",
+      "competitors": []
+    },
+    {
+      "id": "2364",
+      "name": "2364",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 2364 の推奨候補。",
+      "features": [
+        "塗装乾燥温度130度以下"
+      ],
+      "applications": [
+        "マスキング",
+        "自動車用",
+        "指示書貼り"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "塗装乾燥温度130度以下の指示書貼り用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "2380",
+      "name": "2380",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 2380 の推奨候補。",
+      "features": [
+        "塗装乾燥温度150度以下"
+      ],
+      "applications": [
+        "マスキング",
+        "自動車用",
+        "指示書貼り"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "塗装乾燥温度150度以下の指示書貼り用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "243J",
+      "name": "243J",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 243J の推奨候補。",
+      "features": [],
+      "applications": [
+        "マスキング",
+        "自動車用",
+        "自動車補修時の塗装"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "自動車補修時の塗装マスキングで扱いやすい製品です。",
+      "competitors": []
+    },
+    {
+      "id": "244",
+      "name": "244",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 244 の推奨候補。",
+      "features": [
+        "塗装乾燥温度150度30分以下",
+        "手で切りやすい"
+      ],
+      "applications": [
+        "マスキング",
+        "一般工業",
+        "塗装マスキング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "150度30分以下で、手切れ性を重視する塗装マスキング向けです。",
+      "competitors": []
+    },
+    {
+      "id": "2800",
+      "name": "2800",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 2800 の推奨候補。",
+      "features": [
+        "見切り重視",
+        "曲線"
+      ],
+      "applications": [
+        "マスキング",
+        "自動車用",
+        "自動車製造時の塗装"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "自動車塗装で曲線の見切りを出したい用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "2899",
+      "name": "2899",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 2899 の推奨候補。",
+      "features": [
+        "価格重視",
+        "塗装乾燥温度150度30分以下"
+      ],
+      "applications": [
+        "マスキング",
+        "建築用",
+        "塗装用",
+        "自動車用",
+        "指示書貼り",
+        "一般工業",
+        "塗装マスキング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "economy",
+      "permanence": "用途依存",
+      "notes": "建築塗装でコストを抑えたい場合の選択肢です。",
+      "competitors": []
+    },
+    {
+      "id": "361",
+      "name": "361",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 361 の推奨候補。",
+      "features": [],
+      "applications": [
+        "マスキング",
+        "一般工業",
+        "溶射マスキング",
+        "熱・燃焼から守る",
+        "耐熱・火花からの保護",
+        "232℃まで"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "溶射工程のマスキング用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "363",
+      "name": "363",
+      "category": "片面テープ",
+      "subcategory": "熱・燃焼から守る用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 363 の推奨候補。",
+      "features": [],
+      "applications": [
+        "熱・燃焼から守る",
+        "耐熱・火花からの保護",
+        "316℃まで"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "316℃までの耐熱・火花保護用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "3966W",
+      "name": "3966W",
+      "category": "片面テープ",
+      "subcategory": "滑らせる、振動音をおさえる用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 3966W の推奨候補。",
+      "features": [],
+      "applications": [
+        "滑らせる、振動音をおさえる",
+        "厚さ重視"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "厚みを持たせたいすべり・振動音対策用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "420",
+      "name": "420",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 420 の推奨候補。",
+      "features": [
+        "クロムメッキ",
+        "クロム酸"
+      ],
+      "applications": [
+        "マスキング",
+        "一般工業",
+        "電気メッキマスキング",
+        "アノダイジング（アルマイト処理）"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "クロムメッキ工程のマスキング用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "425",
+      "name": "425",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 425 の推奨候補。",
+      "features": [
+        "その他（金、銀、スズ、カドミウム、亜鉛、ニッケルなど）",
+        "薄手必要"
+      ],
+      "applications": [
+        "マスキング",
+        "一般工業",
+        "電気メッキマスキング",
+        "熱・燃焼から守る",
+        "遮熱",
+        "150℃まで"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "電気メッキマスキングで薄手を重視する場合に適しています。",
+      "competitors": []
+    },
+    {
+      "id": "433",
+      "name": "433",
+      "category": "片面テープ",
+      "subcategory": "熱・燃焼から守る用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 433 の推奨候補。",
+      "features": [],
+      "applications": [
+        "熱・燃焼から守る",
+        "遮熱",
+        "310℃まで"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "310℃までの高温遮熱保護用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "4412N",
+      "name": "4412N",
+      "category": "片面テープ",
+      "subcategory": "防水テープ用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 4412N の推奨候補。",
+      "features": [],
+      "applications": [
+        "防水テープ",
+        "屋外使用",
+        "厚み2mm"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "2.0mm",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "屋外で厚み2mmの防水シールをしたい用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "4422B",
+      "name": "4422B",
+      "category": "片面テープ",
+      "subcategory": "防水テープ用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 4422B の推奨候補。",
+      "features": [
+        "黒色"
+      ],
+      "applications": [
+        "防水テープ",
+        "屋外使用",
+        "厚み1mm"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "1.0mm",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "屋外防水で黒色を選びたい用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "4422G",
+      "name": "4422G",
+      "category": "片面テープ",
+      "subcategory": "防水テープ用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 4422G の推奨候補。",
+      "features": [
+        "灰色"
+      ],
+      "applications": [
+        "防水テープ",
+        "屋外使用",
+        "厚み1mm"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "1.0mm",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "屋外防水で灰色を選びたい用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "4422W",
+      "name": "4422W",
+      "category": "片面テープ",
+      "subcategory": "防水テープ用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 4422W の推奨候補。",
+      "features": [
+        "白色"
+      ],
+      "applications": [
+        "防水テープ",
+        "屋外使用",
+        "厚み1mm"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "1.0mm",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "屋外防水で白色を選びたい用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "470",
+      "name": "470",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 470 の推奨候補。",
+      "features": [
+        "その他（金、銀、スズ、カドミウム、亜鉛、ニッケルなど）",
+        "その他"
+      ],
+      "applications": [
+        "マスキング",
+        "一般工業",
+        "電気メッキマスキング",
+        "溶融メッキマスキング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "一般的な電気メッキマスキング用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "471黒",
+      "name": "471黒",
+      "category": "片面テープ",
+      "subcategory": "屋外での仮固定用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 471黒 の推奨候補。",
+      "features": [],
+      "applications": [
+        "屋外での仮固定",
+        "3か月以内"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "再剥離",
+      "notes": "屋外で3か月以内の仮固定用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "4734",
+      "name": "4734",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 4734 の推奨候補。",
+      "features": [
+        "見切り重視",
+        "直線"
+      ],
+      "applications": [
+        "マスキング",
+        "自動車用",
+        "自動車製造時の塗装"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "自動車塗装で直線の見切りをきれいに出したい用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "5360T",
+      "name": "5360T",
+      "category": "片面テープ",
+      "subcategory": "滑らせる、振動音をおさえる用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 5360T の推奨候補。",
+      "features": [],
+      "applications": [
+        "滑らせる、振動音をおさえる",
+        "薄さ重視"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "薄さを重視するすべり・振動音対策用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "5410",
+      "name": "5410",
+      "category": "片面テープ",
+      "subcategory": "滑らせる、振動音をおさえる用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 5410 の推奨候補。",
+      "features": [],
+      "applications": [
+        "滑らせる、振動音をおさえる",
+        "黒色・帯電防止",
+        "0.2mm以上"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "0.2mm??",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "帯電防止と滑り性を重視する用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "5417",
+      "name": "5417",
+      "category": "片面テープ",
+      "subcategory": "滑らせる、振動音をおさえる用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 5417 の推奨候補。",
+      "features": [],
+      "applications": [
+        "滑らせる、振動音をおさえる",
+        "黒色・帯電防止",
+        "厚さ0.2mm以上"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "0.2mm??",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "黒色・帯電防止で厚さ0.2mm以上を求める用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "5421",
+      "name": "5421",
+      "category": "片面テープ",
+      "subcategory": "滑らせる、振動音をおさえる用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 5421 の推奨候補。",
+      "features": [],
+      "applications": [
+        "滑らせる、振動音をおさえる",
+        "再剥離性",
+        "厚さ0.3mm以下"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "0.3mm??",
+      "lse": false,
+      "price": "standard",
+      "permanence": "再剥離",
+      "notes": "再剥離性が必要で薄手のすべり・振動音対策向けです。",
+      "competitors": []
+    },
+    {
+      "id": "5423",
+      "name": "5423",
+      "category": "片面テープ",
+      "subcategory": "滑らせる、振動音をおさえる用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 5423 の推奨候補。",
+      "features": [],
+      "applications": [
+        "滑らせる、振動音をおさえる",
+        "再剥離性",
+        "厚さ0.3mm以上"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "0.3mm??",
+      "lse": false,
+      "price": "standard",
+      "permanence": "再剥離",
+      "notes": "再剥離性が必要で厚み0.3mm以上のすべり・振動音対策向けです。",
+      "competitors": []
+    },
+    {
+      "id": "5430",
+      "name": "5430",
+      "category": "片面テープ",
+      "subcategory": "滑らせる、振動音をおさえる用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 5430 の推奨候補。",
+      "features": [],
+      "applications": [
+        "滑らせる、振動音をおさえる",
+        "接着力重視"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "すべり・振動音対策で接着力を重視する用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "5461",
+      "name": "5461",
+      "category": "片面テープ",
+      "subcategory": "滑り止め用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 5461 の推奨候補。",
+      "features": [],
+      "applications": [
+        "滑り止め"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "滑り止め用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "79H",
+      "name": "79H",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 79H の推奨候補。",
+      "features": [
+        "多少濡れていても貼れる"
+      ],
+      "applications": [
+        "マスキング",
+        "建築用",
+        "ガラスシーリング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "ガラスシーリングで多少の湿りがある現場でも作業しやすい製品です。",
+      "competitors": []
+    },
+    {
+      "id": "79SX",
+      "name": "79SX",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 79SX の推奨候補。",
+      "features": [
+        "直線性に優れる"
+      ],
+      "applications": [
+        "マスキング",
+        "建築用",
+        "ガラスシーリング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "ガラスシーリングで直線をきれいに出したい用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "80",
+      "name": "80",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 80 の推奨候補。",
+      "features": [
+        "防汚加工ボード"
+      ],
+      "applications": [
+        "マスキング",
+        "建築用",
+        "サイディングシーリング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "防汚加工ボードのシーリング作業に合わせたマスキング用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "80N",
+      "name": "80N",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 80N の推奨候補。",
+      "features": [
+        "粗面"
+      ],
+      "applications": [
+        "マスキング",
+        "建築用",
+        "サイディングシーリング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "サイディングなど粗い面でのシーリングマスキング向けです。",
+      "competitors": []
+    },
+    {
+      "id": "80S",
+      "name": "80S",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 80S の推奨候補。",
+      "features": [
+        "価格重視"
+      ],
+      "applications": [
+        "マスキング",
+        "建築用",
+        "ガラスシーリング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "economy",
+      "permanence": "用途依存",
+      "notes": "ガラスシーリングで価格を優先したい場合の選択肢です。",
+      "competitors": []
+    },
+    {
+      "id": "8416AL",
+      "name": "8416AL",
+      "category": "片面テープ",
+      "subcategory": "スプライスつなぐ用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 8416AL の推奨候補。",
+      "features": [],
+      "applications": [
+        "スプライスつなぐ",
+        "金属検知が必要なスプライス"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "金属検知が必要なスプライス用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "8495",
+      "name": "8495",
+      "category": "片面テープ",
+      "subcategory": "保護膜剥離用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 8495 の推奨候補。",
+      "features": [],
+      "applications": [
+        "保護膜剥離",
+        "機械用",
+        "価格重視"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "機械貼りの保護膜剥離で価格を優先する用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "879",
+      "name": "879",
+      "category": "片面テープ",
+      "subcategory": "保護膜剥離用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 879 の推奨候補。",
+      "features": [],
+      "applications": [
+        "保護膜剥離",
+        "初期接着力重視手貼り用"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "手貼りで初期接着力を重視する保護膜剥離用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "8888",
+      "name": "8888",
+      "category": "片面テープ",
+      "subcategory": "固定する用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 8888 の推奨候補。",
+      "features": [],
+      "applications": [
+        "固定する",
+        "軽荷重）部品などの出荷時仮固定",
+        "価格重視"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "軽荷重部品の出荷時仮固定で価格を優先する用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "8898",
+      "name": "8898",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 8898 の推奨候補。",
+      "features": [],
+      "applications": [
+        "マスキング",
+        "一般工業",
+        "ブラストマスキング",
+        "固定する",
+        "軽荷重）部品などの出荷時仮固定",
+        "性能重視"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "ブラスト工程で保護性能を重視するマスキング用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "890MSR",
+      "name": "890MSR",
+      "category": "片面テープ",
+      "subcategory": "固定する用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 890MSR の推奨候補。",
+      "features": [],
+      "applications": [
+        "固定する",
+        "重荷重）金属コイルエンド止め",
+        "油面接着性必要"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "油面接着性が必要な金属コイルエンド止め用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "893",
+      "name": "893",
+      "category": "片面テープ",
+      "subcategory": "固定する用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 893 の推奨候補。",
+      "features": [],
+      "applications": [
+        "固定する",
+        "中荷重）パイプ等の結束"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "パイプなど中荷重部材の結束用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "8979",
+      "name": "8979",
+      "category": "片面テープ",
+      "subcategory": "屋外での仮固定用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 8979 の推奨候補。",
+      "features": [],
+      "applications": [
+        "屋外での仮固定",
+        "6か月以内"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "再剥離",
+      "notes": "屋外で6か月以内の仮固定用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "898",
+      "name": "898",
+      "category": "片面テープ",
+      "subcategory": "固定する用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 898 の推奨候補。",
+      "features": [],
+      "applications": [
+        "固定する",
+        "重荷重）金属コイルエンド止め",
+        "油面接着性不要"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "重荷重の金属コイルエンド止めで油面接着性を不要とする用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "8992",
+      "name": "8992",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 8992 の推奨候補。",
+      "features": [
+        "粉体塗装・塗装乾燥温度200度1時間以下"
+      ],
+      "applications": [
+        "マスキング",
+        "一般工業",
+        "塗装マスキング",
+        "スプライスつなぐ",
+        "剥離フィルムのスプライス"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "粉体塗装や200度級乾燥工程のマスキング用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "8992470",
+      "name": "8992470",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 8992470 の推奨候補。",
+      "features": [
+        "その他（リン酸、硫酸、ホウ酸）"
+      ],
+      "applications": [
+        "マスキング",
+        "一般工業",
+        "アノダイジング（アルマイト処理）"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "リン酸・硫酸・ホウ酸系のアルマイト処理マスキング用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "971L",
+      "name": "971L",
+      "category": "片面テープ",
+      "subcategory": "ラインテープ用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 971L の推奨候補。",
+      "features": [],
+      "applications": [
+        "ラインテープ",
+        "フォークリフトやパレットでの摩耗が多い現場"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "フォークリフトやパレットによる摩耗が多い現場向けのライン表示用途です。",
+      "competitors": []
+    },
+    {
+      "id": "99BB",
+      "name": "99BB",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく 99BB の推奨候補。",
+      "features": [
+        "夏場の糊残りが気になる"
+      ],
+      "applications": [
+        "マスキング",
+        "建築用",
+        "サイディングシーリング",
+        "躯体コンクリート"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "夏場の糊残りを抑えたいサイディング現場向けです。",
+      "competitors": []
+    },
+    {
+      "id": "EXPP",
+      "name": "EXPP",
+      "category": "片面テープ",
+      "subcategory": "マスキング用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく EXPP の推奨候補。",
+      "features": [
+        "斜め切れなくはがせる",
+        "直線性に優れる",
+        "塗膜飛散しづらい",
+        "手で切れる",
+        "塗装乾燥温度150度30分以下"
+      ],
+      "applications": [
+        "マスキング",
+        "建築用",
+        "塗装用",
+        "自動車用",
+        "自動車製造時の塗装",
+        "一般工業",
+        "塗装マスキング"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "建築塗装で斜め切れしにくく、きれいに剥がしやすいマスキング用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "IS1",
+      "name": "IS1",
+      "category": "片面テープ",
+      "subcategory": "防水テープ用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく IS1 の推奨候補。",
+      "features": [],
+      "applications": [
+        "防水テープ",
+        "屋内使用"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "屋内の防水・シール用途向けです。",
+      "competitors": []
+    },
+    {
+      "id": "IT1710",
+      "name": "IT1710",
+      "category": "片面テープ",
+      "subcategory": "保護膜剥離用片面テープ",
+      "description": "片面テープロジック.xlsx に基づく IT1710 の推奨候補。",
+      "features": [],
+      "applications": [
+        "保護膜剥離",
+        "機械用",
+        "長さ重視"
+      ],
+      "substrates": [],
+      "environment": [],
+      "thickness": "",
+      "lse": false,
+      "price": "standard",
+      "permanence": "用途依存",
+      "notes": "機械貼りで長さを重視する保護膜剥離用途向けです。",
+      "competitors": []
     }
   ]
 }

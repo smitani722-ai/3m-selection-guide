@@ -82,6 +82,11 @@ export const useSelectorStore = create<SelectorState>((set, get) => ({
       permanent: shouldShowPermanentQuestion(answers)
         ? answers.permanent === "true" || answers.permanent === true
         : true,
+      singleTapeUse: (answers.singleTapeUse as string) ?? "",
+      singleTapeSubUse: (answers.singleTapeSubUse as string) ?? "",
+      singleTapeWork: (answers.singleTapeWork as string) ?? "",
+      singleTapePerformance1: (answers.singleTapePerformance1 as string) ?? "",
+      singleTapePerformance2: (answers.singleTapePerformance2 as string) ?? "",
     };
     const result = selectProducts(criteria);
     set({ result });

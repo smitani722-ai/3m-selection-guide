@@ -1,3 +1,5 @@
+import { getSingleSidedTapeOptions, isSingleSidedTapeQuestion } from "./singleSidedTapeLogic";
+
 export interface QuestionOption {
   value: string;
   label: string;
@@ -65,6 +67,9 @@ export function shouldShowPermanentQuestion(answers: AnswerRecord): boolean {
 }
 
 export function shouldShowQuestion(question: Question, answers: AnswerRecord): boolean {
+  if (question.id === "category") return true;
+  if (answers.category === "片面テープ") return isSingleSidedTapeQuestion(question.id);
+  if (isSingleSidedTapeQuestion(question.id)) return false;
   if (question.id === "permanent") return shouldShowPermanentQuestion(answers);
   return true;
 }
@@ -119,6 +124,10 @@ export function shouldShowOption(question: Question, option: QuestionOption, ans
 }
 
 export function getVisibleOptions(question: Question, answers: AnswerRecord): QuestionOption[] {
+  if (answers.category === "片面テープ" && isSingleSidedTapeQuestion(question.id)) {
+    return getSingleSidedTapeOptions(question.id, answers as Record<string, string>);
+  }
+
   return question.options.filter((option) => shouldShowOption(question, option, answers));
 }
 
@@ -165,6 +174,51 @@ export const questions: Question[] = [
       { value: "補強", label: "補強" },
       { value: "着脱", label: "着脱・脱着" },
     ],
+  },
+  {
+    id: "singleTapeUse",
+    step: 2,
+    text: "片面テープの用途は何ですか？",
+    subtext: "ExcelマスターのQ2用途から選択してください",
+    type: "single",
+    criteriaKey: "singleTapeUse",
+    options: [],
+  },
+  {
+    id: "singleTapeSubUse",
+    step: 3,
+    text: "サブ用途は何ですか？",
+    subtext: "前の回答に応じて候補を絞り込みます",
+    type: "single",
+    criteriaKey: "singleTapeSubUse",
+    options: [],
+  },
+  {
+    id: "singleTapeWork",
+    step: 4,
+    text: "作業内容は何ですか？",
+    subtext: "実際の作業内容を選択してください",
+    type: "single",
+    criteriaKey: "singleTapeWork",
+    options: [],
+  },
+  {
+    id: "singleTapePerformance1",
+    step: 5,
+    text: "必要性能①は何ですか？",
+    subtext: "重視する条件を選択してください",
+    type: "single",
+    criteriaKey: "singleTapePerformance1",
+    options: [],
+  },
+  {
+    id: "singleTapePerformance2",
+    step: 6,
+    text: "必要性能②は何ですか？",
+    subtext: "追加条件がなければ「指定なし」を選択してください",
+    type: "single",
+    criteriaKey: "singleTapePerformance2",
+    options: [],
   },
   {
     id: "substrateA",

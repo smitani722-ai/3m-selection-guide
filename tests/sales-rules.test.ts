@@ -12,6 +12,11 @@ type SelectionCriteria = {
   processingMethod: string;
   priceSensitive: boolean;
   permanent: boolean;
+  singleTapeUse?: string;
+  singleTapeSubUse?: string;
+  singleTapeWork?: string;
+  singleTapePerformance1?: string;
+  singleTapePerformance2?: string;
 };
 
 const originalResolveFilename = Module._resolveFilename;
@@ -32,6 +37,7 @@ Module._resolveFilename = function resolveFilename(request, parent, isMain, opti
 
 const { selectProducts } = await import("../lib/selectionEngine");
 const { getVisibleOptions, questions, shouldShowPermanentQuestion } = await import("../lib/questions");
+const { singleSidedTapeRoutes } = await import("../lib/singleSidedTapeLogic");
 
 type SalesRuleCase = {
   no: number;
@@ -616,6 +622,27 @@ const cases: SalesRuleCase[] = [
     criteria: tape({ features: ["高保持力"], thickness: "0.2mm" }),
   },
 ];
+
+const singleSidedTapeCases: SalesRuleCase[] = singleSidedTapeRoutes.map((route, index) => ({
+  no: 1000 + index + 1,
+  name: `片面テープExcelルート ${route.no}`,
+  expected: route.productId,
+  criteria: {
+    ...baseLineTape,
+    application: [],
+    substrateA: "",
+    substrateB: "",
+    environment: [],
+    features: [],
+    singleTapeUse: route.use,
+    singleTapeSubUse: route.subUse,
+    singleTapeWork: route.work,
+    singleTapePerformance1: route.performance1,
+    singleTapePerformance2: route.performance2 || "指定なし",
+  },
+}));
+
+cases.push(...singleSidedTapeCases);
 
 const failures = cases
   .map((testCase) => {

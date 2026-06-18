@@ -1,4 +1,5 @@
 import productsData from "@/data/products.json";
+import { buildSingleSidedTapeResult, getSingleSidedTapeRoute } from "./singleSidedTapeLogic";
 
 export interface Product {
   id: string;
@@ -44,6 +45,11 @@ export interface SelectionCriteria {
   processingMethod: string;
   priceSensitive: boolean;
   permanent: boolean;
+  singleTapeUse?: string;
+  singleTapeSubUse?: string;
+  singleTapeWork?: string;
+  singleTapePerformance1?: string;
+  singleTapePerformance2?: string;
 }
 
 export interface SelectionResult {
@@ -833,6 +839,21 @@ function buildWarnings(product: Product, criteria: SelectionCriteria): string[] 
 }
 
 export function selectProducts(criteria: SelectionCriteria): SelectionResult | null {
+  const singleSidedTapeRoute = getSingleSidedTapeRoute(criteria);
+  if (singleSidedTapeRoute) {
+    const singleSidedTapeResult = buildSingleSidedTapeResult(singleSidedTapeRoute, products);
+    if (singleSidedTapeResult) {
+      return {
+        primary: singleSidedTapeResult.primary,
+        alternatives: singleSidedTapeResult.alternatives,
+        reasons: singleSidedTapeResult.reasons,
+        warnings: [],
+        category: singleSidedTapeResult.primary.subcategory,
+        matchScore: 100,
+      };
+    }
+  }
+
   const categoryProducts = products.filter((p) => p.category === criteria.category);
   if (categoryProducts.length === 0) return null;
 
